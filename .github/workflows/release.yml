@@ -4,7 +4,7 @@ on:
   push:
     tags:
       - "v*.*.*"
-  # A rehearsal (TOR-2003): run it by hand from the Actions tab and it builds, signs, notarizes and checks everything on
+  # A rehearsal: run it by hand from the Actions tab and it builds, signs, notarizes and checks everything on
   # macOS, Linux and Windows, then stops. Only a pushed version tag publishes.
   workflow_dispatch:
 

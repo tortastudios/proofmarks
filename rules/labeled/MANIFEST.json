@@ -26,8 +26,8 @@
   },
   "humanPassages": 19,
   "realTexts": {
-    "18f-the-best-way-to-build-big-is-to-start-small": "\"The best way to build big is to start small\", 18F blog, January 11, 2017 (github.com/18F/18f.gsa.gov, content/posts/2017-01-11-the-best-way-to-build-big-is-to-start-small.md). Public domain: a US government work, with a CC0 waiver. Front matter and site template tags removed. It replaced The Second Flywheel on November 19, 2026 (TOR-1994). Included as evaluation data.",
+    "18f-the-best-way-to-build-big-is-to-start-small": "\"The best way to build big is to start small\", 18F blog, January 11, 2017 (github.com/18F/18f.gsa.gov, content/posts/2017-01-11-the-best-way-to-build-big-is-to-start-small.md). Public domain: a US government work, with a CC0 waiver. Front matter and site template tags removed. It replaced The Second Flywheel on November 19, 2026. Included as evaluation data.",
     "no-bs-guide-ai-assisted-development": "Article about AI-assisted development, with publication navigation and footer removed. Included as evaluation data."
   },
-  "note": "Frozen evaluation corpus: planted passages, human controls and two unlabeled real articles. Real articles are not ground-truth labels. Added November 24, 2026 (TOR-2036): 18 planted passages for em dash, connecting colon and bold inflation (29 plants), and six 18F excerpts as human controls."
+  "note": "Frozen evaluation corpus: planted passages, human controls and two unlabeled real articles. Real articles are not ground-truth labels. Added November 24, 2026: 18 planted passages for em dash, connecting colon and bold inflation (29 plants), and six 18F excerpts as human controls."
 }
