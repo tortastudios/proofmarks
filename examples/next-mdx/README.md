@@ -1,5 +1,6 @@
 # next-mdx
-Run `npm install` to link the unpublished local package; the bundled review uses fixture scores.
+First, from the repository's root: `pnpm install --frozen-lockfile && pnpm build`. Then come back to this folder.
+Run `npm install` to link the package from this checkout; the bundled review uses fixture scores.
 Start the site: `npm run dev`.
 Proxy: `npx proofmarks dev --judge fake --port 4860`; open its URL with `?proof=1`.
 Script: restart the site with `PROOFMARKS_SCRIPT=1 npm run dev`; run `npx proofmarks serve --judge fake` and open `?proof=1`.
