@@ -36,7 +36,7 @@ const out = path.join(work, 'wheels');
 await mkdir(out, { recursive: true });
 
 const python = {
-  '__init__.py': `"""Proofmarks: a proofreader for AI-sounding writing, drawn on your real page."""\n\n__version__ = "${version}"\n`,
+  '__init__.py': `"""Proofmarks marks what reads like AI slop on your page, says why, and rewrites it with the agent you already use."""\n\n__version__ = "${version}"\n`,
   '__main__.py': 'from ._run import main\n\nmain()\n',
   '_run.py': `"""Runs the standalone Proofmarks program that ships inside this package."""
 
@@ -101,7 +101,7 @@ for (const target of targets) {
       'Metadata-Version: 2.4',
       'Name: proofmarks',
       `Version: ${version}`,
-      'Summary: A proofreader for AI-sounding writing, drawn on your real page. Works with any stack and any MCP agent.',
+      'Summary: Proofmarks marks what reads like AI slop on your page, says why, and rewrites it with the agent you already use.',
       'License-Expression: FSL-1.1-MIT',
       'Project-URL: Homepage, https://github.com/tortastudios/proofmarks',
       'Project-URL: Issues, https://github.com/tortastudios/proofmarks/issues',

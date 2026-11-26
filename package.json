@@ -1,7 +1,7 @@
 {
   "name": "@tortastudios/proofmarks",
   "version": "0.1.0",
-  "description": "Proofmarks: a proofreader for AI-sounding writing that marks up the real page.",
+  "description": "Proofmarks marks what reads like AI slop on your page, says why, and rewrites it with the agent you already use.",
   "keywords": [
     "proofreading",
     "writing",
