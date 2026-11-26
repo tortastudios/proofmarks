@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "documents": [
+    {
+      "id": "workshop",
+      "source": "index.html",
+      "review": "reviews/workshop.json",
+      "write": true,
+      "url": "/",
+      "format": "html"
+    }
+  ],
+  "roots": [
+    "."
+  ],
+  "judge": {
+    "provider": "fake",
+    "model": "fixture-1"
+  },
+  "devServer": "http://127.0.0.1:3766"
+}

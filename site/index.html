@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en" data-marks="off">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Proofmarks: see your writing the way an editor does</title>
+    <meta
+      name="description"
+      content="Proofmarks marks what reads like AI slop on your page, says why, and rewrites it with the agent you already use."
+    />
+    <link rel="canonical" href="https://proofmarks.dev/" />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://proofmarks.dev/" />
+    <meta property="og:title" content="Proofmarks: see your writing the way an editor does" />
+    <meta
+      property="og:description"
+      content="Marks what reads like AI slop on your page, says why, and rewrites it with the agent you already use."
+    />
+    <meta property="og:image" content="https://proofmarks.dev/assets/og.png" />
+    <meta property="og:image:width" content="2400" />
+    <meta property="og:image:height" content="1260" />
+    <meta
+      property="og:image:alt"
+      content="A machine-made sentence struck through, with its rewrite handwritten above it and marked Accepted."
+    />
+    <!-- iMessage and Discord play the video; everywhere else shows the image. -->
+    <meta property="og:video" content="https://proofmarks.dev/assets/og.mp4" />
+    <meta property="og:video:secure_url" content="https://proofmarks.dev/assets/og.mp4" />
+    <meta property="og:video:type" content="video/mp4" />
+    <meta property="og:video:width" content="1200" />
+    <meta property="og:video:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://proofmarks.dev/assets/og.png" />
+    <link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/site.css" />
+  </head>
+  <body>
+    <div class="content">
+      <header class="top">
+        <a class="brand" href="/" aria-label="Proofmarks home"
+          ><img src="/assets/proofmarks.svg" alt="Proofmarks" width="104" height="27"
+        /></a>
+        <nav aria-label="Site">
+          <a href="/#how">How it works</a>
+          <a href="/#rules">Rules</a>
+          <a href="/faq/">FAQ</a>
+          <a href="https://github.com/tortastudios/proofmarks">GitHub</a>
+        </nav>
+      </header>
+
+      <main id="top">
+        <!-- The footer's Install link lands here, with the headline and the setup prompt in view. -->
+        <section class="hero" id="install">
+          <h1>See your writing the way an <em>editor</em> does.</h1>
+          <p class="sub">
+            Proofmarks marks what reads like AI slop on your page, says why, and rewrites it with the agent you already
+            use.
+          </p>
+          <pm-prompt-box name="setup"></pm-prompt-box>
+          <div class="cta">
+            <button type="button" class="try" data-try><span>Try it on this page</span></button>
+          </div>
+        </section>
+
+        <section class="demo" id="demo" aria-label="An example">
+          <div
+            class="frame hero-frame"
+            data-hero
+            role="img"
+            aria-label="An example on a blog post: Proofmarks marks two lines. An agent rewrites the first, Accept puts the rewrite in the post, and Accept on the second deletes its opener. Then the same again from the Proofmarks badge."
+          >
+            <div class="frame-bar" aria-hidden="true">
+              <span></span><span></span><span></span><em>yoursite.com/blog/47-rejections</em>
+            </div>
+            <div class="hero-stage">
+              <article class="hero-post" aria-hidden="true">
+                <h3>I got rejected from 47 jobs last year.</h3>
+                <p>For six months, I applied everywhere. Startups. Agencies. Big tech. 47 rejections.</p>
+                <p><span data-mark="contrast">I realized rejection isn't a verdict. It's data.</span></p>
+                <p>
+                  Every "no" taught me something. One interviewer said my portfolio was too long. Another said I talked
+                  about my team more than myself. A third said, kindly, that I seemed nervous. All of them were right.
+                </p>
+                <p>So I cut my portfolio in half and practiced until interviews felt boring.</p>
+                <p><span data-mark="signpost">Here's the kicker</span>: application number 48 got the offer.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="how">
+          <h2>How it works</h2>
+          <ol class="steps">
+            <li>Paste the prompt at the top into your agent.</li>
+            <li>Open your page.</li>
+            <li>Select a mark.</li>
+            <li>Ask your agent for a rewrite.</li>
+            <li>Accept the rewrite, or dismiss the mark.</li>
+          </ol>
+        </section>
+
+        <section id="more">
+          <h2>More ways to use it</h2>
+          <ul class="facts">
+            <li>
+              <strong>Auto-proof a whole page.</strong> Ask your agent to proof the page, and it drafts a rewrite for
+              every mark while you watch. The decision model checks each draft first. Then review them: accept one at a
+              time, or all at once. Your agent never accepts for you.
+            </li>
+            <li>
+              <strong>Check in CI.</strong> <code>proofmarks check</code> judges files, folders or URLs without opening
+              a page. In GitHub Actions it marks the pull request's changed lines, and <code>--fail-on</code> fails the
+              build at the number of marks you choose.
+              <a href="https://github.com/tortastudios/proofmarks/blob/main/docs/check.md">CI guide</a>
+            </li>
+          </ul>
+          <pm-command>npx proofmarks check content --format github --fail-on 1</pm-command>
+        </section>
+
+        <section id="rules">
+          <h2>{{ruleCount}} rules</h2>
+          <p>
+            Code finds the candidates, and a decision model confirms each one.
+            <a class="nowrap" href="/faq/#decision-model">How it decides</a>
+          </p>
+          <p class="note" data-marks-note="on">
+            Each example has a live mark. Select one to see why, then accept its rewrite.
+          </p>
+          <ul class="rule-list" data-rules>
+            {{rules}}
+          </ul>
+          <h3 class="off-heading">Off by default</h3>
+          <ul class="rule-list rule-list-off">
+            {{offRules}}
+          </ul>
+        </section>
+
+        <section id="privacy">
+          <h2>Privacy</h2>
+          <ul class="facts bullets">
+            <li>
+              <strong>Your writing leaves your machine only to be judged or rewritten.</strong> Judging goes through
+              Torta's relay, which doesn't keep the passages, and rewrites go to the agent you choose.
+            </li>
+            <li>
+              <strong>Usage counts are off unless you turn them on.</strong> If you do, Proofmarks sends counts of the
+              marks you keep or dismiss, never your writing, to tune the rules for everyone.
+              <a href="https://github.com/tortastudios/proofmarks/blob/main/TELEMETRY.md">See everything it sends</a>.
+            </li>
+            <li>
+              <strong>No account, no key.</strong> Or set your own decision model key, and judging skips the relay.
+            </li>
+            <li>
+              <strong>This site counts visits and clicks without cookies,</strong> and not at all if your browser asks
+              not to be tracked.
+            </li>
+          </ul>
+        </section>
+      </main>
+
+      <footer class="foot">
+        <span
+          >Made with <span class="heart" aria-hidden="true">♥</span><span class="sr-only">love</span> by
+          <a href="https://tortastudios.com">Torta Studios</a></span
+        >
+        <a href="/faq/">FAQ</a>
+        <a href="/#install">Install</a>
+        <a href="https://github.com/tortastudios/proofmarks">GitHub</a>
+        <a href="https://github.com/tortastudios/proofmarks/blob/main/LICENSE.md">License</a>
+      </footer>
+    </div>
+    <p class="sr-only" data-copy-status aria-live="polite"></p>
+    <script type="module" src="/demo.js"></script>
+  </body>
+</html>

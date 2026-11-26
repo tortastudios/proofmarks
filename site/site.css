@@ -1,0 +1,901 @@
+/* Inter for the page and Ioskeley Mono for commands and prompts, both SIL Open Font License 1.1 (assets/fonts/OFL-*.txt).
+   Latin-1 subsets; Inter keeps weights 400 to 600 and its optical sizes, so the headline gets its display cut. */
+@font-face {
+  font-family: 'Inter';
+  src: url('/assets/fonts/inter.woff2') format('woff2');
+  font-weight: 400 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Ioskeley Mono';
+  src: url('/assets/fonts/ioskeley-mono-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Ioskeley Mono';
+  src: url('/assets/fonts/ioskeley-mono-medium.woff2') format('woff2');
+  font-weight: 500 700;
+  font-display: swap;
+}
+:root {
+  --paper: #fcfbf8;
+  --card: #ffffff;
+  --ink: #1c1a17;
+  --soft: #3f3a35;
+  --muted: #7a736c;
+  --rule: #ebe7e0;
+  --code: #f3f0ea;
+  --proof: #994b52;
+  --sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  --serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  --mono: 'Ioskeley Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  /* One narrow column; the overlay draws its margin notes to its right. */
+  --column: 560px;
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  background: var(--paper);
+  color: var(--soft);
+  font: 15px/1.6 var(--sans);
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+  scroll-padding-top: 24px;
+}
+body {
+  margin: 0;
+}
+a {
+  color: inherit;
+}
+strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+/* Inline code never breaks inside a flag or a file name, such as --fail-on. */
+code {
+  white-space: nowrap;
+  font: 13px/1.5 var(--mono);
+  color: var(--ink);
+}
+p {
+  margin: 0 0 12px;
+}
+button {
+  font: inherit;
+  cursor: pointer;
+}
+/* .d-sr is the overlay's own screen-reader class, which its working line uses inside the opening example. */
+.sr-only,
+.d-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* The column and its sections */
+.content {
+  width: min(100% - 40px, var(--column));
+  margin: 0 auto;
+}
+main > section {
+  padding-top: 56px;
+}
+main h2 {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  margin: 0 0 16px;
+}
+main h2::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+.note {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Commands and prompts: each one is a pill, and the whole pill copies it. Clicking narrows the pill while the text
+   blurs into "Copied to clipboard" and the icon into a check, as on blossom-carousel.com. */
+.command {
+  display: grid;
+  grid-template-columns: auto auto 1fr auto;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  min-height: 40px;
+  padding: 0 12px 0 14px;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--card);
+  box-shadow: 0 1px 2px #0000000a;
+  color: var(--ink);
+  font: 13px/1.4 var(--mono);
+  text-align: left;
+  transition: grid-template-columns 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+}
+.command:hover {
+  border-color: #ddd7ce;
+}
+.command[data-copied='true'] {
+  grid-template-columns: auto auto 0fr auto;
+}
+main section > .command {
+  margin: 10px 0 14px;
+}
+.command-prompt {
+  grid-column: 1;
+  margin-right: 10px;
+  color: var(--muted);
+}
+.command-text {
+  display: contents;
+}
+.command-value,
+.command-done {
+  grid-row: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition:
+    opacity 0.5s 0.1s,
+    filter 0.5s,
+    visibility 0.5s;
+}
+.command-value {
+  grid-column: 2 / span 2;
+}
+.command-done {
+  grid-column: 2;
+  font-family: var(--sans);
+}
+.command[data-kind='prompt'] .command-value {
+  font: 14px/1.4 var(--sans);
+}
+.command[data-kind='prompt'] .command-value::before {
+  content: open-quote;
+}
+.command[data-kind='prompt'] .command-value::after {
+  content: close-quote;
+}
+.command-icon {
+  grid-column: 4;
+  display: grid;
+  margin-left: 12px;
+  color: var(--muted);
+}
+.command-icon svg {
+  grid-area: 1 / 1;
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition:
+    opacity 0.5s 0.1s,
+    filter 0.5s,
+    visibility 0.5s;
+}
+.command:hover .command-icon {
+  color: var(--ink);
+}
+.command[data-copied='true'] :is(.command-value, .icon-copy),
+.command[data-copied='false'] :is(.command-done, .icon-check),
+.prompt-copy[data-copied='true'] .prompt-copy-text,
+.prompt-copy[data-copied='false'] .command-done {
+  opacity: 0;
+  filter: blur(6px);
+  visibility: hidden;
+}
+.command[data-copied='true'] :is(.command-done, .icon-check),
+.prompt-copy[data-copied='true'] .command-done {
+  transition-delay: 0s;
+}
+
+/* A prompt to paste into an agent: a framed box with its Copy prompt button, as in Emil Kowalski's quick starts. */
+.prompt-box {
+  margin: 10px 0 14px;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--card);
+  box-shadow: 0 1px 2px #0000000a;
+  text-align: left;
+}
+.prompt-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 6px 6px 16px;
+  border-bottom: 1px solid var(--rule);
+}
+.prompt-head:has(.prompt-picker) {
+  padding-left: 6px;
+}
+/* The install route, like the framework picker in Emil Kowalski's quick start: a button and a menu of routes, styled
+   like the page rather than the browser's own select. Fills switch on and off at once. */
+.prompt-picker {
+  position: relative;
+}
+.picker-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-width: 132px;
+  min-height: 32px;
+  padding: 0 10px 0 12px;
+  border: 0;
+  border-radius: 7px;
+  background: var(--code);
+  color: var(--ink);
+  font: 13px/1 var(--sans);
+}
+.picker-trigger:hover,
+.picker-trigger[aria-expanded='true'] {
+  background: #ebe6dd;
+}
+.picker-chevron,
+.picker-check {
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.picker-chevron {
+  width: 12px;
+  height: 12px;
+  color: var(--muted);
+}
+.picker-menu {
+  position: absolute;
+  z-index: 5;
+  top: calc(100% + 6px);
+  left: 0;
+  min-width: 100%;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--card);
+  box-shadow:
+    0 1px 2px #0000000a,
+    0 12px 28px -12px #2a221a40;
+  transform-origin: 0 0;
+  outline: none;
+}
+.picker-menu li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 7px 10px;
+  border-radius: 6px;
+  color: var(--ink);
+  font: 13px/1.3 var(--sans);
+  white-space: nowrap;
+  cursor: pointer;
+}
+.picker-menu li[data-active] {
+  background: var(--code);
+}
+.picker-check {
+  width: 14px;
+  height: 14px;
+  visibility: hidden;
+}
+.picker-menu li[aria-selected='true'] .picker-check {
+  visibility: visible;
+}
+.prompt-label {
+  font-size: 13px;
+  color: var(--muted);
+}
+.prompt-copy {
+  display: grid;
+  min-height: 32px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 7px;
+  background: var(--code);
+  color: var(--ink);
+  font-size: 13px;
+}
+.prompt-copy:hover {
+  background: #ebe6dd;
+}
+.prompt-copy > span {
+  grid-area: 1 / 1;
+  align-self: center;
+  justify-self: center;
+  white-space: nowrap;
+  transition:
+    opacity 0.5s 0.1s,
+    filter 0.5s,
+    visibility 0.5s;
+}
+.prompt-body {
+  padding: 14px 18px 16px;
+  font: 13px/1.7 var(--mono);
+  color: var(--ink);
+}
+.prompt-body p {
+  margin: 0;
+}
+.prompt-body p + :is(p, ol),
+.prompt-body ol + p {
+  margin-top: 12px;
+}
+.prompt-body ol {
+  margin: 0;
+  padding-left: 22px;
+}
+.prompt-body li + li {
+  margin-top: 4px;
+}
+.prompt-body li::marker {
+  color: var(--muted);
+}
+
+/* The header and a compact, centered hero */
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 0;
+}
+.top nav {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+}
+.top nav a {
+  color: var(--muted);
+  text-decoration: none;
+}
+.top nav a:hover {
+  color: var(--ink);
+}
+.hero {
+  text-align: center;
+  padding-top: 72px;
+}
+.hero h1 {
+  font-size: 38px;
+  line-height: 1.12;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin: 0 auto 14px;
+  max-width: 460px;
+  text-wrap: balance;
+}
+.hero h1 em {
+  font: italic 400 1.06em var(--serif);
+  letter-spacing: -0.01em;
+}
+/* Wide enough for two lines on a laptop. */
+.hero .sub {
+  color: var(--muted);
+  max-width: 500px;
+  margin: 0 auto 24px;
+  text-wrap: balance;
+}
+.nowrap {
+  white-space: nowrap;
+}
+.hero .cta {
+  margin-top: 16px;
+}
+.cta {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.try,
+.try-ghost {
+  display: inline-grid;
+  place-items: center;
+  min-height: 40px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--ink);
+  color: var(--paper);
+  font-weight: 500;
+  font-size: 14px;
+  white-space: nowrap;
+}
+[data-marks='on'] .try {
+  visibility: hidden;
+}
+[data-marks='off'] [data-marks-note='on'] {
+  display: none;
+}
+.try-ghost > * {
+  grid-area: 1 / 1;
+}
+.try-ghost svg {
+  width: 22px;
+  height: 22px;
+}
+.try-ghost {
+  position: fixed;
+  z-index: 2147483000;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0 8px 20px -6px #0006;
+}
+
+/* The opening example, in a browser window. The stage keeps one size and shrinks as a whole on phones. */
+.demo {
+  padding-top: 44px;
+}
+.frame {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  box-shadow:
+    0 1px 2px #0000000a,
+    0 12px 32px -16px #2a221a26;
+  overflow: hidden;
+}
+.frame-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--rule);
+}
+.frame-bar span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #e5e0d8;
+}
+.frame-bar em {
+  font-style: normal;
+  font-size: 12px;
+  color: var(--muted);
+  background: var(--paper);
+  border-radius: 6px;
+  padding: 2px 10px;
+  margin-left: 8px;
+  flex: 1;
+}
+.hero-stage {
+  position: relative;
+  width: 558px;
+  height: 420px;
+  overflow: hidden;
+  transform-origin: 0 0;
+}
+.hero-post {
+  width: 330px;
+  padding: 22px 0 0 24px;
+  font: 14px/1.6 var(--serif);
+  color: var(--ink);
+}
+.hero-post h3 {
+  font: 600 17px/1.3 var(--serif);
+  margin: 0 0 10px;
+}
+.hero-post p {
+  margin: 0 0 10px;
+}
+.hero-ink {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  fill: none;
+  stroke: var(--proof);
+  stroke-width: 1.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.hero-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font:
+    500 20px/1.05 ProofmarksHand,
+    cursive;
+  color: var(--proof);
+  white-space: nowrap;
+}
+/* The overlay's badge: a 44 px circle with its 12 px dot inside the top right, ringed in the badge's own ink, drawn a
+   little smaller here to suit the small page. Hovering widens it to show the count; open, it sits in the card's corner. */
+.hero-badge {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  padding-left: 11px;
+  border-radius: 22px;
+  background: #24201c;
+  color: #f7f3eb;
+  box-shadow: 0 6px 14px -6px #0007;
+  scale: 0.82;
+  transform-origin: 100% 100%;
+  transition: width 0.18s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.hero-badge svg {
+  flex: none;
+  width: 22px;
+  height: 22px;
+}
+.hero-count {
+  margin-left: 14px;
+  font:
+    13px/1 system-ui,
+    sans-serif;
+  white-space: nowrap;
+  opacity: 0;
+}
+.hero-badge[data-state='hover'] {
+  width: 112px;
+}
+.hero-badge[data-state='hover'] .hero-count {
+  opacity: 1;
+}
+.hero-badge[data-state='open'] {
+  background: transparent;
+  box-shadow: none;
+}
+.hero-dot {
+  position: absolute;
+  left: 29px;
+  top: 3px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff3c02;
+  border: 2px solid #24201c;
+  box-sizing: border-box;
+  opacity: 0;
+}
+.hero-badge[data-state='on'] .hero-dot {
+  opacity: 1;
+}
+.hero-card {
+  --ink: #24201c;
+  --paper: #f7f3eb;
+  position: absolute;
+  /* Over the marks and their labels; under the badge, which sits in its corner when docked. */
+  z-index: 1;
+  width: 250px;
+  padding: 12px 14px 14px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #24201c;
+  color: #f7f3eb;
+  font:
+    13px/1.45 system-ui,
+    sans-serif;
+  box-shadow:
+    #0002 0 1px 3px,
+    #0004 0 8px 20px -6px,
+    #0005 0 24px 48px -18px;
+  opacity: 0;
+}
+.hero-card-rule {
+  width: fit-content;
+  margin-bottom: 8px;
+  font:
+    500 19px/1.1 ProofmarksHand,
+    cursive;
+  color: var(--mark);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+}
+.hero-card-status {
+  margin: 2px 0 6px;
+}
+.hero-card-why {
+  margin: 0 0 8px;
+  font-size: 11.5px;
+  color: oklch(0.76 0.015 70);
+}
+.hero-card-original {
+  margin: 0 0 6px;
+  color: oklch(0.76 0.015 70);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+.hero-card-rewrite {
+  margin: 0 0 10px;
+}
+.hero-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 30px;
+}
+.hero-accepted {
+  margin-right: 6px;
+  color: oklch(from #38766b 0.8 calc(c * 0.7) h);
+}
+/* Docked at the badge, the card steps between proofs, with the badge in its bottom-right corner. */
+.hero-card-docked {
+  right: 7px;
+  bottom: 7px;
+}
+.hero-card-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+  padding-right: 46px;
+  color: oklch(0.76 0.015 70);
+  font-size: 12px;
+}
+.hero-card-nav span:first-child,
+.hero-card-nav .hero-next {
+  padding: 0 6px;
+  color: #f7f3eb;
+  font-size: 15px;
+}
+.hero-label-active {
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+.hero-button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 12px;
+  border-radius: 7px;
+  font-size: 12.5px;
+}
+.hero-button-filled {
+  background: #f7f3eb;
+  color: #24201c;
+}
+/* Undo, once a proof is decided: the overlay's soft fill. */
+.hero-button-tonal {
+  background: #ffffff14;
+}
+.hero-cursor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 3;
+  width: 18px;
+  height: 20px;
+  pointer-events: none;
+}
+.hero-cursor svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 1px 1px #0003);
+}
+
+/* The FAQ page: short answers, grouped, each question its own heading so it can be linked. */
+.faq {
+  padding-top: 64px;
+}
+.faq h1 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.faq > section {
+  padding-top: 44px;
+}
+.faq h2 {
+  margin-bottom: 4px;
+}
+/* Each answer starts collapsed. The question never moves; a chevron turns as the answer opens below it. */
+.faq details {
+  border-bottom: 1px solid var(--rule);
+}
+.faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 13px 0;
+  list-style: none;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--ink);
+}
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+.faq summary::after {
+  content: '';
+  flex: none;
+  width: 7px;
+  height: 7px;
+  margin: -4px 4px 0 0;
+  border-right: 1.5px solid var(--muted);
+  border-bottom: 1.5px solid var(--muted);
+  transform: rotate(45deg);
+  transition: transform 0.2s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.faq details[open] > summary::after {
+  margin-top: 4px;
+  transform: rotate(-135deg);
+}
+.faq summary:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.faq details p {
+  margin: 0 0 16px;
+  padding-right: 28px;
+}
+/* Where the browser can, the answer's height eases open and shut. */
+@supports selector(::details-content) {
+  .faq {
+    interpolate-size: allow-keywords;
+  }
+  .faq details::details-content {
+    block-size: 0;
+    overflow: clip;
+    transition:
+      block-size 0.2s cubic-bezier(0.32, 0.72, 0, 1),
+      content-visibility 0.2s allow-discrete;
+  }
+  .faq details[open]::details-content {
+    block-size: auto;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .faq summary::after,
+  .faq details::details-content {
+    transition: none;
+  }
+}
+
+/* Set it up */
+.steps {
+  margin: 0 0 18px;
+  padding-left: 20px;
+}
+.steps li {
+  margin-bottom: 6px;
+}
+.steps li::marker {
+  color: var(--muted);
+}
+
+/* Rules: each one with an example the real overlay marks */
+.rule-list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+}
+/* The panels separate the rules, so there are no dividers between them. */
+.rule-list li {
+  padding: 12px 0;
+}
+.rule-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.rule-why {
+  font-size: 13px;
+  color: var(--muted);
+}
+/* Each example sits in an inset panel, so it reads as an example. The marks are drawn on its text. */
+.rule-example {
+  margin: 8px 0 0;
+  padding: 10px 14px;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  font: 16px/1.55 var(--serif);
+  color: var(--ink);
+}
+/* Iowan Old Style has no 500, so the page's medium strong would read as regular: Bold inflation's example needs bold. */
+.rule-example strong {
+  font-weight: 700;
+}
+.rule-list-off .rule-example {
+  color: var(--soft);
+}
+.off-heading {
+  margin: 28px 0 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+/* More ways to use it, and Privacy */
+.facts {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.facts li {
+  margin-bottom: 10px;
+}
+/* Privacy's points read as a bulleted list. */
+.facts.bullets {
+  list-style: disc;
+  padding-left: 20px;
+}
+.facts.bullets li::marker {
+  color: var(--muted);
+}
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  padding: 40px 0 48px;
+  margin-top: 64px;
+  border-top: 1px solid var(--rule);
+  font-size: 13px;
+  color: var(--muted);
+}
+/* The footer's heart, in Torta's red (--color-primary on the Torta site's light backgrounds). */
+.heart {
+  color: #e03300;
+}
+
+@media (max-width: 900px) {
+  .top nav a:not(:last-child) {
+    display: none;
+  }
+  .hero h1 {
+    font-size: 32px;
+  }
+  .hero {
+    padding-top: 48px;
+  }
+  .cta {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .command {
+    font-size: 12px;
+  }
+  .command .command-prompt {
+    display: none;
+  }
+  /* The credit takes its own line, so no link wraps inside itself. */
+  .foot > span {
+    flex-basis: 100%;
+  }
+  .foot a {
+    white-space: nowrap;
+  }
+}

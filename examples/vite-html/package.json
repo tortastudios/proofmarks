@@ -1,0 +1,13 @@
+{
+  "name": "proofmarks-sample-vite-html",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "proofmarks": "proofmarks",
+    "dev": "vite --host 127.0.0.1 --port 3764"
+  },
+  "devDependencies": {
+    "@tortastudios/proofmarks": "file:../..",
+    "vite": "^7.2.2"
+  }
+}

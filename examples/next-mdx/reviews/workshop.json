@@ -1,0 +1,49 @@
+{
+  "source": "app/essay.mdx",
+  "reviewMode": "fixture",
+  "rules": [],
+  "findings": [
+    {
+      "id": "S3",
+      "rule": "brochure-verb",
+      "match": "delve into",
+      "span": {
+        "start": 98,
+        "end": 108
+      }
+    },
+    {
+      "id": "S1",
+      "rule": "inflated",
+      "match": "The new tool is a game-changer.",
+      "proposed": "The new tool tracks repair parts.",
+      "span": {
+        "start": 183,
+        "end": 214
+      }
+    },
+    {
+      "id": "S4",
+      "rule": "contrast",
+      "match": "It is not just a notebook, it is a tapestry of ideas.",
+      "span": {
+        "start": 215,
+        "end": 268
+      }
+    },
+    {
+      "id": "S2",
+      "rule": "filler",
+      "match": "At the end of the day, the results speak for themselves.",
+      "judge": {
+        "model": "fixture-1",
+        "provider": "fake",
+        "threshold": 0.5
+      },
+      "span": {
+        "start": 330,
+        "end": 386
+      }
+    }
+  ]
+}

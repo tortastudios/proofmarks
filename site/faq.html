@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Proofmarks FAQ</title>
+    <meta
+      name="description"
+      content="Short answers about Proofmarks: what it marks and why, how it decides, which frameworks and agents it works with, privacy and cost."
+    />
+    <link rel="canonical" href="https://proofmarks.dev/faq/" />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://proofmarks.dev/faq/" />
+    <meta property="og:title" content="Proofmarks FAQ" />
+    <meta property="og:image" content="https://proofmarks.dev/assets/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/site.css" />
+  </head>
+  <body>
+    <div class="content">
+      {{header}}
+      <main class="faq">
+        <h1>FAQ</h1>
+
+        <section>
+          <h2>Basics</h2>
+          <details id="what">
+            <summary>What is Proofmarks?</summary>
+            <p>
+              A writing linter for your website. It marks what reads like AI slop on your real page, the way an editor
+              marks a proof, and says why. Your agent can draft a fix, and nothing changes until you accept it. Colin
+              Thornton built it as a tool to visually review one of the essays on Torta's website. The original
+              inspiration comes from
+              <a href="https://x.com/jh3yy/status/2102885700979048558">a proof of concept Jhey Tompkins built</a> and
+              shared on X.
+            </p>
+          </details>
+          <details id="real-page">
+            <summary>Why on the real page, and not in an editor?</summary>
+            <p>
+              Writing reads differently in its layout, next to its headings, images and the rest of the page. Reviewing
+              it there catches what an editor window hides. And Accept writes the change into your source file, so
+              there's nothing to copy back.
+            </p>
+          </details>
+          <details id="decision-model">
+            <summary>Why not just ask a model whether my writing sounds like AI?</summary>
+            <p>
+              Asked broadly, a model flags too much and changes its mind with the wording. When we tried it on one of
+              our essays, broad questions flagged about 170 of 231 sentences, and the same sentence scored 0.81 or 0.28
+              depending on how we asked. Proofmarks narrows the question instead. Code finds the candidates for each
+              rule. A decision model answers one yes-or-no question about each, held to a line calibrated on machine
+              habits and human writing. The same question checks every rewrite before you see it.
+            </p>
+          </details>
+          <details id="detector">
+            <summary>Is it an AI detector?</summary>
+            <p>
+              No. It marks habits, and people write these habits too. A mark says the sentence would read better without
+              it, and nothing about who wrote it. It isn't built to help writing slip past a detector. The point is
+              writing people want to read.
+            </p>
+          </details>
+          <details id="accuracy">
+            <summary>How accurate is it?</summary>
+            <p>
+              On our labeled set it catches 110 of 119 planted habits, and marks 9 places in 19 passages of
+              public-domain human writing, such as Darwin, Melville and Kennedy. On your site, each rule's line then
+              moves with what you accept and dismiss.
+            </p>
+          </details>
+          <details id="rewrite">
+            <summary>Does it rewrite my writing for me?</summary>
+            <p>
+              Only when you ask, and never without you. Your agent drafts each rewrite, the decision model checks it,
+              and you accept it, dismiss it or ask for another. Proposals change nothing, and Undo reverses any
+              decision.
+            </p>
+          </details>
+          <details id="learn">
+            <summary>Does it learn my style?</summary>
+            <p>
+              Yes. After enough of your decisions on a rule, its line moves toward what you keep and dismiss. That
+              happens on your machine, from the decision logs beside your reviews.
+            </p>
+          </details>
+          <details id="free">
+            <summary>Is it free?</summary>
+            <p>
+              Yes. We've set a healthy daily limit on the shared decision model to start, and we'll adjust it as people
+              use it and tell us how it goes. If the limit is reached, reviews pause until midnight UTC, or you can set
+              your own Jev key.
+            </p>
+          </details>
+        </section>
+
+        <section>
+          <h2>Setup</h2>
+          <details id="frameworks">
+            <summary>Does it work with any framework?</summary>
+            <p>
+              Yes. <code>proofmarks dev</code> runs in front of your dev server, so the framework doesn't matter. Setup
+              recognizes Next.js, Astro, Eleventy, Vite, Jekyll, Hugo, Jinja templates and plain HTML, and finds your
+              dev server's address.
+            </p>
+          </details>
+          <details id="files">
+            <summary>Where does my writing need to be?</summary>
+            <p>
+              In local files: Markdown, MDX, HTML or Jinja-style templates. Template code is protected, and edits never
+              cross it. Content in a CMS isn't supported yet.
+            </p>
+          </details>
+          <details id="agents">
+            <summary>Which agents can I use?</summary>
+            <p>Any agent that connects to MCP servers. Setup connects Claude Code, Codex and pi for you.</p>
+          </details>
+          <details id="key">
+            <summary>Do I need a key or an account?</summary>
+            <p>
+              No. Proofmarks uses Jev, a decision model from TypeSafe, through Torta's relay, which pays for it. To skip
+              the relay for judging, set your own Jev key. To use a different decision model, fork Proofmarks and
+              implement its judge contract. Each model needs its own calibration, since every rule's line is tuned to
+              the model.
+            </p>
+          </details>
+          <details id="node">
+            <summary>Do I need Node?</summary>
+            <p>No. The standalone program has it built in. With Node 22 or later, the npm package works too.</p>
+          </details>
+          <details id="production">
+            <summary>Can I use it in production?</summary>
+            <p>
+              You can, with some setup, but we don't recommend it. Proofmarks is built for development, where it edits
+              the source files on your machine. If you add it to a production site anyway, put it behind a feature flag
+              that only you can turn on.
+            </p>
+          </details>
+          <details id="team">
+            <summary>Can my team share it?</summary>
+            <p>
+              Yes. Reviews and their decision logs are files in your project. Commit them, and everyone sees the same
+              marks and shares each rule's learned line.
+            </p>
+          </details>
+          <details id="rules">
+            <summary>Can I turn rules off, or add my own?</summary>
+            <p>
+              You can turn any rule on or off for a project, in <code>proofmarks.config.json</code>. Title case headings
+              start off. Your own rules aren't supported natively, but you're welcome to fork Proofmarks and add them.
+              <a href="https://github.com/tortastudios/proofmarks/blob/main/docs/configuration.md">Configuration</a>
+            </p>
+          </details>
+          <details id="phone">
+            <summary>Does it work on a phone?</summary>
+            <p>
+              Yes. The marks fit a phone's screen. Tap one, and its proof opens at the bottom of the screen. To see it,
+              open proofmarks.dev on your phone and select Try it.
+            </p>
+          </details>
+        </section>
+
+        <section>
+          <h2>Privacy</h2>
+          <details id="leaves">
+            <summary>What leaves my machine?</summary>
+            <p>
+              The passages being judged. The decision model has to read them, so Torta's relay passes them on without
+              saving them. Rewrites go to the agent you choose, and a feedback report goes to us only when you okay it.
+              Your site and your files stay local.
+            </p>
+          </details>
+          <details id="track">
+            <summary>Does it track me?</summary>
+            <p>
+              Not unless you turn on usage counts. If you do, it sends counts of the marks you keep or dismiss, and one
+              for your install, never your writing. Added up across everyone who shares them, those counts show where
+              each rule's line should start, so the rules fit new sites better from the first review.
+              <a href="https://github.com/tortastudios/proofmarks/blob/main/TELEMETRY.md">Everything it sends</a>
+            </p>
+          </details>
+          <details id="site">
+            <summary>Does proofmarks.dev track me?</summary>
+            <p>
+              It counts visits and clicks without cookies or your location, and not at all if your browser asks not to
+              be tracked. That's separate from Proofmarks itself.
+            </p>
+          </details>
+        </section>
+
+        <section>
+          <h2>Help</h2>
+          <details id="feedback">
+            <summary>How do I report a bug or ask for a feature?</summary>
+            <p>
+              Two ways. Open an issue or a pull request on
+              <a href="https://github.com/tortastudios/proofmarks/issues">GitHub</a>. Or tell your agent what happened.
+              With Proofmarks connected, it writes up a report for you to check, and sends it to us when you say so.
+            </p>
+          </details>
+        </section>
+      </main>
+      {{footer}}
+    </div>
+    <script type="module" src="/faq.js"></script>
+  </body>
+</html>

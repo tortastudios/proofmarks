@@ -1,0 +1,390 @@
+{
+  "version": "3",
+  "rules": [
+    {
+      "id": "inflated", "color": "#875f45", "mark": "underline", "label": "Inflated word", "level": "word",
+      "why": "A fancy word stands in for a plain one.", "fix": "Use the plain word.",
+      "edit": "replace",
+      "detector": { "kind": "lexicon", "terms": [
+        { "term": "delve", "pos": "verb", "plain": "dig into" },
+        { "term": "leverage", "pos": "verb", "plain": "use" },
+        { "term": "utilize", "pos": "verb", "plain": "use" },
+        { "term": "utilise", "pos": "verb", "plain": "use" },
+        { "term": "utilization", "pos": "noun", "plain": "use" },
+        { "term": "facilitate", "pos": "verb", "plain": "help" },
+        { "term": "foster", "pos": "verb", "plain": "build" },
+        { "term": "cultivate", "pos": "verb", "plain": "build" },
+        { "term": "enhance", "pos": "verb", "plain": "improve" },
+        { "term": "showcase", "pos": "verb", "plain": "show" },
+        { "term": "underscore", "pos": "verb", "plain": "show" },
+        { "term": "garner", "pos": "verb", "plain": "get" },
+        { "term": "empower", "pos": "verb", "plain": "let" },
+        { "term": "streamline", "pos": "verb", "plain": "simplify" },
+        { "term": "elevate", "pos": "verb", "plain": "improve" },
+        { "term": "unlock", "pos": "verb", "plain": "open" },
+        { "term": "harness", "pos": "verb", "plain": "use" },
+        { "term": "harness the power of", "pos": "verb", "plain": "use" },
+        { "term": "navigate", "pos": "verb", "plain": "handle" },
+        { "term": "embark", "pos": "verb", "plain": "start" },
+        { "term": "spearhead", "pos": "verb", "plain": "lead" },
+        { "term": "bolster", "pos": "verb", "plain": "support" },
+        { "term": "revolutionize", "pos": "verb", "plain": "change" },
+        { "term": "reimagine", "pos": "verb", "plain": "redesign" },
+        { "term": "commence", "pos": "verb", "plain": "start" },
+        { "term": "ascertain", "pos": "verb", "plain": "find out" },
+        { "term": "endeavor", "pos": "noun", "plain": "effort" },
+        { "term": "crucial", "pos": "adj", "plain": "important" },
+        { "term": "pivotal", "pos": "adj", "plain": "key" },
+        { "term": "paramount", "pos": "adj", "plain": "most important" },
+        { "term": "multifaceted", "pos": "adj", "plain": "complex" },
+        { "term": "holistic", "pos": "adj", "plain": "whole" },
+        { "term": "meticulous", "pos": "adj", "plain": "careful" },
+        { "term": "numerous", "pos": "adj", "plain": "many" },
+        { "term": "a myriad of", "pos": "phrase", "plain": "many" },
+        { "term": "myriad", "pos": "adj", "plain": "many" },
+        { "term": "a plethora of", "pos": "phrase", "plain": "many" },
+        { "term": "additionally", "pos": "phrase", "plain": "also" },
+        { "term": "landscape", "pos": "noun", "plain": "field" },
+        { "term": "tapestry", "pos": "noun", "plain": "mix" },
+        { "term": "realm", "pos": "noun", "plain": "area" },
+        { "term": "ecosystem", "pos": "noun", "plain": "network" },
+        { "term": "synergy", "pos": "noun", "plain": "combined effect" },
+        { "term": "paradigm", "pos": "noun", "plain": "model" },
+        { "term": "paradigm shift", "pos": "noun", "plain": "big change" },
+        { "term": "north star", "pos": "noun", "plain": "goal" },
+        { "term": "substrate", "pos": "noun", "plain": "base" },
+        { "term": "nexus", "pos": "phrase", "plain": "link" },
+        { "term": "a testament to", "pos": "phrase", "plain": "shows" },
+        { "term": "indelible mark", "pos": "noun", "plain": "lasting effect" },
+        { "term": "play a key role", "pos": "verb", "forms": ["played a key role", "plays a key role"], "plain": "matters" },
+        { "term": "play a vital role", "pos": "verb", "forms": ["played a vital role", "plays a vital role"], "plain": "matters" },
+        { "term": "play a crucial role", "pos": "verb", "forms": ["played a crucial role", "plays a crucial role"], "plain": "matters" },
+        { "term": "play a pivotal role", "pos": "verb", "forms": ["played a pivotal role", "plays a pivotal role"], "plain": "matters" },
+        { "term": "play an important role", "pos": "verb", "forms": ["played an important role", "plays an important role"], "plain": "matters" }
+      ] },
+      "judge": {
+        "ask": "Is “{term}” in the target an inflated or buzzword choice where a plainer word would say the same thing?",
+        "yes": "“{term}” dresses up a plain idea, as in leverage a tool, foster a culture, a pivotal moment, navigate challenges.",
+        "no": "“{term}” is literal or a necessary technical term, as in a mountain landscape, foster care, financial leverage, navigating a ship.",
+        "context": "paragraph"
+      },
+      "default": true
+    },
+    {
+      "id": "filler", "color": "#5e6b38", "mark": "box", "label": "Filler", "level": "word",
+      "why": "Words that delay the point without adding to it.", "fix": "Delete the phrase.",
+      "edit": "delete",
+      "detector": { "kind": "lexicon", "terms": [
+        { "term": "in order to", "plain": "to" },
+        { "term": "due to the fact that", "plain": "because" },
+        { "term": "owing to the fact that", "plain": "because" },
+        { "term": "in spite of the fact that", "plain": "although" },
+        { "term": "it is important to note that" }, { "term": "it is important to note" },
+        { "term": "it's important to note that" }, { "term": "it's important to note" },
+        { "term": "it is worth noting that" }, { "term": "it is worth noting" },
+        { "term": "it's worth noting that" }, { "term": "it's worth noting" },
+        { "term": "it should be noted that" },
+        { "term": "it goes without saying that" }, { "term": "it goes without saying" },
+        { "term": "needless to say" },
+        { "term": "at the end of the day" },
+        { "term": "the fact of the matter is" },
+        { "term": "in the event that", "plain": "if" },
+        { "term": "for all intents and purposes" },
+        { "term": "at this point in time", "plain": "now" },
+        { "term": "each and every", "plain": "every" },
+        { "term": "first and foremost", "plain": "first" },
+        { "term": "when it comes to", "plain": "for" },
+        { "term": "in terms of" },
+        { "term": "in a timely manner", "plain": "promptly" },
+        { "term": "on a daily basis", "plain": "daily" },
+        { "term": "has the ability to", "plain": "can" },
+        { "term": "meet your needs", "pos": "verb", "forms": ["met your needs"] },
+        { "term": "meet their needs", "pos": "verb", "forms": ["met their needs"] }
+      ] },
+      "judge": {
+        "ask": "Can “{term}” be deleted or shortened in the target without losing any meaning?",
+        "yes": "Empty framing, as in in order to (to), it is important to note that, at the end of the day.",
+        "no": "The words carry meaning here, such as the literal end of a working day or a real condition.",
+        "context": "paragraph"
+      },
+      "default": true
+    },
+    {
+      "id": "brochure-verb", "color": "#3f6b67", "mark": "underline", "label": "Brochure verb", "level": "word",
+      "why": "A costume for “is” or “has”.", "fix": "Say “is” or “has”.",
+      "edit": "replace",
+      "detector": { "kind": "lexicon", "terms": [
+        { "term": "serve as", "pos": "verb", "plain": "is" },
+        { "term": "stand as", "pos": "verb", "forms": ["stood as"], "plain": "is" },
+        { "term": "act as", "pos": "verb", "plain": "is" },
+        { "term": "function as", "pos": "verb", "plain": "is" },
+        { "term": "boast", "pos": "verb", "plain": "has" },
+        { "term": "it features", "pos": "phrase", "forms": ["also features", "which features", "that features", "it also features"], "plain": "has" },
+        { "term": "it offers", "pos": "phrase", "forms": ["also offers", "which offers", "it also offers"], "plain": "has" },
+        { "term": "is home to", "pos": "phrase", "plain": "has" }
+      ] },
+      "judge": {
+        "ask": "Does “{term}” in the target stand in for a plain “is” or “has”?",
+        "yes": "The library boasts full support; the inn stands as a landmark; it features a plugin system.",
+        "no": "A literal action, as in a person boasting about a win, a film featuring an actor, a server acting as a proxy.",
+        "context": "paragraph"
+      },
+      "default": true
+    },
+    {
+      "id": "promo-adjective", "color": "#835b70", "mark": "strike-through", "label": "Promotional adjective", "level": "word",
+      "why": "Praise instead of description.", "fix": "Describe the thing and let the reader judge.",
+      "edit": "delete",
+      "detector": { "kind": "lexicon", "terms": [
+        { "term": "vibrant", "pos": "adj" }, { "term": "stunning", "pos": "adj" }, { "term": "breathtaking", "pos": "adj" },
+        { "term": "groundbreaking", "pos": "adj" }, { "term": "renowned", "pos": "adj" }, { "term": "seamless", "pos": "adj" },
+        { "term": "robust", "pos": "adj" }, { "term": "nestled", "pos": "phrase" }, { "term": "cutting-edge", "pos": "phrase" },
+        { "term": "state-of-the-art", "pos": "phrase" }, { "term": "world-class", "pos": "phrase" }, { "term": "best-in-class", "pos": "phrase" },
+        { "term": "innovative", "pos": "adj" }, { "term": "revolutionary", "pos": "adj" }, { "term": "game-changing", "pos": "phrase" },
+        { "term": "game-changer", "pos": "noun" }, { "term": "unparalleled", "pos": "adj" }, { "term": "unmatched", "pos": "adj" },
+        { "term": "unrivaled", "pos": "adj" }, { "term": "transformative", "pos": "adj" }, { "term": "effortless", "pos": "adj" },
+        { "term": "intuitive", "pos": "adj" }, { "term": "next-level", "pos": "phrase" }, { "term": "top-notch", "pos": "phrase" },
+        { "term": "must-have", "pos": "phrase" }, { "term": "awe-inspiring", "pos": "phrase" }, { "term": "captivating", "pos": "adj" }
+      ] },
+      "judge": {
+        "ask": "Is “{term}” in the target promotional praise rather than a checkable description?",
+        "yes": "Breathtaking views, a vibrant scene, seamless integration, a robust platform, an intuitive interface.",
+        "no": "A measurable or technical use, as in a robust statistical estimator or an innovative method the text then describes in detail.",
+        "context": "paragraph"
+      },
+      "default": true
+    },
+    {
+      "id": "signpost", "color": "#75642f", "mark": "strike-through", "label": "Signposting", "level": "word",
+      "why": "Announces a point instead of making it.", "fix": "Cut the opener and start with the point.",
+      "edit": "delete",
+      "detector": { "kind": "lexicon", "terms": [
+        { "term": "here's the thing" }, { "term": "here's why" }, { "term": "here's how" }, { "term": "here's what" },
+        { "term": "here's the kicker" }, { "term": "let's dive in" }, { "term": "let's dive into" }, { "term": "let's delve into" },
+        { "term": "let's break it down" }, { "term": "let's take a closer look" }, { "term": "let's explore" },
+        { "term": "the bottom line is" }, { "term": "the truth is" }, { "term": "the reality is" }, { "term": "make no mistake" },
+        { "term": "simply put" }, { "term": "put simply" }, { "term": "in conclusion" }, { "term": "in summary" }, { "term": "to sum up" },
+        { "term": "all in all" }, { "term": "at its core" }, { "term": "ultimately", "start": true },
+        { "term": "and the best part?" }, { "term": "the best part?" }, { "term": "the result?" }, { "term": "the catch?" },
+        { "term": "spoiler alert" }, { "term": "let that sink in" }, { "term": "now more than ever" }, { "term": "it's no secret that" },
+        { "term": "in today's fast-paced world" }, { "term": "in today's fast-paced digital landscape" }, { "term": "in today's digital age" },
+        { "term": "in today's rapidly evolving landscape" }, { "term": "in today's ever-changing world" }, { "term": "in today's competitive landscape" },
+        { "term": "in an era of" }
+      ] },
+      "judge": {
+        "ask": "Is “{term}” in the target an empty opener or hook that announces a point instead of making it?",
+        "yes": "Here's the thing:, Let's dive in, Simply put, And the best part?, In conclusion, In today's fast-paced world.",
+        "no": "The words do real work, as in a genuine question the text answers next, or a summary that adds information.",
+        "context": "paragraph"
+      },
+      "default": true
+    },
+    {
+      "id": "contrast", "color": "#994b52", "mark": "circle", "label": "Not X, but Y", "level": "sentence",
+      "why": "Sets up a claim just to knock it down.", "fix": "State the second half on its own.",
+      "edit": "replace",
+      "detector": { "kind": "pattern", "pattern": "contrast" },
+      "judge": {
+        "ask": "Is the target a punchy not-X-but-Y reveal (“X isn't A; it's B”, “not just A, it's B”, “it's not about A, it's about B”) used for effect, whether or not it's true?",
+        "yes": "It's not a tool, it's a movement; Design isn't decoration. It's how it works; Not just faster, but smarter; Success isn't luck. It's practice.",
+        "no": "Concessions (They aren't finished, but they're usable); not only X but also Y; plain explanations and descriptions (The table isn't solid wood; it's veneer); contrasts inside longer reasoning; a story's narration.",
+        "context": "paragraph"
+      },
+      "default": true
+    },
+    {
+      "id": "three", "color": "#87532f", "mark": "underline", "label": "List of three", "level": "sentence",
+      "why": "Three items for rhythm, not because there are three.", "fix": "Keep the items that carry meaning.",
+      "edit": "replace",
+      "detector": { "kind": "pattern", "pattern": "three" },
+      "judge": {
+        "ask": "Does the target use a decorative list or parallel sequence of three that substitutes rhythm for substance?",
+        "yes": "Three interchangeable qualities or audiences: fast, reliable, and secure; plan smarter, ship faster, grow bigger; a founder, a marketer, or an engineer; Speed matters. Focus matters. Clarity matters.",
+        "no": "A necessary inventory of three real fields, steps or named items; not every list of three is bad.",
+        "context": "paragraph"
+      },
+      "default": true
+    },
+    {
+      "id": "hedging", "color": "#596b86", "mark": "underline", "label": "Stacked hedges", "level": "sentence",
+      "why": "Several hedges in one claim dodge commitment.", "fix": "Keep one hedge, or commit.",
+      "edit": "replace",
+      "detector": { "kind": "pattern", "pattern": "hedging" },
+      "judge": {
+        "ask": "Does the target stack several hedges (could, potentially, possibly, some, generally, tend to) so the claim avoids committing?",
+        "yes": "Could potentially possibly help some teams in certain cases; people generally tend to prefer.",
+        "no": "One justified hedge, or an explicit limit on the evidence.",
+        "context": "paragraph"
+      },
+      "default": true
+    },
+    {
+      "id": "attribution", "color": "#416c8d", "mark": "caret", "label": "Vague attribution", "level": "sentence",
+      "why": "Cites authority nobody can check.", "fix": "Name the source, or cut the claim.",
+      "edit": "insert",
+      "detector": { "kind": "pattern", "pattern": "attribution" },
+      "judge": {
+        "ask": "Does the target appeal to vague authority or imply evidence without a checkable source?",
+        "yes": "Experts agree; studies show; many believe; research suggests, with no named study or person.",
+        "no": "A named source, a quoted person, an explicit opinion, or a claim that does not invoke outside authority.",
+        "context": "paragraph"
+      },
+      "default": true
+    },
+    {
+      "id": "trailing", "color": "#786348", "mark": "strike-through", "label": "Trailing -ing clause", "level": "sentence",
+      "why": "Bolts an unsupported conclusion onto a fact.", "fix": "Cut the clause, or give it its own evidence.",
+      "edit": "delete",
+      "detector": { "kind": "pattern", "pattern": "trailing" },
+      "judge": {
+        "ask": "Does the target bolt an unsupported interpretation onto a fact using a trailing -ing clause?",
+        "yes": "The feature shipped, highlighting our commitment to excellence; revenue doubled, cementing its position as a leader.",
+        "no": "A clause describing a real action or a direct, supported consequence.",
+        "context": "paragraph"
+      },
+      "default": true
+    },
+    {
+      "id": "residue", "color": "#816044", "mark": "strike-through", "label": "Chatbot residue", "level": "sentence",
+      "why": "A conversational leftover that addresses no real reader.", "fix": "Delete it.",
+      "edit": "delete",
+      "detector": { "kind": "lexicon", "terms": [
+        { "term": "i hope this helps" }, { "term": "hope this helps" }, { "term": "let me know if you have any questions" },
+        { "term": "let me know if you have questions" }, { "term": "let me know if you need" }, { "term": "feel free to reach out" },
+        { "term": "feel free to ask" }, { "term": "great question" }, { "term": "certainly!" }, { "term": "absolutely!" },
+        { "term": "as an ai" }, { "term": "i'd be happy to" }, { "term": "happy to help" }, { "term": "i hope you found this" },
+        { "term": "stay tuned" }, { "term": "happy coding" }, { "term": "without further ado" }, { "term": "in this article, we" },
+        { "term": "in this post, we'll" }
+      ] },
+      "judge": {
+        "ask": "Is “{term}” in the target chatbot or newsletter residue, a conversational leftover that addresses no real reader?",
+        "yes": "I hope this helps!, Let me know if you have any questions., Great question!, Without further ado.",
+        "no": "Direct address that fits the document, such as a real sign-off in a personal letter.",
+        "context": "paragraph"
+      },
+      "default": true
+    },
+    {
+      "id": "false-range", "color": "#6f5f86", "mark": "underline", "label": "False range", "level": "sentence",
+      "why": "“From X to Y” with no real scale between them.", "fix": "Name the things, or the one that matters.",
+      "edit": "replace",
+      "detector": { "kind": "pattern", "pattern": "false-range" },
+      "judge": {
+        "ask": "Does the target use a “from X to Y” phrase (or “range from X to Y to Z”, “from X through Y and beyond”) to gesture at breadth instead of naming what matters?",
+        "yes": "From startups to enterprises; from ideas to impact; from the first sketch through launch and beyond; ranging from corner shops to global brands to city governments.",
+        "no": "A literal change from one thing to another (moving from tables to a document store); a real numeric, time, size or step range (from 2019 to 2024, from 10 ms to 200 ms, from the first call to the tenth).",
+        "context": "paragraph"
+      },
+      "default": true
+    },
+    {
+      "id": "puffery", "color": "#8a565e", "mark": "underline", "label": "Puffery", "level": "sentence",
+      "why": "Asserts importance instead of showing it.", "fix": "Say what happened and let the reader judge.",
+      "edit": "replace",
+      "detector": { "kind": "judge" },
+      "judge": {
+        "ask": "Does the target assert importance, success or a bright future without showing the event or evidence?",
+        "yes": "A pivotal moment; a true game-changer; the results speak for themselves; the future is bright; the backbone of modern commerce.",
+        "no": "A concrete result, a measured number, or an opinion clearly framed as the writer's own.",
+        "context": "paragraph"
+      },
+      "default": true
+    },
+    {
+      "id": "generic-voice", "color": "#655b82", "mark": "bracket", "label": "Generic voice", "level": "paragraph",
+      "why": "Could describe any company; no specific detail or stance.", "fix": "Add a specific fact, example or opinion.",
+      "edit": "paragraph",
+      "detector": { "kind": "judge" },
+      "judge": {
+        "ask": "Is the target filler a reader could skip: general claims or advice that any piece on the topic could make, with nothing specific in it (an example, number, name, firsthand detail, analogy, or a stance someone could disagree with)?",
+        "yes": "Communication is key to any successful team, and great teams invest in it; focusing on what matters most helps teams deliver value; at the end of the day it's about creating an environment where people can do their best work.",
+        "no": "A paragraph that carries the argument forward with a specific claim, example, analogy or firsthand detail; one that names or defines specific things; a short lead-in to specifics that follow; neutral technical instructions.",
+        "context": "none"
+      },
+      "default": true
+    },
+    {
+      "id": "repetition", "color": "#4f705e", "mark": "bracket", "label": "Repetition", "level": "paragraph",
+      "why": "Says the same thing again without adding to it.", "fix": "Say it once, then move on.",
+      "edit": "paragraph",
+      "detector": { "kind": "judge" },
+      "judge": {
+        "ask": "Does the target repeat the same point in different words without adding new information?",
+        "yes": "Consistency matters because a consistent brand is memorable, and memorable brands are consistent.",
+        "no": "Each sentence adds a new fact, step, example or turn of argument.",
+        "context": "none"
+      },
+      "default": true
+    },
+    {
+      "id": "over-explaining", "color": "#76614d", "mark": "bracket", "label": "Over-explaining", "level": "paragraph",
+      "why": "Explains what the reader already knows.", "fix": "Cut to what's new to the reader.",
+      "edit": "paragraph",
+      "detector": { "kind": "judge" },
+      "judge": {
+        "ask": "Does the target explain something obvious or familiar step by step, as if the reader lacked basics they already have?",
+        "yes": "Explaining what email or a password is to people who use them daily; defining a common term and then restating the definition.",
+        "no": "New, technical or surprising information explained once at the level the reader needs.",
+        "context": "none"
+      },
+      "default": true
+    },
+    {
+      "id": "rhythm", "color": "#4c6a79", "mark": "bracket", "label": "Uniform rhythm", "level": "paragraph",
+      "why": "Every sentence has the same length and shape.", "fix": "Vary the sentence lengths; combine or split some.",
+      "edit": "paragraph",
+      "detector": { "kind": "pattern", "pattern": "rhythm" },
+      "judge": {
+        "ask": "Do the sentences in the target have nearly uniform length and structure, so the paragraph reads with a mechanical, repetitive rhythm?",
+        "yes": "Six short sentences that all start with “We” and run five to seven words.",
+        "no": "Sentence lengths and shapes vary, or repetition is a deliberate, effective device.",
+        "context": "none"
+      },
+      "default": true
+    },
+    {
+      "id": "em-dash", "color": "#7a584c", "mark": "underline", "label": "Em dash", "level": "word",
+      "why": "A dramatic pause before a reveal.", "fix": "Use a period or a comma.",
+      "edit": "replace",
+      "detector": { "kind": "pattern", "pattern": "em-dash" },
+      "judge": {
+        "ask": "Does the dash in the target set up a reveal for effect (a dramatic pause before a twist, a punchline, a summary or a restatement), the way machine-written prose uses it, where a period or comma would read as well?",
+        "yes": "They weren't bigger—they were just better; The update is small — but it changes everything; One tool — endless possibilities; We tried everything — and then we tried one more thing.",
+        "no": "A pair of dashes around an aside (The results—three studies in all—point the same way); a dash before an attribution or a list; a speaker breaking off; a range of numbers or dates.",
+        "context": "paragraph"
+      },
+      "default": true
+    },
+    {
+      "id": "colon", "color": "#63733f", "mark": "box", "label": "Connecting colon", "level": "sentence",
+      "why": "A colon used as a hinge between claims, not to introduce a list.", "fix": "Split it into two sentences.",
+      "edit": "replace",
+      "detector": { "kind": "pattern", "pattern": "colon" },
+      "judge": {
+        "ask": "Does the colon in the target hinge a setup to its payoff for effect, where a period would do as well, rather than introduce a list, an example, a quotation, a definition, a label or a time?",
+        "yes": "The answer was simple: we stopped holding meetings; Here's the truth: nobody reads the docs; One thing became clear: speed wins; The result: happier customers.",
+        "no": "Three things matter: speed, cost and focus; Note: the API is in beta; a ratio like 3:1; a colon before a quotation, an explanation the reader needs, or the items that follow.",
+        "context": "paragraph"
+      },
+      "default": true
+    },
+    {
+      "id": "title-case", "color": "#755e73", "mark": "underline", "label": "Title case heading", "level": "sentence",
+      "why": "Title Case headings read like marketing copy.", "fix": "Use sentence case.",
+      "edit": "replace", "detector": { "kind": "pattern", "pattern": "title-case" }, "default": false, "severity": "warning"
+    },
+    {
+      "id": "bold", "color": "#586b68", "mark": "underline", "label": "Bold inflation", "level": "word",
+      "why": "Bold used for emphasis instead of scanning.", "fix": "Keep bold for labels a reader scans for.",
+      "edit": "replace",
+      "detector": { "kind": "pattern", "pattern": "bold" },
+      "judge": {
+        "ask": "Is the bold on “{term}” in the target hype: emphasis that makes ordinary words sound important, rather than a key term, warning or point a reader scans for?",
+        "yes": "This is **really** important; Every plan includes **unlimited** projects; We **never** compromise on quality; a **game-changing** feature.",
+        "no": "A term defined where it's introduced; a section's main point stated plainly for a reader who skims; a warning the reader must not miss; a button or menu name in instructions; a person's name after a quotation.",
+        "context": "paragraph"
+      },
+      "default": true
+    }
+  ]
+}

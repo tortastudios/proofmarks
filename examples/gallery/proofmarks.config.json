@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "documents": [
+    {
+      "id": "linkedin-post",
+      "source": "pieces/linkedin-post.md",
+      "review": "reviews/linkedin-post.json",
+      "write": true,
+      "url": "/linkedin-post",
+      "format": "markdown"
+    },
+    {
+      "id": "landing-page",
+      "source": "pieces/landing-page.md",
+      "review": "reviews/landing-page.json",
+      "write": true,
+      "url": "/landing-page",
+      "format": "markdown"
+    },
+    {
+      "id": "cover-letter",
+      "source": "pieces/cover-letter.md",
+      "review": "reviews/cover-letter.json",
+      "write": true,
+      "url": "/cover-letter",
+      "format": "markdown"
+    },
+    {
+      "id": "launch-post",
+      "source": "pieces/launch-post.md",
+      "review": "reviews/launch-post.json",
+      "write": true,
+      "url": "/launch-post",
+      "format": "markdown"
+    },
+    {
+      "id": "newsletter",
+      "source": "pieces/newsletter.md",
+      "review": "reviews/newsletter.json",
+      "write": true,
+      "url": "/newsletter",
+      "format": "markdown"
+    },
+    {
+      "id": "recipe",
+      "source": "pieces/recipe.md",
+      "review": "reviews/recipe.json",
+      "write": true,
+      "url": "/recipe",
+      "format": "markdown"
+    },
+    {
+      "id": "engineering-blog",
+      "source": "pieces/engineering-blog.md",
+      "review": "reviews/engineering-blog.json",
+      "write": true,
+      "url": "/engineering-blog",
+      "format": "markdown"
+    },
+    {
+      "id": "short-story",
+      "source": "pieces/short-story.md",
+      "review": "reviews/short-story.json",
+      "write": true,
+      "url": "/short-story",
+      "format": "markdown"
+    },
+    {
+      "id": "essay",
+      "source": "pieces/essay.md",
+      "review": "reviews/essay.json",
+      "write": true,
+      "url": "/essay",
+      "format": "markdown"
+    }
+  ],
+  "roots": [
+    "pieces"
+  ],
+  "judge": {
+    "provider": "fake",
+    "model": "fixture-1"
+  },
+  "devServer": "http://127.0.0.1:3767"
+}

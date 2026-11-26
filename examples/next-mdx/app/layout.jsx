@@ -1,0 +1,1 @@
+export default function Layout({children}){return <html lang="en"><head><title>The Tuesday workshop</title><style>{"body{margin:0;background:#f5f2e9;color:#302a25;font:20px/1.65 Georgia,serif}main{max-width:680px;margin:80px auto;padding:24px}h1{font-size:42px;line-height:1.1}p{margin:1.5em 0}"}</style></head><body>{children}</body></html>;}

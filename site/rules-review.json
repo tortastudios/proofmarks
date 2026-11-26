@@ -1,0 +1,1237 @@
+{
+  "source": "rule-examples.md",
+  "rules": [
+    {
+      "id": "inflated",
+      "label": "Inflated word",
+      "color": "#875f45",
+      "mark": "underline",
+      "rubric": {
+        "checks": "A fancy word stands in for a plain one.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Use the plain word."
+      }
+    },
+    {
+      "id": "filler",
+      "label": "Filler",
+      "color": "#5e6b38",
+      "mark": "box",
+      "rubric": {
+        "checks": "Words that delay the point without adding to it.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Delete the phrase."
+      }
+    },
+    {
+      "id": "brochure-verb",
+      "label": "Brochure verb",
+      "color": "#3f6b67",
+      "mark": "underline",
+      "rubric": {
+        "checks": "A costume for “is” or “has”.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Say “is” or “has”."
+      }
+    },
+    {
+      "id": "promo-adjective",
+      "label": "Promotional adjective",
+      "color": "#835b70",
+      "mark": "strike-through",
+      "rubric": {
+        "checks": "Praise instead of description.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Describe the thing and let the reader judge."
+      }
+    },
+    {
+      "id": "signpost",
+      "label": "Signposting",
+      "color": "#75642f",
+      "mark": "strike-through",
+      "rubric": {
+        "checks": "Announces a point instead of making it.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Cut the opener and start with the point."
+      }
+    },
+    {
+      "id": "contrast",
+      "label": "Not X, but Y",
+      "color": "#994b52",
+      "mark": "circle",
+      "rubric": {
+        "checks": "Sets up a claim just to knock it down.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "State the second half on its own."
+      }
+    },
+    {
+      "id": "three",
+      "label": "List of three",
+      "color": "#87532f",
+      "mark": "underline",
+      "rubric": {
+        "checks": "Three items for rhythm, not because there are three.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Keep the items that carry meaning."
+      }
+    },
+    {
+      "id": "hedging",
+      "label": "Stacked hedges",
+      "color": "#596b86",
+      "mark": "underline",
+      "rubric": {
+        "checks": "Several hedges in one claim dodge commitment.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Keep one hedge, or commit."
+      }
+    },
+    {
+      "id": "attribution",
+      "label": "Vague attribution",
+      "color": "#416c8d",
+      "mark": "caret",
+      "rubric": {
+        "checks": "Cites authority nobody can check.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Name the source, or cut the claim."
+      }
+    },
+    {
+      "id": "trailing",
+      "label": "Trailing -ing clause",
+      "color": "#786348",
+      "mark": "strike-through",
+      "rubric": {
+        "checks": "Bolts an unsupported conclusion onto a fact.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Cut the clause, or give it its own evidence."
+      }
+    },
+    {
+      "id": "residue",
+      "label": "Chatbot residue",
+      "color": "#816044",
+      "mark": "strike-through",
+      "rubric": {
+        "checks": "A conversational leftover that addresses no real reader.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Delete it."
+      }
+    },
+    {
+      "id": "false-range",
+      "label": "False range",
+      "color": "#6f5f86",
+      "mark": "underline",
+      "rubric": {
+        "checks": "“From X to Y” with no real scale between them.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Name the things, or the one that matters."
+      }
+    },
+    {
+      "id": "puffery",
+      "label": "Puffery",
+      "color": "#8a565e",
+      "mark": "underline",
+      "rubric": {
+        "checks": "Asserts importance instead of showing it.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Say what happened and let the reader judge."
+      }
+    },
+    {
+      "id": "generic-voice",
+      "label": "Generic voice",
+      "color": "#655b82",
+      "mark": "bracket",
+      "rubric": {
+        "checks": "Could describe any company; no specific detail or stance.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Add a specific fact, example or opinion."
+      }
+    },
+    {
+      "id": "repetition",
+      "label": "Repetition",
+      "color": "#4f705e",
+      "mark": "bracket",
+      "rubric": {
+        "checks": "Says the same thing again without adding to it.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Say it once, then move on."
+      }
+    },
+    {
+      "id": "over-explaining",
+      "label": "Over-explaining",
+      "color": "#76614d",
+      "mark": "bracket",
+      "rubric": {
+        "checks": "Explains what the reader already knows.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Cut to what's new to the reader."
+      }
+    },
+    {
+      "id": "rhythm",
+      "label": "Uniform rhythm",
+      "color": "#4c6a79",
+      "mark": "bracket",
+      "rubric": {
+        "checks": "Every sentence has the same length and shape.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Vary the sentence lengths; combine or split some."
+      }
+    },
+    {
+      "id": "em-dash",
+      "label": "Em dash",
+      "color": "#7a584c",
+      "mark": "underline",
+      "rubric": {
+        "checks": "A dramatic pause before a reveal.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Use a period or a comma."
+      }
+    },
+    {
+      "id": "colon",
+      "label": "Connecting colon",
+      "color": "#63733f",
+      "mark": "box",
+      "rubric": {
+        "checks": "A colon used as a hinge between claims, not to introduce a list.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Split it into two sentences."
+      }
+    },
+    {
+      "id": "title-case",
+      "label": "Title case heading",
+      "color": "#755e73",
+      "mark": "underline",
+      "rubric": {
+        "checks": "Title Case headings read like marketing copy.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Use sentence case."
+      }
+    },
+    {
+      "id": "bold",
+      "label": "Bold inflation",
+      "color": "#586b68",
+      "mark": "underline",
+      "rubric": {
+        "checks": "Bold used for emphasis instead of scanning.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Keep bold for labels a reader scans for."
+      }
+    }
+  ],
+  "findings": [
+    {
+      "id": "D001",
+      "rule": "inflated",
+      "level": "word",
+      "edit": "replace",
+      "match": "leverage",
+      "span": {
+        "start": 20,
+        "end": 28
+      },
+      "note": "Use the plain word. Try “use”.",
+      "severity": "flag",
+      "status": "open",
+      "judge": {
+        "provider": "decision-model",
+        "model": "decision model",
+        "probability": 0.91,
+        "threshold": 0.4,
+        "rulesVersion": "3",
+        "score": 0.91,
+        "candidate": "leverage",
+        "scope": "phrase",
+        "after": {
+          "probability": 0,
+          "provider": "decision-model",
+          "model": "decision model"
+        }
+      },
+      "rewriteRequest": {
+        "status": "proposed",
+        "version": 1,
+        "requestedAt": "2026-11-25T05:11:42.943Z",
+        "target": "claude",
+        "requestedBy": "claude",
+        "proposedAt": "2026-11-25T05:11:43.125Z",
+        "by": "claude"
+      },
+      "proposed": "use",
+      "proposals": [
+        {
+          "version": 1,
+          "text": "use",
+          "by": "claude",
+          "proposedAt": "2026-11-25T05:11:43.125Z"
+        }
+      ]
+    },
+    {
+      "id": "D002",
+      "rule": "filler",
+      "level": "word",
+      "edit": "delete",
+      "match": "In order to",
+      "span": {
+        "start": 72,
+        "end": 83
+      },
+      "note": "Delete the phrase. Try “to”.",
+      "severity": "flag",
+      "status": "open",
+      "judge": {
+        "provider": "decision-model",
+        "model": "decision model",
+        "probability": 0.65,
+        "threshold": 0.4,
+        "rulesVersion": "3",
+        "score": 0.65,
+        "candidate": "In order to",
+        "scope": "phrase",
+        "after": {
+          "probability": 0,
+          "provider": "decision-model",
+          "model": "decision model"
+        }
+      },
+      "rewriteRequest": {
+        "status": "proposed",
+        "version": 1,
+        "requestedAt": "2026-11-25T05:11:42.958Z",
+        "target": "claude",
+        "requestedBy": "claude",
+        "proposedAt": "2026-11-25T05:11:43.135Z",
+        "by": "claude"
+      },
+      "proposed": "To",
+      "proposals": [
+        {
+          "version": 1,
+          "text": "To",
+          "by": "claude",
+          "proposedAt": "2026-11-25T05:11:43.135Z"
+        }
+      ]
+    },
+    {
+      "id": "D003",
+      "rule": "brochure-verb",
+      "level": "word",
+      "edit": "replace",
+      "match": "serves as",
+      "span": {
+        "start": 152,
+        "end": 161
+      },
+      "note": "Say “is” or “has”. Try “is”.",
+      "severity": "flag",
+      "status": "open",
+      "judge": {
+        "provider": "decision-model",
+        "model": "decision model",
+        "probability": 0.78,
+        "threshold": 0.4,
+        "rulesVersion": "3",
+        "score": 0.78,
+        "candidate": "serves as",
+        "scope": "phrase",
+        "after": {
+          "probability": 0,
+          "provider": "decision-model",
+          "model": "decision model"
+        }
+      },
+      "rewriteRequest": {
+        "status": "proposed",
+        "version": 1,
+        "requestedAt": "2026-11-25T05:11:42.968Z",
+        "target": "claude",
+        "requestedBy": "claude",
+        "proposedAt": "2026-11-25T05:11:43.145Z",
+        "by": "claude"
+      },
+      "proposed": "is",
+      "proposals": [
+        {
+          "version": 1,
+          "text": "is",
+          "by": "claude",
+          "proposedAt": "2026-11-25T05:11:43.145Z"
+        }
+      ]
+    },
+    {
+      "id": "D004",
+      "rule": "promo-adjective",
+      "level": "word",
+      "edit": "delete",
+      "match": "seamless",
+      "span": {
+        "start": 203,
+        "end": 211
+      },
+      "note": "Describe the thing and let the reader judge.",
+      "severity": "flag",
+      "status": "open",
+      "judge": {
+        "provider": "decision-model",
+        "model": "decision model",
+        "probability": 0.91,
+        "threshold": 0.4,
+        "rulesVersion": "3",
+        "score": 0.91,
+        "candidate": "seamless",
+        "scope": "phrase",
+        "after": {
+          "probability": 0,
+          "provider": "decision-model",
+          "model": "decision model"
+        }
+      },
+      "rewriteRequest": {
+        "status": "proposed",
+        "version": 1,
+        "requestedAt": "2026-11-25T05:11:42.978Z",
+        "target": "claude",
+        "requestedBy": "claude",
+        "proposedAt": "2026-11-25T05:11:43.156Z",
+        "by": "claude"
+      },
+      "proposed": "",
+      "proposals": [
+        {
+          "version": 1,
+          "text": "",
+          "by": "claude",
+          "proposedAt": "2026-11-25T05:11:43.156Z"
+        }
+      ]
+    },
+    {
+      "id": "D005",
+      "rule": "signpost",
+      "level": "word",
+      "edit": "delete",
+      "match": "Simply put",
+      "span": {
+        "start": 267,
+        "end": 277
+      },
+      "note": "Cut the opener and start with the point.",
+      "severity": "flag",
+      "status": "open",
+      "judge": {
+        "provider": "decision-model",
+        "model": "decision model",
+        "probability": 0.91,
+        "threshold": 0.4,
+        "rulesVersion": "3",
+        "score": 0.91,
+        "candidate": "Simply put",
+        "scope": "phrase",
+        "after": {
+          "probability": 0,
+          "provider": "decision-model",
+          "model": "decision model"
+        }
+      },
+      "rewriteRequest": {
+        "status": "proposed",
+        "version": 1,
+        "requestedAt": "2026-11-25T05:11:42.986Z",
+        "target": "claude",
+        "requestedBy": "claude",
+        "proposedAt": "2026-11-25T05:11:43.166Z",
+        "by": "claude"
+      },
+      "proposed": "",
+      "proposals": [
+        {
+          "version": 1,
+          "text": "",
+          "by": "claude",
+          "proposedAt": "2026-11-25T05:11:43.166Z"
+        }
+      ]
+    },
+    {
+      "id": "D006",
+      "rule": "contrast",
+      "level": "sentence",
+      "edit": "replace",
+      "match": "It's not a tool. It's a new way of working.",
+      "span": {
+        "start": 327,
+        "end": 370
+      },
+      "note": "State the second half on its own.",
+      "severity": "flag",
+      "status": "open",
+      "judge": {
+        "provider": "decision-model",
+        "model": "decision model",
+        "probability": 0.97,
+        "threshold": 0.8,
+        "rulesVersion": "3",
+        "score": 0.97,
+        "candidate": "It's not a tool. It's a new way of working.",
+        "scope": "sentence",
+        "after": {
+          "probability": 0.12,
+          "provider": "decision-model",
+          "model": "decision model"
+        }
+      },
+      "rewriteRequest": {
+        "status": "proposed",
+        "version": 1,
+        "requestedAt": "2026-11-25T05:11:42.992Z",
+        "target": "claude",
+        "requestedBy": "claude",
+        "proposedAt": "2026-11-25T05:11:43.176Z",
+        "by": "claude"
+      },
+      "proposed": "It changes how the team works day to day.",
+      "proposals": [
+        {
+          "version": 1,
+          "text": "It changes how the team works day to day.",
+          "by": "claude",
+          "proposedAt": "2026-11-25T05:11:43.176Z"
+        }
+      ]
+    },
+    {
+      "id": "D007",
+      "rule": "three",
+      "level": "sentence",
+      "edit": "replace",
+      "match": "The new plan is faster, simpler, and more powerful.",
+      "span": {
+        "start": 372,
+        "end": 423
+      },
+      "note": "Keep the items that carry meaning.",
+      "severity": "flag",
+      "status": "open",
+      "focus": {
+        "start": 0,
+        "end": 50
+      },
+      "judge": {
+        "provider": "decision-model",
+        "model": "decision model",
+        "probability": 0.87,
+        "threshold": 0.8,
+        "rulesVersion": "3",
+        "score": 0.87,
+        "candidate": "The new plan is faster, simpler, and more powerful.",
+        "scope": "sentence",
+        "after": {
+          "probability": 0.05,
+          "provider": "decision-model",
+          "model": "decision model"
+        }
+      },
+      "rewriteRequest": {
+        "status": "proposed",
+        "version": 1,
+        "requestedAt": "2026-11-25T05:11:43.002Z",
+        "target": "claude",
+        "requestedBy": "claude",
+        "proposedAt": "2026-11-25T05:11:43.187Z",
+        "by": "claude"
+      },
+      "proposed": "The new plan loads pages in half the time.",
+      "proposals": [
+        {
+          "version": 1,
+          "text": "The new plan loads pages in half the time.",
+          "by": "claude",
+          "proposedAt": "2026-11-25T05:11:43.187Z"
+        }
+      ]
+    },
+    {
+      "id": "D008",
+      "rule": "hedging",
+      "level": "sentence",
+      "edit": "replace",
+      "match": "This could potentially help some teams in certain cases.",
+      "span": {
+        "start": 425,
+        "end": 481
+      },
+      "note": "Keep one hedge, or commit.",
+      "severity": "flag",
+      "status": "open",
+      "focus": {
+        "start": 5,
+        "end": 55
+      },
+      "judge": {
+        "provider": "decision-model",
+        "model": "decision model",
+        "probability": 0.89,
+        "threshold": 0.8,
+        "rulesVersion": "3",
+        "score": 0.89,
+        "candidate": "This could potentially help some teams in certain cases.",
+        "scope": "sentence",
+        "after": {
+          "probability": 0.05,
+          "provider": "decision-model",
+          "model": "decision model"
+        }
+      },
+      "rewriteRequest": {
+        "status": "proposed",
+        "version": 1,
+        "requestedAt": "2026-11-25T05:11:43.009Z",
+        "target": "claude",
+        "requestedBy": "claude",
+        "proposedAt": "2026-11-25T05:11:43.205Z",
+        "by": "claude"
+      },
+      "proposed": "This helps teams that ship every week.",
+      "proposals": [
+        {
+          "version": 1,
+          "text": "This helps teams that ship every week.",
+          "by": "claude",
+          "proposedAt": "2026-11-25T05:11:43.205Z"
+        }
+      ]
+    },
+    {
+      "id": "D009",
+      "rule": "attribution",
+      "level": "sentence",
+      "edit": "insert",
+      "match": "Experts agree that shorter meetings lead to better decisions.",
+      "span": {
+        "start": 483,
+        "end": 544
+      },
+      "note": "Name the source, or cut the claim.",
+      "severity": "flag",
+      "status": "open",
+      "focus": {
+        "start": 0,
+        "end": 13
+      },
+      "judge": {
+        "provider": "decision-model",
+        "model": "decision model",
+        "probability": 0.97,
+        "threshold": 0.8,
+        "rulesVersion": "3",
+        "score": 0.97,
+        "candidate": "Experts agree that shorter meetings lead to better decisions.",
+        "scope": "sentence",
+        "after": {
+          "probability": 0.18,
+          "provider": "decision-model",
+          "model": "decision model"
+        }
+      },
+      "rewriteRequest": {
+        "status": "proposed",
+        "version": 1,
+        "requestedAt": "2026-11-25T05:11:43.017Z",
+        "target": "claude",
+        "requestedBy": "claude",
+        "proposedAt": "2026-11-25T05:11:43.217Z",
+        "by": "claude"
+      },
+      "proposed": "Our teams decided faster after we cut meetings to 25 minutes.",
+      "proposals": [
+        {
+          "version": 1,
+          "text": "Our teams decided faster after we cut meetings to 25 minutes.",
+          "by": "claude",
+          "proposedAt": "2026-11-25T05:11:43.217Z"
+        }
+      ]
+    },
+    {
+      "id": "D010",
+      "rule": "trailing",
+      "level": "sentence",
+      "edit": "delete",
+      "match": "Signups doubled in March, highlighting the strength of our brand.",
+      "span": {
+        "start": 546,
+        "end": 611
+      },
+      "note": "Cut the clause, or give it its own evidence.",
+      "severity": "flag",
+      "status": "open",
+      "focus": {
+        "start": 26,
+        "end": 64
+      },
+      "judge": {
+        "provider": "decision-model",
+        "model": "decision model",
+        "probability": 0.79,
+        "threshold": 0.6,
+        "rulesVersion": "3",
+        "score": 0.79,
+        "candidate": "Signups doubled in March, highlighting the strength of our brand.",
+        "scope": "sentence",
+        "after": {
+          "probability": 0.27,
+          "provider": "decision-model",
+          "model": "decision model"
+        }
+      },
+      "rewriteRequest": {
+        "status": "proposed",
+        "version": 1,
+        "requestedAt": "2026-11-25T05:11:43.027Z",
+        "target": "claude",
+        "requestedBy": "claude",
+        "proposedAt": "2026-11-25T05:11:43.227Z",
+        "by": "claude"
+      },
+      "proposed": "Signups doubled in March.",
+      "proposals": [
+        {
+          "version": 1,
+          "text": "Signups doubled in March.",
+          "by": "claude",
+          "proposedAt": "2026-11-25T05:11:43.227Z"
+        }
+      ]
+    },
+    {
+      "id": "D011",
+      "rule": "residue",
+      "level": "sentence",
+      "edit": "delete",
+      "match": "I hope this helps!",
+      "span": {
+        "start": 642,
+        "end": 660
+      },
+      "note": "Delete it.",
+      "severity": "flag",
+      "status": "open",
+      "focus": {
+        "start": 0,
+        "end": 17
+      },
+      "judge": {
+        "provider": "decision-model",
+        "model": "decision model",
+        "probability": 0.75,
+        "threshold": 0.5,
+        "rulesVersion": "3",
+        "score": 0.75,
+        "candidate": "I hope this helps!",
+        "scope": "sentence",
+        "after": {
+          "probability": 0,
+          "provider": "decision-model",
+          "model": "decision model"
+        }
+      },
+      "rewriteRequest": {
+        "status": "proposed",
+        "version": 1,
+        "requestedAt": "2026-11-25T05:11:43.033Z",
+        "target": "claude",
+        "requestedBy": "claude",
+        "proposedAt": "2026-11-25T05:11:43.236Z",
+        "by": "claude"
+      },
+      "proposed": "",
+      "proposals": [
+        {
+          "version": 1,
+          "text": "",
+          "by": "claude",
+          "proposedAt": "2026-11-25T05:11:43.236Z"
+        }
+      ]
+    },
+    {
+      "id": "D012",
+      "rule": "false-range",
+      "level": "sentence",
+      "edit": "replace",
+      "match": "From solo founders to global enterprises, anyone can use it.",
+      "span": {
+        "start": 662,
+        "end": 722
+      },
+      "note": "Name the things, or the one that matters.",
+      "severity": "flag",
+      "status": "open",
+      "focus": {
+        "start": 0,
+        "end": 40
+      },
+      "judge": {
+        "provider": "decision-model",
+        "model": "decision model",
+        "probability": 0.98,
+        "threshold": 0.7,
+        "rulesVersion": "3",
+        "score": 0.98,
+        "candidate": "From solo founders to global enterprises, anyone can use it.",
+        "scope": "sentence",
+        "after": {
+          "probability": 0.06,
+          "provider": "decision-model",
+          "model": "decision model"
+        }
+      },
+      "rewriteRequest": {
+        "status": "proposed",
+        "version": 1,
+        "requestedAt": "2026-11-25T05:11:43.041Z",
+        "target": "claude",
+        "requestedBy": "claude",
+        "proposedAt": "2026-11-25T05:11:43.244Z",
+        "by": "claude"
+      },
+      "proposed": "Anyone with a website can use it.",
+      "proposals": [
+        {
+          "version": 1,
+          "text": "Anyone with a website can use it.",
+          "by": "claude",
+          "proposedAt": "2026-11-25T05:11:43.244Z"
+        }
+      ]
+    },
+    {
+      "id": "D013",
+      "rule": "puffery",
+      "level": "sentence",
+      "edit": "replace",
+      "match": "The results of this launch speak for themselves.",
+      "span": {
+        "start": 724,
+        "end": 772
+      },
+      "note": "Say what happened and let the reader judge.",
+      "severity": "flag",
+      "status": "open",
+      "judge": {
+        "provider": "decision-model",
+        "model": "decision model",
+        "probability": 0.94,
+        "threshold": 0.8,
+        "rulesVersion": "3",
+        "score": 0.94,
+        "candidate": "The results of this launch speak for themselves.",
+        "scope": "sentence",
+        "after": {
+          "probability": 0.08,
+          "provider": "decision-model",
+          "model": "decision model"
+        }
+      },
+      "rewriteRequest": {
+        "status": "proposed",
+        "version": 1,
+        "requestedAt": "2026-11-25T05:11:43.049Z",
+        "target": "claude",
+        "requestedBy": "claude",
+        "proposedAt": "2026-11-25T05:11:43.254Z",
+        "by": "claude"
+      },
+      "proposed": "This launch cut support tickets by a third.",
+      "proposals": [
+        {
+          "version": 1,
+          "text": "This launch cut support tickets by a third.",
+          "by": "claude",
+          "proposedAt": "2026-11-25T05:11:43.254Z"
+        }
+      ]
+    },
+    {
+      "id": "D014",
+      "rule": "generic-voice",
+      "level": "paragraph",
+      "edit": "paragraph",
+      "match": "Marketing is all about understanding your audience. When you know what your customers want, you can create content that speaks to them. The key is to stay consistent and keep learning.",
+      "span": {
+        "start": 774,
+        "end": 958
+      },
+      "note": "Add a specific fact, example or opinion.",
+      "severity": "flag",
+      "status": "open",
+      "judge": {
+        "provider": "decision-model",
+        "model": "decision model",
+        "probability": 0.95,
+        "threshold": 0.7,
+        "rulesVersion": "3",
+        "score": 0.95,
+        "candidate": "Marketing is all about understanding your audience. When you know what your customers want, you can create content that speaks to them. The key is to stay consistent and keep learning.",
+        "scope": "sentence",
+        "after": {
+          "probability": 0.14,
+          "provider": "decision-model",
+          "model": "decision model"
+        }
+      },
+      "rewriteRequest": {
+        "status": "proposed",
+        "version": 1,
+        "requestedAt": "2026-11-25T05:11:43.059Z",
+        "target": "claude",
+        "requestedBy": "claude",
+        "proposedAt": "2026-11-25T05:11:43.261Z",
+        "by": "claude"
+      },
+      "proposed": "Our best post last year answered one question a customer asked on a sales call. We now start every post from a real question, and we publish one a week.",
+      "proposals": [
+        {
+          "version": 1,
+          "text": "Our best post last year answered one question a customer asked on a sales call. We now start every post from a real question, and we publish one a week.",
+          "by": "claude",
+          "proposedAt": "2026-11-25T05:11:43.261Z"
+        }
+      ]
+    },
+    {
+      "id": "D015",
+      "rule": "repetition",
+      "level": "paragraph",
+      "edit": "paragraph",
+      "match": "Our support team answers within an hour, so you never wait long for help. Getting help is quick because the team replies fast, and those fast replies mean nobody is left waiting for an answer.",
+      "span": {
+        "start": 960,
+        "end": 1152
+      },
+      "note": "Say it once, then move on.",
+      "severity": "flag",
+      "status": "open",
+      "judge": {
+        "provider": "decision-model",
+        "model": "decision model",
+        "probability": 0.94,
+        "threshold": 0.8,
+        "rulesVersion": "3",
+        "score": 0.94,
+        "candidate": "Our support team answers within an hour, so you never wait long for help. Getting help is quick because the team replies fast, and those fast replies mean nobody is left waiting for an answer.",
+        "scope": "sentence",
+        "after": {
+          "probability": 0.76,
+          "provider": "decision-model",
+          "model": "decision model"
+        }
+      },
+      "rewriteRequest": {
+        "status": "proposed",
+        "version": 1,
+        "requestedAt": "2026-11-25T05:11:43.066Z",
+        "target": "claude",
+        "requestedBy": "claude",
+        "proposedAt": "2026-11-25T05:11:43.272Z",
+        "by": "claude"
+      },
+      "proposed": "Our support team answers within an hour, so you never wait long for help.",
+      "proposals": [
+        {
+          "version": 1,
+          "text": "Our support team answers within an hour, so you never wait long for help.",
+          "by": "claude",
+          "proposedAt": "2026-11-25T05:11:43.272Z"
+        }
+      ]
+    },
+    {
+      "id": "D016",
+      "rule": "over-explaining",
+      "level": "paragraph",
+      "edit": "paragraph",
+      "match": "To send a message, type your words into the box. The box is the white area at the bottom of the screen. When you have finished typing, press Send, and the message is sent.",
+      "span": {
+        "start": 1154,
+        "end": 1325
+      },
+      "note": "Cut to what's new to the reader.",
+      "severity": "flag",
+      "status": "open",
+      "judge": {
+        "provider": "decision-model",
+        "model": "decision model",
+        "probability": 0.82,
+        "threshold": 0.8,
+        "rulesVersion": "3",
+        "score": 0.82,
+        "candidate": "To send a message, type your words into the box. The box is the white area at the bottom of the screen. When you have finished typing, press Send, and the message is sent.",
+        "scope": "sentence",
+        "after": {
+          "probability": 0.63,
+          "provider": "decision-model",
+          "model": "decision model"
+        }
+      },
+      "rewriteRequest": {
+        "status": "proposed",
+        "version": 1,
+        "requestedAt": "2026-11-25T05:11:43.074Z",
+        "target": "claude",
+        "requestedBy": "claude",
+        "proposedAt": "2026-11-25T05:11:43.283Z",
+        "by": "claude"
+      },
+      "proposed": "Type your message and press Send.",
+      "proposals": [
+        {
+          "version": 1,
+          "text": "Type your message and press Send.",
+          "by": "claude",
+          "proposedAt": "2026-11-25T05:11:43.283Z"
+        }
+      ]
+    },
+    {
+      "id": "D017",
+      "rule": "rhythm",
+      "level": "paragraph",
+      "edit": "paragraph",
+      "match": "We start early. We test everything. We ship on Fridays. We read every reply. We fix what breaks.",
+      "span": {
+        "start": 1327,
+        "end": 1423
+      },
+      "note": "Vary the sentence lengths; combine or split some.",
+      "severity": "flag",
+      "status": "open",
+      "judge": {
+        "provider": "decision-model",
+        "model": "decision model",
+        "probability": 0.66,
+        "threshold": 0.45,
+        "rulesVersion": "3",
+        "score": 0.66,
+        "candidate": "We start early. We test everything. We ship on Fridays. We read every reply. We fix what breaks.",
+        "scope": "sentence",
+        "after": {
+          "probability": 0.15,
+          "provider": "decision-model",
+          "model": "decision model"
+        }
+      },
+      "rewriteRequest": {
+        "status": "proposed",
+        "version": 1,
+        "requestedAt": "2026-11-25T05:11:43.082Z",
+        "target": "claude",
+        "requestedBy": "claude",
+        "proposedAt": "2026-11-25T05:11:43.294Z",
+        "by": "claude"
+      },
+      "proposed": "We start early and test everything. Fridays are for shipping, and by Monday we have read every reply and fixed what broke.",
+      "proposals": [
+        {
+          "version": 1,
+          "text": "We start early and test everything. Fridays are for shipping, and by Monday we have read every reply and fixed what broke.",
+          "by": "claude",
+          "proposedAt": "2026-11-25T05:11:43.294Z"
+        }
+      ]
+    },
+    {
+      "id": "D018",
+      "rule": "em-dash",
+      "level": "word",
+      "edit": "replace",
+      "match": "— but",
+      "span": {
+        "start": 1445,
+        "end": 1450
+      },
+      "note": "Use a period or a comma.",
+      "severity": "flag",
+      "status": "open",
+      "focus": {
+        "start": 0,
+        "end": 1
+      },
+      "judge": {
+        "provider": "decision-model",
+        "model": "decision model",
+        "probability": 0.93,
+        "threshold": 0.5,
+        "rulesVersion": "3",
+        "score": 0.93,
+        "candidate": "— but",
+        "scope": "phrase",
+        "after": {
+          "probability": 0,
+          "provider": "decision-model",
+          "model": "decision model"
+        }
+      },
+      "rewriteRequest": {
+        "status": "proposed",
+        "version": 1,
+        "requestedAt": "2026-11-25T05:11:43.089Z",
+        "target": "claude",
+        "requestedBy": "claude",
+        "proposedAt": "2026-11-25T05:11:43.305Z",
+        "by": "claude"
+      },
+      "proposed": ", but",
+      "proposals": [
+        {
+          "version": 1,
+          "text": ", but",
+          "by": "claude",
+          "proposedAt": "2026-11-25T05:11:43.305Z"
+        }
+      ]
+    },
+    {
+      "id": "D019",
+      "rule": "colon",
+      "level": "sentence",
+      "edit": "replace",
+      "match": "The answer was simple: we stopped holding weekly meetings.",
+      "span": {
+        "start": 1489,
+        "end": 1547
+      },
+      "note": "Split it into two sentences.",
+      "severity": "flag",
+      "status": "open",
+      "focus": {
+        "start": 21,
+        "end": 22
+      },
+      "judge": {
+        "provider": "decision-model",
+        "model": "decision model",
+        "probability": 0.86,
+        "threshold": 0.7,
+        "rulesVersion": "3",
+        "score": 0.86,
+        "candidate": "The answer was simple: we stopped holding weekly meetings.",
+        "scope": "sentence",
+        "after": {
+          "probability": 0.54,
+          "provider": "decision-model",
+          "model": "decision model"
+        }
+      },
+      "rewriteRequest": {
+        "status": "proposed",
+        "version": 1,
+        "requestedAt": "2026-11-25T05:11:43.098Z",
+        "target": "claude",
+        "requestedBy": "claude",
+        "proposedAt": "2026-11-25T05:11:43.318Z",
+        "by": "claude"
+      },
+      "proposed": "We stopped holding weekly meetings.",
+      "proposals": [
+        {
+          "version": 1,
+          "text": "We stopped holding weekly meetings.",
+          "by": "claude",
+          "proposedAt": "2026-11-25T05:11:43.318Z"
+        }
+      ]
+    },
+    {
+      "id": "D020",
+      "rule": "bold",
+      "level": "word",
+      "edit": "replace",
+      "match": "**incredibly**",
+      "span": {
+        "start": 1609,
+        "end": 1623
+      },
+      "note": "Keep bold for labels a reader scans for.",
+      "severity": "flag",
+      "status": "open",
+      "judge": {
+        "provider": "decision-model",
+        "model": "decision model",
+        "probability": 0.91,
+        "threshold": 0.75,
+        "rulesVersion": "3",
+        "score": 0.91,
+        "candidate": "**incredibly**",
+        "scope": "phrase",
+        "after": {
+          "probability": 0,
+          "provider": "decision-model",
+          "model": "decision model"
+        }
+      },
+      "rewriteRequest": {
+        "status": "proposed",
+        "version": 1,
+        "requestedAt": "2026-11-25T05:11:43.104Z",
+        "target": "claude",
+        "requestedBy": "claude",
+        "proposedAt": "2026-11-25T05:11:43.329Z",
+        "by": "claude"
+      },
+      "proposed": "incredibly",
+      "proposals": [
+        {
+          "version": 1,
+          "text": "incredibly",
+          "by": "claude",
+          "proposedAt": "2026-11-25T05:11:43.329Z"
+        }
+      ]
+    }
+  ],
+  "judge": {
+    "provider": "decision-model",
+    "model": "decision model",
+    "rulesVersion": "3",
+    "generatedAt": "2026-11-25T05:11:42.606Z"
+  }
+}

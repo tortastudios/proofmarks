@@ -1,0 +1,8 @@
+{
+  "name": "proofmarks-relay",
+  "private": true,
+  "description": "Torta's relay between Proofmarks and Jev: holds the Jev key, forwards Proofmarks' judge requests, keeps no text.",
+  "type": "module",
+  "engines": { "node": ">=24" },
+  "scripts": { "start": "node src/server.ts" }
+}

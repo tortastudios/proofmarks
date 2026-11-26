@@ -1,0 +1,20 @@
+{
+  "name": "proofmarks-sample-next-mdx",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "proofmarks": "proofmarks",
+    "dev": "next dev --port 3763"
+  },
+  "devDependencies": {
+    "@tortastudios/proofmarks": "file:../.."
+  },
+  "dependencies": {
+    "next": "16.4.6",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "@next/mdx": "16.4.6",
+    "@mdx-js/loader": "^3.1.1",
+    "@mdx-js/react": "^3.1.1"
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "source": "content/essays/workshop.mdx",
+  "rules": [
+    {
+      "id": "three",
+      "label": "rule of three!",
+      "color": "#87532f",
+      "mark": "underline"
+    },
+    {
+      "id": "contrast",
+      "label": "not X but Y",
+      "color": "#994b52",
+      "mark": "circle"
+    },
+    {
+      "id": "colon",
+      "label": "one idea!",
+      "color": "#416c8d",
+      "mark": "box"
+    },
+    {
+      "id": "hedging",
+      "label": "hedging + filler",
+      "color": "#76608b",
+      "mark": "underline"
+    },
+    {
+      "id": "filler",
+      "label": "say what happens",
+      "color": "#5e6b38",
+      "mark": "box"
+    },
+    {
+      "id": "actor",
+      "label": "name the actor",
+      "color": "#38766b",
+      "mark": "circle"
+    }
+  ],
+  "findings": [
+    {
+      "id": "U01",
+      "rule": "three",
+      "match": "The workshop passage 1 needs a clearer description.",
+      "proposed": "We repaired part 1 at the workshop.",
+      "note": "Use a specific description of the work.",
+      "status": "open"
+    },
+    {
+      "id": "U02",
+      "rule": "three",
+      "match": "The workshop passage 2 needs a clearer description.",
+      "proposed": "We repaired part 2 at the workshop.",
+      "note": "Use a specific description of the work.",
+      "status": "open"
+    },
+    {
+      "id": "U03",
+      "rule": "colon",
+      "match": "The workshop passage 3 needs a clearer description.",
+      "proposed": "We repaired part 3 at the workshop.",
+      "note": "Use a specific description of the work.",
+      "status": "open"
+    },
+    {
+      "id": "U04",
+      "rule": "contrast",
+      "match": "The workshop passage 4 needs a clearer description.",
+      "proposed": "We repaired part 4 at the workshop.",
+      "note": "Use a specific description of the work.",
+      "status": "open"
+    },
+    {
+      "id": "U05",
+      "rule": "three",
+      "match": "The workshop passage 5 needs a clearer description.",
+      "proposed": "We repaired part 5 at the workshop.",
+      "note": "Use a specific description of the work.",
+      "status": "open"
+    },
+    {
+      "id": "U06",
+      "rule": "three",
+      "match": "The workshop passage 6 needs a clearer description.",
+      "proposed": "We repaired part 6 at the workshop.",
+      "note": "Use a specific description of the work.",
+      "status": "open"
+    },
+    {
+      "id": "U07",
+      "rule": "contrast",
+      "match": "The workshop passage 7 needs a clearer description.",
+      "proposed": "We repaired part 7 at the workshop.",
+      "note": "Use a specific description of the work.",
+      "status": "open"
+    },
+    {
+      "id": "U08",
+      "rule": "three",
+      "match": "The workshop passage 8 needs a clearer description.",
+      "proposed": "We repaired part 8 at the workshop.",
+      "note": "Use a specific description of the work.",
+      "status": "open"
+    },
+    {
+      "id": "U09",
+      "rule": "hedging",
+      "match": "The workshop passage 9 needs a clearer description.",
+      "proposed": "We repaired part 9 at the workshop.",
+      "note": "Use a specific description of the work.",
+      "status": "open"
+    },
+    {
+      "id": "U10",
+      "rule": "contrast",
+      "match": "The workshop passage 10 needs a clearer description.",
+      "proposed": "We repaired part 10 at the workshop.",
+      "note": "Use a specific description of the work.",
+      "status": "open"
+    },
+    {
+      "id": "U11",
+      "rule": "filler",
+      "match": "The workshop passage 11 needs a clearer description.",
+      "proposed": "We repaired part 11 at the workshop.",
+      "note": "Use a specific description of the work.",
+      "status": "open"
+    },
+    {
+      "id": "U12",
+      "rule": "three",
+      "match": "The workshop passage 12 needs a clearer description.",
+      "proposed": "We repaired part 12 at the workshop.",
+      "note": "Use a specific description of the work.",
+      "status": "open"
+    },
+    {
+      "id": "U13",
+      "rule": "contrast",
+      "match": "The workshop passage 13 needs a clearer description.",
+      "proposed": "We repaired part 13 at the workshop.",
+      "note": "Use a specific description of the work.",
+      "status": "open"
+    },
+    {
+      "id": "U14",
+      "rule": "contrast",
+      "match": "The workshop passage 14 needs a clearer description.",
+      "proposed": "We repaired part 14 at the workshop.",
+      "note": "Use a specific description of the work.",
+      "status": "open"
+    },
+    {
+      "id": "U15",
+      "rule": "actor",
+      "match": "The workshop passage 15 needs a clearer description.",
+      "proposed": "We repaired part 15 at the workshop.",
+      "note": "Use a specific description of the work.",
+      "status": "open"
+    }
+  ]
+}

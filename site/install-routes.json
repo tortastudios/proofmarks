@@ -1,0 +1,18 @@
+[
+  { "id": "skills", "label": "Agent skills", "command": "npx skills add tortastudios/proofmarks" },
+  { "id": "npm", "label": "npm", "command": "npm install --save-dev @tortastudios/proofmarks", "run": "npx proofmarks" },
+  { "id": "brew", "label": "Homebrew", "command": "brew install tortastudios/tap/proofmarks", "run": "proofmarks" },
+  { "id": "uv", "label": "uv or pipx", "command": "uv tool install proofmarks", "run": "proofmarks" },
+  {
+    "id": "script",
+    "label": "macOS, Linux",
+    "command": "curl -fsSL https://proofmarks.dev/install.sh | sh",
+    "run": "proofmarks"
+  },
+  {
+    "id": "windows",
+    "label": "Windows",
+    "command": "irm https://proofmarks.dev/install.ps1 | iex",
+    "run": "proofmarks"
+  }
+]

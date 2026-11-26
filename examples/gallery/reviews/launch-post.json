@@ -1,0 +1,444 @@
+{
+  "source": "pieces/launch-post.md",
+  "usage": {
+    "calls": 0,
+    "dollars": 0,
+    "cached": 31
+  },
+  "reviewMode": "calibrated",
+  "strictness": [],
+  "rules": [
+    {
+      "id": "inflated",
+      "label": "Inflated word",
+      "color": "#875f45",
+      "mark": "underline",
+      "rubric": {
+        "checks": "A fancy word stands in for a plain one.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Use the plain word."
+      }
+    },
+    {
+      "id": "filler",
+      "label": "Filler",
+      "color": "#5e6b38",
+      "mark": "box",
+      "rubric": {
+        "checks": "Words that delay the point without adding to it.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Delete the phrase."
+      }
+    },
+    {
+      "id": "brochure-verb",
+      "label": "Brochure verb",
+      "color": "#3f6b67",
+      "mark": "underline",
+      "rubric": {
+        "checks": "A costume for “is” or “has”.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Say “is” or “has”."
+      }
+    },
+    {
+      "id": "promo-adjective",
+      "label": "Promotional adjective",
+      "color": "#835b70",
+      "mark": "strike-through",
+      "rubric": {
+        "checks": "Praise instead of description.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Describe the thing and let the reader judge."
+      }
+    },
+    {
+      "id": "signpost",
+      "label": "Signposting",
+      "color": "#75642f",
+      "mark": "strike-through",
+      "rubric": {
+        "checks": "Announces a point instead of making it.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Cut the opener and start with the point."
+      }
+    },
+    {
+      "id": "contrast",
+      "label": "Not X, but Y",
+      "color": "#994b52",
+      "mark": "circle",
+      "rubric": {
+        "checks": "Sets up a claim just to knock it down.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "State the second half on its own."
+      }
+    },
+    {
+      "id": "three",
+      "label": "List of three",
+      "color": "#87532f",
+      "mark": "underline",
+      "rubric": {
+        "checks": "Three items for rhythm, not because there are three.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Keep the items that carry meaning."
+      }
+    },
+    {
+      "id": "hedging",
+      "label": "Stacked hedges",
+      "color": "#596b86",
+      "mark": "underline",
+      "rubric": {
+        "checks": "Several hedges in one claim dodge commitment.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Keep one hedge, or commit."
+      }
+    },
+    {
+      "id": "attribution",
+      "label": "Vague attribution",
+      "color": "#416c8d",
+      "mark": "caret",
+      "rubric": {
+        "checks": "Cites authority nobody can check.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Name the source, or cut the claim."
+      }
+    },
+    {
+      "id": "trailing",
+      "label": "Trailing -ing clause",
+      "color": "#786348",
+      "mark": "strike-through",
+      "rubric": {
+        "checks": "Bolts an unsupported conclusion onto a fact.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Cut the clause, or give it its own evidence."
+      }
+    },
+    {
+      "id": "residue",
+      "label": "Chatbot residue",
+      "color": "#816044",
+      "mark": "strike-through",
+      "rubric": {
+        "checks": "A conversational leftover that addresses no real reader.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Delete it."
+      }
+    },
+    {
+      "id": "false-range",
+      "label": "False range",
+      "color": "#6f5f86",
+      "mark": "underline",
+      "rubric": {
+        "checks": "“From X to Y” with no real scale between them.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Name the things, or the one that matters."
+      }
+    },
+    {
+      "id": "puffery",
+      "label": "Puffery",
+      "color": "#8a565e",
+      "mark": "underline",
+      "rubric": {
+        "checks": "Asserts importance instead of showing it.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Say what happened and let the reader judge."
+      }
+    },
+    {
+      "id": "generic-voice",
+      "label": "Generic voice",
+      "color": "#655b82",
+      "mark": "bracket",
+      "rubric": {
+        "checks": "Could describe any company; no specific detail or stance.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Add a specific fact, example or opinion."
+      }
+    },
+    {
+      "id": "repetition",
+      "label": "Repetition",
+      "color": "#4f705e",
+      "mark": "bracket",
+      "rubric": {
+        "checks": "Says the same thing again without adding to it.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Say it once, then move on."
+      }
+    },
+    {
+      "id": "over-explaining",
+      "label": "Over-explaining",
+      "color": "#76614d",
+      "mark": "bracket",
+      "rubric": {
+        "checks": "Explains what the reader already knows.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Cut to what's new to the reader."
+      }
+    },
+    {
+      "id": "rhythm",
+      "label": "Uniform rhythm",
+      "color": "#4c6a79",
+      "mark": "bracket",
+      "rubric": {
+        "checks": "Every sentence has the same length and shape.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Vary the sentence lengths; combine or split some."
+      }
+    },
+    {
+      "id": "em-dash",
+      "label": "Em dash",
+      "color": "#7a584c",
+      "mark": "underline",
+      "rubric": {
+        "checks": "A dramatic pause before a reveal.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Use a period or a comma."
+      }
+    },
+    {
+      "id": "colon",
+      "label": "Connecting colon",
+      "color": "#63733f",
+      "mark": "box",
+      "rubric": {
+        "checks": "A colon used as a hinge between claims, not to introduce a list.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Split it into two sentences."
+      }
+    },
+    {
+      "id": "title-case",
+      "label": "Title case heading",
+      "color": "#755e73",
+      "mark": "underline",
+      "rubric": {
+        "checks": "Title Case headings read like marketing copy.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Use sentence case."
+      }
+    },
+    {
+      "id": "bold",
+      "label": "Bold inflation",
+      "color": "#586b68",
+      "mark": "underline",
+      "rubric": {
+        "checks": "Bold used for emphasis instead of scanning.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Keep bold for labels a reader scans for."
+      }
+    }
+  ],
+  "findings": [
+    {
+      "id": "D001",
+      "rule": "promo-adjective",
+      "level": "word",
+      "edit": "delete",
+      "match": "groundbreaking",
+      "span": {
+        "start": 82,
+        "end": 96
+      },
+      "note": "Describe the thing and let the reader judge.",
+      "severity": "flag",
+      "status": "open",
+      "judge": {
+        "provider": "jev",
+        "model": "jev-1.14.0",
+        "probability": 0.96,
+        "threshold": 0.4,
+        "rulesVersion": "3",
+        "score": 0.96,
+        "candidate": "groundbreaking",
+        "scope": "phrase"
+      }
+    },
+    {
+      "id": "D002",
+      "rule": "contrast",
+      "level": "sentence",
+      "edit": "replace",
+      "match": "Tidewater Sync isn't just another file sharing tool. It's a seamless, intelligent layer that sits beneath the apps you already use and keeps everything consistent, everywhere, all the time.",
+      "span": {
+        "start": 626,
+        "end": 815
+      },
+      "note": "State the second half on its own.",
+      "severity": "flag",
+      "status": "open",
+      "judge": {
+        "provider": "jev",
+        "model": "jev-1.14.0",
+        "probability": 0.95,
+        "threshold": 0.8,
+        "rulesVersion": "3",
+        "score": 0.95,
+        "candidate": "Tidewater Sync isn't just another file sharing tool. It's a seamless, intelligent layer that sits beneath the apps you already use and keeps everything consistent, everywhere, all the time.",
+        "scope": "sentence"
+      }
+    },
+    {
+      "id": "D003",
+      "rule": "promo-adjective",
+      "level": "word",
+      "edit": "delete",
+      "match": "seamless",
+      "span": {
+        "start": 686,
+        "end": 694
+      },
+      "note": "Describe the thing and let the reader judge.",
+      "severity": "flag",
+      "status": "open",
+      "judge": {
+        "provider": "jev",
+        "model": "jev-1.14.0",
+        "probability": 0.92,
+        "threshold": 0.4,
+        "rulesVersion": "3",
+        "score": 0.92,
+        "candidate": "seamless",
+        "scope": "phrase"
+      }
+    },
+    {
+      "id": "D004",
+      "rule": "promo-adjective",
+      "level": "word",
+      "edit": "delete",
+      "match": "effortlessly",
+      "span": {
+        "start": 1474,
+        "end": 1486
+      },
+      "note": "Describe the thing and let the reader judge.",
+      "severity": "flag",
+      "status": "open",
+      "judge": {
+        "provider": "jev",
+        "model": "jev-1.14.0",
+        "probability": 0.95,
+        "threshold": 0.4,
+        "rulesVersion": "3",
+        "score": 0.95,
+        "candidate": "effortlessly",
+        "scope": "phrase"
+      }
+    },
+    {
+      "id": "D005",
+      "rule": "false-range",
+      "level": "sentence",
+      "edit": "replace",
+      "match": "Our beta testers, who ranged from a three-person architecture studio to a newsroom with four hundred reporters, saw an average of five hours saved per person each week.",
+      "span": {
+        "start": 1507,
+        "end": 1675
+      },
+      "note": "Name the things, or the one that matters.",
+      "severity": "flag",
+      "status": "open",
+      "focus": {
+        "start": 29,
+        "end": 100
+      },
+      "judge": {
+        "provider": "jev",
+        "model": "jev-1.14.0",
+        "probability": 0.7,
+        "threshold": 0.7,
+        "rulesVersion": "3",
+        "score": 0.7,
+        "candidate": "Our beta testers, who ranged from a three-person architecture studio to a newsroom with four hundred reporters, saw an average of five hours saved per person each week.",
+        "scope": "sentence"
+      }
+    },
+    {
+      "id": "D006",
+      "rule": "generic-voice",
+      "level": "paragraph",
+      "edit": "paragraph",
+      "match": "This is just the beginning. Over the coming months, we'll be rolling out deeper integrations, smarter search, and powerful new collaboration features. We can't wait to see what you build with it.",
+      "span": {
+        "start": 2103,
+        "end": 2298
+      },
+      "note": "Add a specific fact, example or opinion.",
+      "severity": "flag",
+      "status": "open",
+      "judge": {
+        "provider": "jev",
+        "model": "jev-1.14.0",
+        "probability": 0.7,
+        "threshold": 0.7,
+        "rulesVersion": "3",
+        "score": 0.7,
+        "candidate": "This is just the beginning. Over the coming months, we'll be rolling out deeper integrations, smarter search, and powerful new collaboration features. We can't wait to see what you build with it.",
+        "scope": "sentence"
+      }
+    },
+    {
+      "id": "D007",
+      "rule": "puffery",
+      "level": "sentence",
+      "edit": "replace",
+      "match": "This is just the beginning.",
+      "span": {
+        "start": 2103,
+        "end": 2130
+      },
+      "note": "Say what happened and let the reader judge.",
+      "severity": "flag",
+      "status": "open",
+      "judge": {
+        "provider": "jev",
+        "model": "jev-1.14.0",
+        "probability": 0.84,
+        "threshold": 0.8,
+        "rulesVersion": "3",
+        "score": 0.84,
+        "candidate": "This is just the beginning.",
+        "scope": "sentence"
+      }
+    }
+  ],
+  "judge": {
+    "provider": "jev",
+    "model": "jev-1.14.0",
+    "rulesVersion": "3",
+    "generatedAt": "2026-11-25T05:32:00.753Z"
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "name": "@tortastudios/proofmarks",
+  "version": "0.1.0",
+  "description": "Proofmarks: a proofreader for AI-sounding writing that marks up the real page.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "tsx --test 'src/**/*.test.ts' 'relay/src/**/*.test.ts'",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src scripts relay site && prettier --check 'src/**/*.{ts,tsx,mjs}' 'relay/src/**/*.ts' 'scripts/**/*.{mjs,mts}' 'site/*.{ts,html,css}' eslint.config.mjs",
+    "format": "prettier --write 'src/**/*.{ts,tsx,mjs}' 'relay/src/**/*.ts' 'scripts/**/*.{mjs,mts}' 'site/*.{ts,html,css}' eslint.config.mjs",
+    "proofmarks": "node dist/companion/bin.mjs",
+    "build": "node scripts/build.mjs",
+    "site": "node scripts/build-site.mjs",
+    "build:browser": "node scripts/build-browser.mjs",
+    "build:overlay": "node scripts/build-browser.mjs",
+    "prepack": "pnpm build",
+    "smoke:package": "node scripts/smoke-package.mjs"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "^1.5.2",
+    "@types/cross-spawn": "^6.0.6",
+    "@types/node": "^22.19.13",
+    "@types/react": "^19.3.0",
+    "esbuild": "^0.28.2",
+    "eslint": "^9.39.1",
+    "prettier": "^3.10.1",
+    "react": "19.3.0",
+    "tsx": "^4.23.5",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.46.3",
+    "yaml": "^2.9.0"
+  },
+  "bin": {
+    "proofmarks": "dist/companion/bin.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "@typesafe-ai/sdk": "0.7.0",
+    "cross-spawn": "7.0.6",
+    "roughjs": "^4.6.6",
+    "zod": "4.6.6"
+  },
+  "exports": {
+    "./overlay": {
+      "types": "./dist/types/overlay/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./react": {
+      "types": "./dist/types/overlay/react.d.ts",
+      "import": "./dist/overlay/react.js"
+    },
+    "./next": {
+      "types": "./dist/types/next/index.d.ts",
+      "import": "./dist/next/index.js"
+    },
+    "./config": {
+      "types": "./dist/config/index.d.mts",
+      "import": "./dist/config/index.mjs"
+    },
+    "./cli": "./dist/companion/bin.mjs"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "react": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "@earendil-works/pi-coding-agent": {
+      "optional": true
+    }
+  },
+  "packageManager": "pnpm@12.16.1",
+  "files": [
+    "dist",
+    "rules/rules.v3.json",
+    "rules/calibration/jev-jev-1.14.0.json",
+    "README.md",
+    "SECURITY.md",
+    "TELEMETRY.md",
+    "CHANGELOG.md",
+    "LICENSE.md"
+  ],
+  "license": "FSL-1.1-MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tortastudios/proofmarks.git"
+  },
+  "homepage": "https://github.com/tortastudios/proofmarks#readme",
+  "bugs": {
+    "url": "https://github.com/tortastudios/proofmarks/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "pi": {
+    "extensions": [
+      "./dist/pi/extension.js"
+    ]
+  }
+}

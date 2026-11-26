@@ -1,0 +1,552 @@
+{
+  "source": "pieces/engineering-blog.md",
+  "usage": {
+    "calls": 2,
+    "dollars": 5.7204e-05,
+    "cached": 61
+  },
+  "reviewMode": "calibrated",
+  "strictness": [],
+  "rules": [
+    {
+      "id": "inflated",
+      "label": "Inflated word",
+      "color": "#875f45",
+      "mark": "underline",
+      "rubric": {
+        "checks": "A fancy word stands in for a plain one.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Use the plain word."
+      }
+    },
+    {
+      "id": "filler",
+      "label": "Filler",
+      "color": "#5e6b38",
+      "mark": "box",
+      "rubric": {
+        "checks": "Words that delay the point without adding to it.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Delete the phrase."
+      }
+    },
+    {
+      "id": "brochure-verb",
+      "label": "Brochure verb",
+      "color": "#3f6b67",
+      "mark": "underline",
+      "rubric": {
+        "checks": "A costume for “is” or “has”.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Say “is” or “has”."
+      }
+    },
+    {
+      "id": "promo-adjective",
+      "label": "Promotional adjective",
+      "color": "#835b70",
+      "mark": "strike-through",
+      "rubric": {
+        "checks": "Praise instead of description.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Describe the thing and let the reader judge."
+      }
+    },
+    {
+      "id": "signpost",
+      "label": "Signposting",
+      "color": "#75642f",
+      "mark": "strike-through",
+      "rubric": {
+        "checks": "Announces a point instead of making it.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Cut the opener and start with the point."
+      }
+    },
+    {
+      "id": "contrast",
+      "label": "Not X, but Y",
+      "color": "#994b52",
+      "mark": "circle",
+      "rubric": {
+        "checks": "Sets up a claim just to knock it down.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "State the second half on its own."
+      }
+    },
+    {
+      "id": "three",
+      "label": "List of three",
+      "color": "#87532f",
+      "mark": "underline",
+      "rubric": {
+        "checks": "Three items for rhythm, not because there are three.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Keep the items that carry meaning."
+      }
+    },
+    {
+      "id": "hedging",
+      "label": "Stacked hedges",
+      "color": "#596b86",
+      "mark": "underline",
+      "rubric": {
+        "checks": "Several hedges in one claim dodge commitment.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Keep one hedge, or commit."
+      }
+    },
+    {
+      "id": "attribution",
+      "label": "Vague attribution",
+      "color": "#416c8d",
+      "mark": "caret",
+      "rubric": {
+        "checks": "Cites authority nobody can check.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Name the source, or cut the claim."
+      }
+    },
+    {
+      "id": "trailing",
+      "label": "Trailing -ing clause",
+      "color": "#786348",
+      "mark": "strike-through",
+      "rubric": {
+        "checks": "Bolts an unsupported conclusion onto a fact.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Cut the clause, or give it its own evidence."
+      }
+    },
+    {
+      "id": "residue",
+      "label": "Chatbot residue",
+      "color": "#816044",
+      "mark": "strike-through",
+      "rubric": {
+        "checks": "A conversational leftover that addresses no real reader.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Delete it."
+      }
+    },
+    {
+      "id": "false-range",
+      "label": "False range",
+      "color": "#6f5f86",
+      "mark": "underline",
+      "rubric": {
+        "checks": "“From X to Y” with no real scale between them.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Name the things, or the one that matters."
+      }
+    },
+    {
+      "id": "puffery",
+      "label": "Puffery",
+      "color": "#8a565e",
+      "mark": "underline",
+      "rubric": {
+        "checks": "Asserts importance instead of showing it.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Say what happened and let the reader judge."
+      }
+    },
+    {
+      "id": "generic-voice",
+      "label": "Generic voice",
+      "color": "#655b82",
+      "mark": "bracket",
+      "rubric": {
+        "checks": "Could describe any company; no specific detail or stance.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Add a specific fact, example or opinion."
+      }
+    },
+    {
+      "id": "repetition",
+      "label": "Repetition",
+      "color": "#4f705e",
+      "mark": "bracket",
+      "rubric": {
+        "checks": "Says the same thing again without adding to it.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Say it once, then move on."
+      }
+    },
+    {
+      "id": "over-explaining",
+      "label": "Over-explaining",
+      "color": "#76614d",
+      "mark": "bracket",
+      "rubric": {
+        "checks": "Explains what the reader already knows.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Cut to what's new to the reader."
+      }
+    },
+    {
+      "id": "rhythm",
+      "label": "Uniform rhythm",
+      "color": "#4c6a79",
+      "mark": "bracket",
+      "rubric": {
+        "checks": "Every sentence has the same length and shape.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Vary the sentence lengths; combine or split some."
+      }
+    },
+    {
+      "id": "em-dash",
+      "label": "Em dash",
+      "color": "#7a584c",
+      "mark": "underline",
+      "rubric": {
+        "checks": "A dramatic pause before a reveal.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Use a period or a comma."
+      }
+    },
+    {
+      "id": "colon",
+      "label": "Connecting colon",
+      "color": "#63733f",
+      "mark": "box",
+      "rubric": {
+        "checks": "A colon used as a hinge between claims, not to introduce a list.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Split it into two sentences."
+      }
+    },
+    {
+      "id": "title-case",
+      "label": "Title case heading",
+      "color": "#755e73",
+      "mark": "underline",
+      "rubric": {
+        "checks": "Title Case headings read like marketing copy.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Use sentence case."
+      }
+    },
+    {
+      "id": "bold",
+      "label": "Bold inflation",
+      "color": "#586b68",
+      "mark": "underline",
+      "rubric": {
+        "checks": "Bold used for emphasis instead of scanning.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Keep bold for labels a reader scans for."
+      }
+    }
+  ],
+  "findings": [
+    {
+      "id": "D001",
+      "rule": "puffery",
+      "level": "sentence",
+      "edit": "replace",
+      "match": "In today's fast-paced software landscape, every minute matters.",
+      "span": {
+        "start": 100,
+        "end": 163
+      },
+      "note": "Say what happened and let the reader judge.",
+      "severity": "flag",
+      "status": "open",
+      "judge": {
+        "provider": "jev",
+        "model": "jev-1.14.0",
+        "probability": 0.83,
+        "threshold": 0.8,
+        "rulesVersion": "3",
+        "score": 0.83,
+        "candidate": "In today's fast-paced software landscape, every minute matters.",
+        "scope": "sentence"
+      }
+    },
+    {
+      "id": "D002",
+      "rule": "inflated",
+      "level": "word",
+      "edit": "replace",
+      "match": "landscape",
+      "span": {
+        "start": 131,
+        "end": 140
+      },
+      "note": "Use the plain word. Try “field”.",
+      "severity": "flag",
+      "status": "open",
+      "judge": {
+        "provider": "jev",
+        "model": "jev-1.14.0",
+        "probability": 0.89,
+        "threshold": 0.4,
+        "rulesVersion": "3",
+        "score": 0.89,
+        "candidate": "landscape",
+        "scope": "phrase"
+      }
+    },
+    {
+      "id": "D003",
+      "rule": "signpost",
+      "level": "word",
+      "edit": "delete",
+      "match": "Let's dive in",
+      "span": {
+        "start": 598,
+        "end": 611
+      },
+      "note": "Cut the opener and start with the point.",
+      "severity": "flag",
+      "status": "open",
+      "judge": {
+        "provider": "jev",
+        "model": "jev-1.14.0",
+        "probability": 0.94,
+        "threshold": 0.4,
+        "rulesVersion": "3",
+        "score": 0.94,
+        "candidate": "Let's dive in",
+        "scope": "phrase"
+      }
+    },
+    {
+      "id": "D004",
+      "rule": "contrast",
+      "level": "sentence",
+      "edit": "replace",
+      "match": "It wasn't just the tests, it was everything around them.",
+      "span": {
+        "start": 742,
+        "end": 798
+      },
+      "note": "State the second half on its own.",
+      "severity": "flag",
+      "status": "open",
+      "focus": {
+        "start": 3,
+        "end": 28
+      },
+      "judge": {
+        "provider": "jev",
+        "model": "jev-1.14.0",
+        "probability": 0.87,
+        "threshold": 0.8,
+        "rulesVersion": "3",
+        "score": 0.87,
+        "candidate": "It wasn't just the tests, it was everything around them.",
+        "scope": "sentence"
+      }
+    },
+    {
+      "id": "D005",
+      "rule": "generic-voice",
+      "level": "paragraph",
+      "edit": "paragraph",
+      "match": "It's worth noting that this is a common pattern. Experts agree that most CI time is spent outside the tests themselves. Our numbers simply confirmed what the industry already knows.",
+      "span": {
+        "start": 1029,
+        "end": 1210
+      },
+      "note": "Add a specific fact, example or opinion.",
+      "severity": "flag",
+      "status": "open",
+      "judge": {
+        "provider": "jev",
+        "model": "jev-1.14.0",
+        "probability": 0.78,
+        "threshold": 0.7,
+        "rulesVersion": "3",
+        "score": 0.78,
+        "candidate": "It's worth noting that this is a common pattern. Experts agree that most CI time is spent outside the tests themselves. Our numbers simply confirmed what the industry already knows.",
+        "scope": "sentence"
+      }
+    },
+    {
+      "id": "D006",
+      "rule": "filler",
+      "level": "word",
+      "edit": "delete",
+      "match": "It's worth noting that",
+      "span": {
+        "start": 1029,
+        "end": 1051
+      },
+      "note": "Delete the phrase.",
+      "severity": "flag",
+      "status": "open",
+      "judge": {
+        "provider": "jev",
+        "model": "jev-1.14.0",
+        "probability": 0.85,
+        "threshold": 0.4,
+        "rulesVersion": "3",
+        "score": 0.85,
+        "candidate": "It's worth noting that",
+        "scope": "phrase"
+      }
+    },
+    {
+      "id": "D007",
+      "rule": "attribution",
+      "level": "sentence",
+      "edit": "insert",
+      "match": "Experts agree that most CI time is spent outside the tests themselves.",
+      "span": {
+        "start": 1078,
+        "end": 1148
+      },
+      "note": "Name the source, or cut the claim.",
+      "severity": "flag",
+      "status": "open",
+      "focus": {
+        "start": 0,
+        "end": 13
+      },
+      "judge": {
+        "provider": "jev",
+        "model": "jev-1.14.0",
+        "probability": 0.97,
+        "threshold": 0.8,
+        "rulesVersion": "3",
+        "score": 0.97,
+        "candidate": "Experts agree that most CI time is spent outside the tests themselves.",
+        "scope": "sentence"
+      }
+    },
+    {
+      "id": "D008",
+      "rule": "contrast",
+      "level": "sentence",
+      "edit": "replace",
+      "match": "It's a powerful reminder that developer experience isn't a luxury, it's a fundamental driver of quality, velocity, and team morale.",
+      "span": {
+        "start": 3545,
+        "end": 3676
+      },
+      "note": "State the second half on its own.",
+      "severity": "flag",
+      "status": "open",
+      "focus": {
+        "start": 51,
+        "end": 69
+      },
+      "judge": {
+        "provider": "jev",
+        "model": "jev-1.14.0",
+        "probability": 0.96,
+        "threshold": 0.8,
+        "rulesVersion": "3",
+        "score": 0.96,
+        "candidate": "It's a powerful reminder that developer experience isn't a luxury, it's a fundamental driver of quality, velocity, and team morale.",
+        "scope": "sentence"
+      }
+    },
+    {
+      "id": "D009",
+      "rule": "generic-voice",
+      "level": "paragraph",
+      "edit": "paragraph",
+      "match": "At the end of the day, fast CI is about more than speed. It's about creating an environment where engineers can do their best work, iterate with confidence, and focus on what truly matters: building great products for our customers.",
+      "span": {
+        "start": 4028,
+        "end": 4260
+      },
+      "note": "Add a specific fact, example or opinion.",
+      "severity": "flag",
+      "status": "open",
+      "judge": {
+        "provider": "jev",
+        "model": "jev-1.14.0",
+        "probability": 0.93,
+        "threshold": 0.7,
+        "rulesVersion": "3",
+        "score": 0.93,
+        "candidate": "At the end of the day, fast CI is about more than speed. It's about creating an environment where engineers can do their best work, iterate with confidence, and focus on what truly matters: building great products for our customers.",
+        "scope": "sentence"
+      }
+    },
+    {
+      "id": "D010",
+      "rule": "filler",
+      "level": "word",
+      "edit": "delete",
+      "match": "At the end of the day",
+      "span": {
+        "start": 4028,
+        "end": 4049
+      },
+      "note": "Delete the phrase.",
+      "severity": "flag",
+      "status": "open",
+      "judge": {
+        "provider": "jev",
+        "model": "jev-1.14.0",
+        "probability": 0.9,
+        "threshold": 0.4,
+        "rulesVersion": "3",
+        "score": 0.9,
+        "candidate": "At the end of the day",
+        "scope": "phrase"
+      }
+    },
+    {
+      "id": "D011",
+      "rule": "colon",
+      "level": "sentence",
+      "edit": "replace",
+      "match": "It's about creating an environment where engineers can do their best work, iterate with confidence, and focus on what truly matters: building great products for our customers.",
+      "span": {
+        "start": 4085,
+        "end": 4260
+      },
+      "note": "Split it into two sentences.",
+      "severity": "flag",
+      "status": "open",
+      "focus": {
+        "start": 131,
+        "end": 132
+      },
+      "judge": {
+        "provider": "jev",
+        "model": "jev-1.14.0",
+        "probability": 0.72,
+        "threshold": 0.7,
+        "rulesVersion": "3",
+        "score": 0.72,
+        "candidate": "It's about creating an environment where engineers can do their best work, iterate with confidence, and focus on what truly matters: building great products for our customers.",
+        "scope": "sentence"
+      }
+    }
+  ],
+  "judge": {
+    "provider": "jev",
+    "model": "jev-1.14.0",
+    "rulesVersion": "3",
+    "generatedAt": "2026-11-25T05:32:00.638Z"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "source": "templates/page.html",
+  "reviewMode": "fixture",
+  "rules": [],
+  "findings": [
+    {
+      "id": "T1",
+      "rule": "promo-adjective",
+      "match": "seamless",
+      "proposed": "short",
+      "span": {
+        "start": 417,
+        "end": 425
+      }
+    }
+  ]
+}

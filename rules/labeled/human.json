@@ -1,0 +1,184 @@
+{
+  "version": "1",
+  "frozen": "November 5, 2026",
+  "note": "Human-written controls, all in the US public domain (pre-1930 books, Supreme Court opinions, and US federal works). Fetched November 5, 2026. Every mark on these texts counts as a false alarm. The Reagan Library transcript writes quotations as ``…''; they are normalized to straight double quotes here. The six 18F passages (November 24, 2026, TOR-2036) are Markdown excerpts from 18F's blog, 2015 to 2019, a US government work with a CC0 waiver; images are removed. They hold human em dashes, colons and bold for the rules a project turns on.",
+  "passages": [
+    {
+      "id": "strunk-1918",
+      "author": "William Strunk Jr., The Elements of Style",
+      "year": 1918,
+      "source": "https://www.gutenberg.org/cache/epub/37134/pg37134.txt",
+      "captured": "November 5, 2026",
+      "license": "public domain (US)",
+      "text": "Vigorous writing is concise. A sentence should contain no unnecessary words, a paragraph no unnecessary sentences, for the same reason that a drawing should have no unnecessary lines and a machine no unnecessary parts. This requires not that the writer make all his sentences short, or that he avoid all detail and treat his subjects only in outline, but that he make every word tell."
+    },
+    {
+      "id": "darwin-1859",
+      "author": "Charles Darwin, On the Origin of Species",
+      "year": 1859,
+      "source": "https://www.gutenberg.org/cache/epub/1228/pg1228.txt",
+      "captured": "November 5, 2026",
+      "license": "public domain (US)",
+      "text": "When on board H.M.S. ‘Beagle,’ as naturalist, I was much struck with certain facts in the distribution of the inhabitants of South America, and in the geological relations of the present to the past inhabitants of that continent. These facts seemed to me to throw some light on the origin of species—that mystery of mysteries, as it has been called by one of our greatest philosophers. On my return home, it occurred to me, in 1837, that something might perhaps be made out on this question by patiently accumulating and reflecting on all sorts of facts which could possibly have any bearing on it. After five years’ work I allowed myself to speculate on the subject, and drew up some short notes; these I enlarged in 1844 into a sketch of the conclusions, which then seemed to me probable: from that period to the present day I have steadily pursued the same object. I hope that I may be excused for entering on these personal details, as I give them to show that I have not been hasty in coming to a decision."
+    },
+    {
+      "id": "franklin-1791",
+      "author": "Benjamin Franklin, Autobiography",
+      "year": 1791,
+      "source": "https://www.gutenberg.org/cache/epub/20203/pg20203.txt",
+      "captured": "November 5, 2026",
+      "license": "public domain (US)",
+      "text": "It was about this time I conceived the bold and arduous project of arriving at moral perfection. I wish'd to live without committing any fault at any time; I would conquer all that either natural inclination, custom, or company might lead me into. As I knew, or thought I knew, what was right and wrong, I did not see why I might not always do the one and avoid the other. But I soon found I had undertaken a task of more difficulty than I had imagined. While my care was employ'd in guarding against one fault, I was often surprised by another; habit took the advantage of inattention; inclination was sometimes too strong for reason. I concluded, at length, that the mere speculative conviction that it was our interest to be completely virtuous, was not sufficient to prevent our slipping; and that the contrary habits must be broken, and good ones acquired and established, before we can have any dependence on a steady, uniform rectitude of conduct. For this purpose I therefore contrived the following method."
+    },
+    {
+      "id": "twain-1895",
+      "author": "Mark Twain, Fenimore Cooper's Literary Offences",
+      "year": 1895,
+      "source": "https://www.gutenberg.org/cache/epub/3172/pg3172.txt",
+      "captured": "November 5, 2026",
+      "license": "public domain (US)",
+      "text": "Cooper's art has some defects. In one place in 'Deerslayer,' and in the restricted space of two-thirds of a page, Cooper has scored 114 offences against literary art out of a possible 115. It breaks the record.\n\nThere are nineteen rules governing literary art in the domain of romantic fiction--some say twenty-two. In Deerslayer Cooper violated eighteen of them. These eighteen require:\n\n1. That a tale shall accomplish something and arrive somewhere. But the Deerslayer tale accomplishes nothing and arrives in the air.\n\n2. They require that the episodes of a tale shall be necessary parts of the tale, and shall help to develop it. But as the Deerslayer tale is not a tale, and accomplishes nothing and arrives nowhere, the episodes have no rightful place in the work, since there was nothing for them to develop."
+    },
+    {
+      "id": "thoreau-1854",
+      "author": "Henry David Thoreau, Walden",
+      "year": 1854,
+      "source": "https://www.gutenberg.org/cache/epub/205/pg205.txt",
+      "captured": "November 5, 2026",
+      "license": "public domain (US)",
+      "text": "I went to the woods because I wished to live deliberately, to front only the essential facts of life, and see if I could not learn what it had to teach, and not, when I came to die, discover that I had not lived. I did not wish to live what was not life, living is so dear; nor did I wish to practise resignation, unless it was quite necessary. I wanted to live deep and suck out all the marrow of life, to live so sturdily and Spartan-like as to put to rout all that was not life, to cut a broad swath and shave close, to drive life into a corner, and reduce it to its lowest terms, and, if it proved to be mean, why then to get the whole and genuine meanness of it, and publish its meanness to the world; or if it were sublime, to know it by experience, and be able to give a true account of it in my next excursion. For most men, it appears to me, are in a strange uncertainty about it, whether it is of the devil or of God, and have somewhat hastily concluded that it is the chief end of man here to “glorify God and enjoy him forever.”\n\nStill we live meanly, like ants; though the fable tells us that we were long ago changed into men; like pygmies we fight with cranes; it is error upon error, and clout upon clout, and our best virtue has for its occasion a superfluous and evitable wretchedness. Our life is frittered away by detail. An honest man has hardly need to count more than his ten fingers, or in extreme cases he may add his ten toes, and lump the rest."
+    },
+    {
+      "id": "austen-1813",
+      "author": "Jane Austen, Pride and Prejudice",
+      "year": 1813,
+      "source": "https://www.gutenberg.org/cache/epub/1342/pg1342.txt",
+      "captured": "November 5, 2026",
+      "license": "public domain (US)",
+      "text": "It is a truth universally acknowledged, that a single man in possession of a good fortune must be in want of a wife.\n\nHowever little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered as the rightful property of some one or other of their daughters.\n\n“Why, my dear, you must know, Mrs. Long says that Netherfield is taken by a young man of large fortune from the north of England; that he came down on Monday in a chaise and four to see the place, and was so much delighted with it that he agreed with Mr. Morris immediately; that he is to take possession before Michaelmas, and some of his servants are to be in the house by the end of next week.”"
+    },
+    {
+      "id": "melville-1851",
+      "author": "Herman Melville, Moby-Dick",
+      "year": 1851,
+      "source": "https://www.gutenberg.org/cache/epub/2701/pg2701.txt",
+      "captured": "November 5, 2026",
+      "license": "public domain (US)",
+      "text": "Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world. It is a way I have of driving off the spleen and regulating the circulation. Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people’s hats off—then, I account it high time to get to sea as soon as I can. This is my substitute for pistol and ball. With a philosophical flourish Cato throws himself upon his sword; I quietly take to the ship. There is nothing surprising in this. If they but knew it, almost all men in their degree, some time or other, cherish very nearly the same feelings towards the ocean with me."
+    },
+    {
+      "id": "fitzgerald-1925",
+      "author": "F. Scott Fitzgerald, The Great Gatsby",
+      "year": 1925,
+      "source": "https://www.gutenberg.org/cache/epub/64317/pg64317.txt",
+      "captured": "November 5, 2026",
+      "license": "public domain (US)",
+      "text": "In my younger and more vulnerable years my father gave me some advice that I’ve been turning over in my mind ever since.\n\n“Whenever you feel like criticizing anyone,” he told me, “just remember that all the people in this world haven’t had the advantages that you’ve had.”\n\nHe didn’t say any more, but we’ve always been unusually communicative in a reserved way, and I understood that he meant a great deal more than that. In consequence, I’m inclined to reserve all judgements, a habit that has opened up many curious natures to me and also made me the victim of not a few veteran bores. The abnormal mind is quick to detect and attach itself to this quality when it appears in a normal person, and so it came about that in college I was unjustly accused of being a politician, because I was privy to the secret griefs of wild, unknown men. Most of the confidences were unsought—frequently I have feigned sleep, preoccupation, or a hostile levity when I realized by some unmistakable sign that an intimate revelation was quivering on the horizon; for the intimate revelations of young men, or at least the terms in which they express them, are usually plagiaristic and marred by obvious suppressions. Reserving judgements is a matter of infinite hope. I am still a little afraid of missing something if I forget that, as my father snobbishly suggested, and I snobbishly repeat, a sense of the fundamental decencies is parcelled out unequally at birth."
+    },
+    {
+      "id": "hemingway-1926",
+      "author": "Ernest Hemingway, The Sun Also Rises",
+      "year": 1926,
+      "source": "https://www.gutenberg.org/cache/epub/67138/pg67138.txt",
+      "captured": "November 5, 2026",
+      "license": "public domain (US)",
+      "text": "Robert Cohn was once middleweight boxing champion of Princeton. Do not think that I am very much impressed by that as a boxing title, but it meant a lot to Cohn. He cared nothing for boxing, in fact he disliked it, but he learned it painfully and thoroughly to counteract the feeling of inferiority and shyness he had felt on being treated as a Jew at Princeton. There was a certain inner comfort in knowing he could knock down anybody who was snooty to him, although, being very shy and a thoroughly nice boy, he never fought except in the gym. He was Spider Kelly’s star pupil. Spider Kelly taught all his young gentlemen to box like featherweights, no matter whether they weighed one hundred and five or two hundred and five pounds. But it seemed to fit Cohn. He was really very fast. He was so good that Spider promptly overmatched him and got his nose permanently flattened. This increased Cohn’s distaste for boxing, but it gave him a certain satisfaction of some strange sort, and it certainly improved his nose. In his last year at Princeton he read too much and took to wearing spectacles. I never met any one of his class who remembered him. They did not even remember that he was middleweight boxing champion."
+    },
+    {
+      "id": "jackson-1943",
+      "author": "Justice Robert H. Jackson, West Virginia State Board of Education v. Barnette, 319 U.S. 624",
+      "year": 1943,
+      "source": "https://www.law.cornell.edu/supremecourt/text/319/624",
+      "captured": "November 5, 2026",
+      "license": "public domain (US)",
+      "text": "Struggles to coerce uniformity of sentiment in support of some end thought essential to their time and country have been waged by many good as well as by evil men. Nationalism is a relatively recent phenomenon but at other times and places the ends have been racial or territorial security, support of a dynasty or regime, and particular plans for saving souls. As first and moderate methods to attain unity have failed, those bent on its accomplishment must resort to an ever-increasing severity. As governmental pressure toward unity becomes greater, so strife becomes more bitter as to whose unity it shall be. Probably no deeper division of our people could proceed from any provocation than from finding it necessary to choose what doctrine and whose program public educational officials shall compel youth to unite in embracing. Ultimate futility of such attempts to compel coherence is the lesson of every such effort from the Roman drive to stamp out Christianity as a disturber of its pagan unity, the Inquisition, as a means to religious and dynastic unity, the Siberian exiles as a means to Russian unity, down to the fast failing efforts of our present totalitarian enemies. Those who begin coercive elimination of dissent soon find themselves exterminating dissenters. Compulsory unification of opinion achieves only the unanimity of the graveyard.\n\nIf there is any fixed star in our constitutional constellation, it is that no official, high or petty, can prescribe what shall be orthodox in politics, nationalism, religion, or other matters of opinion or force citizens to confess by word or act their faith therein. If there are any circumstances which permit an exception, they do not now occur to us."
+    },
+    {
+      "id": "reagan-1986",
+      "author": "President Ronald Reagan, Address to the Nation on the Explosion of the Space Shuttle Challenger",
+      "year": 1986,
+      "source": "https://www.reaganlibrary.gov/archives/speech/address-nation-explosion-space-shuttle-challenger",
+      "captured": "November 5, 2026",
+      "license": "public domain (US)",
+      "text": "For the families of the seven, we cannot bear, as you do, the full impact of this tragedy. But we feel the loss, and we're thinking about you so very much. Your loved ones were daring and brave, and they had that special grace, that special spirit that says, \"Give me a challenge, and I'll meet it with joy.\" They had a hunger to explore the universe and discover its truths. They wished to serve, and they did. They served all of us. We've grown used to wonders in this century. It's hard to dazzle us. But for 25 years the United States space program has been doing just that. We've grown used to the idea of space, and perhaps we forget that we've only just begun. We're still pioneers. They, the members of the Challenger crew, were pioneers.\n\nAnd I want to say something to the schoolchildren of America who were watching the live coverage of the shuttle's takeoff. I know it is hard to understand, but sometimes painful things like this happen. It's all part of the process of exploration and discovery. It's all part of taking a chance and expanding man's horizons. The future doesn't belong to the fainthearted; it belongs to the brave. The Challenger crew was pulling us into the future, and we'll continue to follow them."
+    },
+    {
+      "id": "kennedy-1962",
+      "author": "President John F. Kennedy, Address at Rice University on the Nation’s Space Effort",
+      "year": 1962,
+      "source": "https://www.jfklibrary.org/learn/about-jfk/historic-speeches/address-at-rice-university-on-the-nations-space-effort",
+      "captured": "November 5, 2026",
+      "license": "public domain (US)",
+      "text": "No man can fully grasp how far and how fast we have come, but condense, if you will, the 50,000 years of man's recorded history in a time span of but a half a century. Stated in these terms, we know very little about the first 40 years, except at the end of them advanced man had learned to use the skins of animals to cover them. Then about 10 years ago, under this standard, man emerged from his caves to construct other kinds of shelter. Only five years ago man learned to write and use a cart with wheels. Christianity began less than two years ago. The printing press came this year, and then less than two months ago, during this whole 50-year span of human history, the steam engine provided a new source of power.\n\nThis is a breathtaking pace, and such a pace cannot help but create new ills as it dispels old, new ignorance, new problems, new dangers. Surely the opening vistas of space promise high costs and hardships, as well as high reward."
+    },
+    {
+      "id": "usgs-2024",
+      "author": "U.S. Geological Survey, The Science of Earthquakes",
+      "year": 2024,
+      "source": "https://www.usgs.gov/programs/earthquake-hazards/science-earthquakes",
+      "captured": "November 5, 2026",
+      "license": "public domain (US)",
+      "text": "An earthquake is what happens when two blocks of the earth suddenly slip past one another. The surface where they slip is called the fault or fault plane. The location below the earth’s surface where the earthquake starts is called the hypocenter, and the location directly above it on the surface of the earth is called the epicenter.\n\nBut this skin is not all in one piece – it is made up of many pieces like a puzzle covering the surface of the earth. Not only that, but these puzzle pieces keep slowly moving around, sliding past one another and bumping into each other. We call these puzzle pieces tectonic plates, and the edges of the plates are called the plate boundaries. The plate boundaries are made up of many faults, and most of the earthquakes around the world occur on these faults. Since the edges of the plates are rough, they get stuck while the rest of the plate keeps moving. Finally, when the plate has moved far enough, the edges unstick on one of the faults and there is an earthquake."
+    },
+    {
+      "id": "18f-2015-day-in-the-life",
+      "author": "Kate Garklavs and 18F, Day in the life of an 18F content designer",
+      "year": 2015,
+      "source": "https://github.com/18F/18f.gsa.gov/blob/main/content/posts/2015-03-12-day-in-the-life-of-an-18F-content-designer.md",
+      "captured": "November 24, 2026",
+      "license": "public domain (US), CC0 waiver",
+      "kind": "mdx",
+      "text": "In preparation for our one-year anniversary, we at 18F are introducing a new blog feature — our **Day in the Life** Series. Once a month, a different team member will share the details of their typical day in the office. (Well, there are no “typical” days here — only extraordinary ones — but you get the gist.)\n\nUp first is Kate Garklavs, 18F’s first content designer. Kate was drawn to 18F by the prospect of increasing the accessibility of written governmental resources.\n\n“It’s a pretty universal feeling, being frustrated by government forms with unclear or needlessly complicated language,” Kate told us. “But that’s one reason I wanted to join 18F — to start to create a solution to this problem. My hope is that we’ll get to a point where people are looking to government documents and publications as the standard of clarity.”\n\nOn that note, let’s get a glimpse at what a day on the 18F content team is like. Kate, take it away."
+    },
+    {
+      "id": "18f-2015-potluck",
+      "author": "Kate Garklavs and 18F, Day in the life of an 18F content designer",
+      "year": 2015,
+      "source": "https://github.com/18F/18f.gsa.gov/blob/main/content/posts/2015-03-12-day-in-the-life-of-an-18F-content-designer.md",
+      "captured": "November 24, 2026",
+      "license": "public domain (US), CC0 waiver",
+      "kind": "mdx",
+      "text": "**Noon:** After a busy morning, I’m ready to step away from my screen and put some food in my face. Lunch around these parts is always a lively event. I tend to bring my lunch — when I’m not writing or reading, I’m trying new recipes — but on Thursdays, the SF team has its weekly potluck.\n\nDoes the term potluck cause you to wrinkle your nose or reflexively cast a withering glance at whomever spoke the word? Don’t be fooled: Our potlucks are second to none. Some weeks, we assemble a feast from food-truck fare (though we have some dedicated home cooks, as well). Recently, we held our first themed potluck: Taco Thursday. The spread featured tortillas, carnitas, black beans and kale, guacamole, salsas rojo and verde, fried plantains, and eggs and nopales — all homemade, to boot.\n\nAt 18F, the spirit of innovation prevails, even in our approach to lunch."
+    },
+    {
+      "id": "18f-2016-meetings",
+      "author": "18F, How to run an efficient meeting",
+      "year": 2016,
+      "source": "https://github.com/18F/18f.gsa.gov/blob/main/content/posts/2016-12-14-how-to-run-an-efficient-meeting.md",
+      "captured": "November 24, 2026",
+      "license": "public domain (US), CC0 waiver",
+      "kind": "mdx",
+      "text": "Your meeting should also have a **helpful calendar invite.** Don’t assume all meetings have to be 30 or 60 minutes; we often book 15- or 45-minute meetings so that participants have time to breathe before or after. A side benefit of a 45-minute meeting: the “unused” 15 minutes are generally available as flex time if needed. Invites should have links to agendas and conference call information; if hosting guests in a building, consider including directions to the meeting room.\n\n### Agenda\n\nYour meeting should have a **complete agenda**. The agenda both has the content of the meeting and *tells you* *when the meeting is over*. When the agenda is completed, the meeting should end.\n\nDepending on the nature of the meeting, the format might be a short list of topics in the meeting invite or a detailed document listing speakers and subjects. With a clear agenda, you will be able to stay on track during the meeting and avoid filling time when topics are exhausted. Withholding an agenda is sometimes a valid tactical choice if you want a more free-flowing discussion, but the meeting organizer should still have a list of essential topics.\n\nYour agenda needs to be delivered with sufficient **advance notice** to be useful. For some groups, that might be an hour’s warning so that people walking to the meeting can prepare themselves while en route or while waiting for the meeting to start. For other groups, you will need to allow more time — especially if you will expect others to present or lead discussion. For recurring meetings, a consistent time for distributing the agenda will help your participants build a habit of preparation and avoid the *“I’m sorry, this is all new to me. Can we start at the beginning?”* syndrome when people jump into a meeting cold."
+    },
+    {
+      "id": "18f-2019-cloud",
+      "author": "18F, The cloud is not a virtue",
+      "year": 2019,
+      "source": "https://github.com/18F/18f.gsa.gov/blob/main/content/posts/2019-02-07-the-cloud-is-not-a-virtue.md",
+      "captured": "November 24, 2026",
+      "license": "public domain (US), CC0 waiver",
+      "kind": "mdx",
+      "text": "The cloud enables agility by providing:\n\n- A suite of **optimized services** for your mission needs paid for through **commoditized pricing**\n- **Self-service** to let you access those services quickly\n- **Scalability** to draw up and down those services as needed\n\nMoreover, the **broad access** of cloud software allows your team to\nwork from wherever they’re physically located.\n\n**Optimized Services:** A cloud provider can provide you with a suite of services from data stores, databases, computing power, etc, to allow you to meet common computing needs. You should be able to access these a la carte and combine them **allowing your agency to focus on its core mission**, rather than maintaining costly and custom implementations of core features.\n\n**Commodity pricing:** In a cloud, you should only have to pay for a\nservice as you use it. These measured services cover both the direct and indirect costs of providing you a service.\n\n**Self-Service:** Developers and product teams can access an additional server, a new DNS configuration, or other services without human interaction or filing a help desk ticket. If you’re waiting a month to receive a single server or even for a whole cluster, you have violated the cloud virtue of agility.\n\n**Scalability:** When managing its own hardware, an agency must supply enough computing power to meet its peak demand without concern as to how often that peak demand occurs. This often results in expensive hardware sitting idle except for a very small period (such as on April 14th for the IRS’s tax filing system). **Cloud allows an agency to better control its costs** by dynamically scaling its supply of computing resources to meet the actual demand."
+    },
+    {
+      "id": "18f-2016-content-debt",
+      "author": "18F, Content debt",
+      "year": 2016,
+      "source": "https://github.com/18F/18f.gsa.gov/blob/main/content/posts/2016-05-19-content-debt-what-it-is-where-to-find-it-and-how-to-prevent-it-in-the-first-place.md",
+      "captured": "November 24, 2026",
+      "license": "public domain (US), CC0 waiver",
+      "kind": "mdx",
+      "text": "**Deliberate obstructionism:** Teams or individuals want to maintain\nartificial importance and therefore do not detail everything needed to\ncomplete a task.\n\n**Firefighting:** Putting out software fires with no time to update\ndocumentation. In other words, content is far down on the priorities\nlist.\n\n**Beyond existing job descriptions:** No one in the organization thinks\ndocumenting processes is in their job description. Or content\nresponsibility is pushed far down the organizational chart where there\nmay be higher turnover.\n\n**Making content nominally available:** Scanning a PDF and putting it online does **not** mean it's accessible. (h/t **Lauren Lockwood**, Chief Digital Officer, City of Boston)\n\n**Using the wrong container for content:** Sometimes content is better as a data set than a paragraph. Knowing which one to use is key. (h/t **Lauren Lockwood**)"
+    },
+    {
+      "id": "18f-2016-thankful",
+      "author": "18F, What 18F is thankful for this Thanksgiving",
+      "year": 2016,
+      "source": "https://github.com/18F/18f.gsa.gov/blob/main/content/posts/2016-11-25-what-18f-is-thankful-for-this-thanksgiving.md",
+      "captured": "November 24, 2026",
+      "license": "public domain (US), CC0 waiver",
+      "kind": "mdx",
+      "text": "> I’m thankful for how much I learn every week at 18F — from colleagues, agency partners, and the work itself. — **Corey Mahoney**\n\n## A more perfect union\n\n> I’m thankful to be given the opportunity to make our country — however imperfect — a better place. — **Anonymous**\n\n> To be part of a federal ecosystem (including federal and industry partners) with a tremendous culture of continuous improvement, and pride in delivering to the mission. — **Jay Huie**\n\n> I'm thankful for the opportunity to \"be the change you want to see [...in the government].\" — **Will Sullivan**\n\n> I’m thankful to wake up each morning and begin the day knowing that my challenges are the nation’s challenges, and that I can contribute to solutions with what skills I have. — **Peter Karman**\n\n> Thankful (and lucky!) I actually get paid to get up every day and help the country out. — **Lane Becker**\n\n> I'm thankful for the chance to work with a group of such caring and talented people and to help make government work better for all people. — **Maya Benari**\n\n> I’m thankful for the opportunity to make the lives of every American just a little bit better. — **Zac Cohn**\n\n> I’m thankful that this country not only welcomed me and my family ten years ago, but also employed me to improve it — with some of the smartest, most passionate and downright lovely people I’ve ever met. — **Yoz Grahame**"
+    }
+  ]
+}

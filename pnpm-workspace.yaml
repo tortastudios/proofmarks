@@ -1,0 +1,5 @@
+allowBuilds:
+  esbuild: true
+  # Pulled in by pi's package, which is only used for the extension's types: no install scripts needed.
+  '@google/genai': false
+  protobufjs: false

@@ -1,0 +1,11 @@
+{
+  "name": "proofmarks-sample-static",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "proofmarks": "proofmarks"
+  },
+  "devDependencies": {
+    "@tortastudios/proofmarks": "file:../.."
+  }
+}

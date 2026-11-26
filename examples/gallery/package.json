@@ -1,0 +1,7 @@
+{
+  "name": "proofmarks-example-gallery",
+  "private": true,
+  "type": "module",
+  "scripts": { "dev": "node server.mjs" },
+  "dependencies": { "marked": "^17.0.1" }
+}

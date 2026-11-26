@@ -1,0 +1,16 @@
+**/node_modules/**
+**/.next/**
+**/.venv/**
+**/.cache/**
+**/.pytest_cache/**
+**/.mypy_cache/**
+**/.ruff_cache/**
+**/__pycache__/**
+**/.proofmarks/**
+**/dist/**
+**/build/**
+**/package-lock.json
+**/uv.lock
+**/npm-shrinkwrap.json
+**/reviews/*.log.jsonl
+**/*.tsbuildinfo

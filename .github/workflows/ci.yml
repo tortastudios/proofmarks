@@ -1,0 +1,156 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Least privilege: CI only reads the repository.
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: test (${{ matrix.os }}, Node ${{ matrix.node }})
+    # Off while the repository is private, where Actions minutes are shared with
+    # the rest of the organization. It starts on its own once the repository is public.
+    if: ${{ !github.event.repository.private }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        node: [22, 24, 26]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    env:
+      npm_config_ignore_scripts: "true"
+    steps:
+      # Every action is pinned to a full commit SHA, with its tag in the comment.
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      # Node 25 and later ship without corepack, so pnpm comes from its own action
+      # (it reads the version from package.json#packageManager).
+      - name: Set up pnpm
+        uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+
+      - name: Set up Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ matrix.node }}
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck
+        run: pnpm run typecheck
+
+      - name: Lint
+        run: pnpm run lint
+
+      # Runners have no agent CLIs (claude, codex, pi) on PATH, which is the
+      # condition the tests assume.
+      - name: Test
+        run: pnpm test
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Site
+        run: pnpm run site
+
+  package:
+    name: package smoke test (${{ matrix.os }})
+    if: ${{ !github.event.repository.private }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+    env:
+      npm_config_ignore_scripts: "true"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+
+      - name: Set up Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 26
+          cache: pnpm
+
+      # The FastAPI and Jinja example runs under uv.
+      - name: Set up uv
+        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm run build
+
+      # Packs the package, installs it into a clean project and runs every example against it.
+      - name: Package smoke test
+        run: pnpm run smoke:package
+
+  standalone:
+    name: standalone program (${{ matrix.os }})
+    if: ${{ !github.event.repository.private }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+    env:
+      npm_config_ignore_scripts: "true"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+
+      # Node's official build, which can build single executables (Homebrew's cannot).
+      - name: Set up Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 26
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm run build
+
+      # This runner's own target, signed ad hoc on macOS. The release builds every target.
+      - name: Build the standalone program
+        run: node scripts/build-standalone.mjs
+
+      # Runs it with no Node on PATH and an empty HOME, the way someone without Node would.
+      - name: Standalone smoke test
+        run: node scripts/smoke-standalone.mjs .standalone/proofmarks-*.tar.gz
+
+      # The installers run in the release, against the release's own files; here they only need to be sound.
+      - name: Check the installers
+        if: ${{ runner.os == 'Linux' }}
+        run: |
+          shellcheck scripts/install.sh
+          # shellcheck disable=SC2016 # PowerShell expands its own variables.
+          pwsh -NoProfile -Command '$errors = $null; [System.Management.Automation.Language.Parser]::ParseFile("scripts/install.ps1", [ref]$null, [ref]$errors) | Out-Null; if ($errors) { $errors; exit 1 }'

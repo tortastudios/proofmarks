@@ -1,0 +1,348 @@
+{
+  "source": "pieces/short-story.md",
+  "usage": {
+    "calls": 2,
+    "dollars": 4.380600000000001e-05,
+    "cached": 67
+  },
+  "reviewMode": "calibrated",
+  "strictness": [],
+  "rules": [
+    {
+      "id": "inflated",
+      "label": "Inflated word",
+      "color": "#875f45",
+      "mark": "underline",
+      "rubric": {
+        "checks": "A fancy word stands in for a plain one.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Use the plain word."
+      }
+    },
+    {
+      "id": "filler",
+      "label": "Filler",
+      "color": "#5e6b38",
+      "mark": "box",
+      "rubric": {
+        "checks": "Words that delay the point without adding to it.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Delete the phrase."
+      }
+    },
+    {
+      "id": "brochure-verb",
+      "label": "Brochure verb",
+      "color": "#3f6b67",
+      "mark": "underline",
+      "rubric": {
+        "checks": "A costume for “is” or “has”.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Say “is” or “has”."
+      }
+    },
+    {
+      "id": "promo-adjective",
+      "label": "Promotional adjective",
+      "color": "#835b70",
+      "mark": "strike-through",
+      "rubric": {
+        "checks": "Praise instead of description.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Describe the thing and let the reader judge."
+      }
+    },
+    {
+      "id": "signpost",
+      "label": "Signposting",
+      "color": "#75642f",
+      "mark": "strike-through",
+      "rubric": {
+        "checks": "Announces a point instead of making it.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Cut the opener and start with the point."
+      }
+    },
+    {
+      "id": "contrast",
+      "label": "Not X, but Y",
+      "color": "#994b52",
+      "mark": "circle",
+      "rubric": {
+        "checks": "Sets up a claim just to knock it down.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "State the second half on its own."
+      }
+    },
+    {
+      "id": "three",
+      "label": "List of three",
+      "color": "#87532f",
+      "mark": "underline",
+      "rubric": {
+        "checks": "Three items for rhythm, not because there are three.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Keep the items that carry meaning."
+      }
+    },
+    {
+      "id": "hedging",
+      "label": "Stacked hedges",
+      "color": "#596b86",
+      "mark": "underline",
+      "rubric": {
+        "checks": "Several hedges in one claim dodge commitment.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Keep one hedge, or commit."
+      }
+    },
+    {
+      "id": "attribution",
+      "label": "Vague attribution",
+      "color": "#416c8d",
+      "mark": "caret",
+      "rubric": {
+        "checks": "Cites authority nobody can check.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Name the source, or cut the claim."
+      }
+    },
+    {
+      "id": "trailing",
+      "label": "Trailing -ing clause",
+      "color": "#786348",
+      "mark": "strike-through",
+      "rubric": {
+        "checks": "Bolts an unsupported conclusion onto a fact.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Cut the clause, or give it its own evidence."
+      }
+    },
+    {
+      "id": "residue",
+      "label": "Chatbot residue",
+      "color": "#816044",
+      "mark": "strike-through",
+      "rubric": {
+        "checks": "A conversational leftover that addresses no real reader.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Delete it."
+      }
+    },
+    {
+      "id": "false-range",
+      "label": "False range",
+      "color": "#6f5f86",
+      "mark": "underline",
+      "rubric": {
+        "checks": "“From X to Y” with no real scale between them.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Name the things, or the one that matters."
+      }
+    },
+    {
+      "id": "puffery",
+      "label": "Puffery",
+      "color": "#8a565e",
+      "mark": "underline",
+      "rubric": {
+        "checks": "Asserts importance instead of showing it.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Say what happened and let the reader judge."
+      }
+    },
+    {
+      "id": "generic-voice",
+      "label": "Generic voice",
+      "color": "#655b82",
+      "mark": "bracket",
+      "rubric": {
+        "checks": "Could describe any company; no specific detail or stance.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Add a specific fact, example or opinion."
+      }
+    },
+    {
+      "id": "repetition",
+      "label": "Repetition",
+      "color": "#4f705e",
+      "mark": "bracket",
+      "rubric": {
+        "checks": "Says the same thing again without adding to it.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Say it once, then move on."
+      }
+    },
+    {
+      "id": "over-explaining",
+      "label": "Over-explaining",
+      "color": "#76614d",
+      "mark": "bracket",
+      "rubric": {
+        "checks": "Explains what the reader already knows.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Cut to what's new to the reader."
+      }
+    },
+    {
+      "id": "rhythm",
+      "label": "Uniform rhythm",
+      "color": "#4c6a79",
+      "mark": "bracket",
+      "rubric": {
+        "checks": "Every sentence has the same length and shape.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Vary the sentence lengths; combine or split some."
+      }
+    },
+    {
+      "id": "em-dash",
+      "label": "Em dash",
+      "color": "#7a584c",
+      "mark": "underline",
+      "rubric": {
+        "checks": "A dramatic pause before a reveal.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Use a period or a comma."
+      }
+    },
+    {
+      "id": "colon",
+      "label": "Connecting colon",
+      "color": "#63733f",
+      "mark": "box",
+      "rubric": {
+        "checks": "A colon used as a hinge between claims, not to introduce a list.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Split it into two sentences."
+      }
+    },
+    {
+      "id": "title-case",
+      "label": "Title case heading",
+      "color": "#755e73",
+      "mark": "underline",
+      "rubric": {
+        "checks": "Title Case headings read like marketing copy.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Use sentence case."
+      }
+    },
+    {
+      "id": "bold",
+      "label": "Bold inflation",
+      "color": "#586b68",
+      "mark": "underline",
+      "rubric": {
+        "checks": "Bold used for emphasis instead of scanning.",
+        "looksLike": "",
+        "notLike": "",
+        "fix": "Keep bold for labels a reader scans for."
+      }
+    }
+  ],
+  "findings": [
+    {
+      "id": "D001",
+      "rule": "contrast",
+      "level": "sentence",
+      "edit": "replace",
+      "match": "It wasn't just a letter, it was an invitation.",
+      "span": {
+        "start": 677,
+        "end": 723
+      },
+      "note": "State the second half on its own.",
+      "severity": "flag",
+      "status": "open",
+      "focus": {
+        "start": 3,
+        "end": 27
+      },
+      "judge": {
+        "provider": "jev",
+        "model": "jev-1.14.0",
+        "probability": 0.95,
+        "threshold": 0.8,
+        "rulesVersion": "3",
+        "score": 0.95,
+        "candidate": "It wasn't just a letter, it was an invitation.",
+        "scope": "sentence"
+      }
+    },
+    {
+      "id": "D002",
+      "rule": "generic-voice",
+      "level": "paragraph",
+      "edit": "paragraph",
+      "match": "Marguerite read until the lantern guttered. Then she sat back on her heels and looked out at the water, which was dark now and quiet, and she laughed, because the sea had finally returned something after all. It was a testament to the enduring power of friendship, a reminder that the bonds we forge can outlast even time itself.",
+      "span": {
+        "start": 3633,
+        "end": 3962
+      },
+      "note": "Add a specific fact, example or opinion.",
+      "severity": "flag",
+      "status": "open",
+      "judge": {
+        "provider": "jev",
+        "model": "jev-1.14.0",
+        "probability": 0.8,
+        "threshold": 0.7,
+        "rulesVersion": "3",
+        "score": 0.8,
+        "candidate": "Marguerite read until the lantern guttered. Then she sat back on her heels and looked out at the water, which was dark now and quiet, and she laughed, because the sea had finally returned something after all. It was a testament to the enduring power of friendship, a reminder that the bonds we forge can outlast even time itself.",
+        "scope": "sentence"
+      }
+    },
+    {
+      "id": "D003",
+      "rule": "inflated",
+      "level": "word",
+      "edit": "replace",
+      "match": "a testament to",
+      "span": {
+        "start": 3849,
+        "end": 3863
+      },
+      "note": "Use the plain word. Try “shows”.",
+      "severity": "flag",
+      "status": "open",
+      "judge": {
+        "provider": "jev",
+        "model": "jev-1.14.0",
+        "probability": 0.88,
+        "threshold": 0.4,
+        "rulesVersion": "3",
+        "score": 0.88,
+        "candidate": "a testament to",
+        "scope": "phrase"
+      }
+    }
+  ],
+  "judge": {
+    "provider": "jev",
+    "model": "jev-1.14.0",
+    "rulesVersion": "3",
+    "generatedAt": "2026-11-25T05:32:01.198Z"
+  }
+}

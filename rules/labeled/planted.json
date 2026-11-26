@@ -1,0 +1,245 @@
+{
+  "version": "1",
+  "frozen": "November 5, 2026",
+  "note": "Synthetic slop written by dr-gap (a model) with deliberately planted patterns. `rules` lists every rule id that counts as a correct catch. Paragraph plants have no `text`: the whole passage is the planted paragraph. Odd passages are `fit` (used to choose thresholds), even passages are `holdout` (reported separately). D, C and B passages (November 24, 2026, TOR-2036) plant em dashes, connecting colons and bold for the rules a project turns on; they were written by a model too, and `kind: mdx` marks the Markdown ones.",
+  "passages": [
+    { "id": "P01", "split": "fit", "text": "Today we're excited to unveil Relay, a groundbreaking platform that leverages real-time data to streamline your team's workflow. Relay serves as a central hub for every conversation, and it boasts an intuitive interface that empowers teams to collaborate seamlessly. In order to get started, simply connect your calendar.",
+      "plants": [
+        { "level": "word", "rules": ["promo-adjective", "inflated"], "text": "groundbreaking" },
+        { "level": "word", "rules": ["inflated"], "text": "leverages" },
+        { "level": "word", "rules": ["inflated"], "text": "streamline" },
+        { "level": "word", "rules": ["brochure-verb"], "text": "serves as" },
+        { "level": "word", "rules": ["brochure-verb"], "text": "boasts" },
+        { "level": "word", "rules": ["inflated"], "text": "empowers" },
+        { "level": "word", "rules": ["promo-adjective"], "text": "seamlessly" },
+        { "level": "word", "rules": ["filler"], "text": "In order to" }
+      ] },
+    { "id": "P02", "split": "holdout", "text": "In today's rapidly evolving landscape, businesses must navigate a myriad of challenges. Let's delve into the key factors that shape success. Here's the thing: the companies that thrive are the ones that cultivate a culture of continuous learning.",
+      "plants": [
+        { "level": "word", "rules": ["signpost", "inflated"], "text": "In today's rapidly evolving landscape" },
+        { "level": "word", "rules": ["inflated"], "text": "navigate" },
+        { "level": "word", "rules": ["inflated"], "text": "a myriad of" },
+        { "level": "word", "rules": ["signpost", "inflated"], "text": "Let's delve into" },
+        { "level": "word", "rules": ["signpost"], "text": "Here's the thing:" },
+        { "level": "word", "rules": ["inflated"], "text": "cultivate" }
+      ] },
+    { "id": "P03", "split": "fit", "text": "It is important to note that the migration was completed ahead of schedule. Due to the fact that the old system was fragile, we utilized a phased approach. Needless to say, the results speak for themselves.",
+      "plants": [
+        { "level": "word", "rules": ["filler"], "text": "It is important to note that" },
+        { "level": "word", "rules": ["filler"], "text": "Due to the fact that" },
+        { "level": "word", "rules": ["inflated"], "text": "utilized" },
+        { "level": "word", "rules": ["filler"], "text": "Needless to say" },
+        { "level": "sentence", "rules": ["puffery"], "text": "Needless to say, the results speak for themselves." }
+      ] },
+    { "id": "P04", "split": "holdout", "text": "Nestled in the heart of the valley, the inn stands as a testament to timeless craftsmanship. Guests can enjoy breathtaking views, a vibrant local food scene, and unparalleled hospitality.",
+      "plants": [
+        { "level": "word", "rules": ["promo-adjective"], "text": "Nestled" },
+        { "level": "word", "rules": ["brochure-verb"], "text": "stands as" },
+        { "level": "word", "rules": ["inflated", "puffery"], "text": "a testament to" },
+        { "level": "word", "rules": ["promo-adjective"], "text": "breathtaking" },
+        { "level": "word", "rules": ["promo-adjective"], "text": "vibrant" },
+        { "level": "word", "rules": ["promo-adjective"], "text": "unparalleled" },
+        { "level": "sentence", "rules": ["three"], "text": "Guests can enjoy breathtaking views, a vibrant local food scene, and unparalleled hospitality." }
+      ] },
+    { "id": "P05", "split": "fit", "text": "At its core, the framework facilitates communication between services. It showcases a robust plugin system and underscores the team's commitment to developer experience. Additionally, it features first-class TypeScript support.",
+      "plants": [
+        { "level": "word", "rules": ["signpost"], "text": "At its core" },
+        { "level": "word", "rules": ["inflated"], "text": "facilitates" },
+        { "level": "word", "rules": ["inflated", "brochure-verb"], "text": "showcases" },
+        { "level": "word", "rules": ["promo-adjective"], "text": "robust" },
+        { "level": "word", "rules": ["inflated"], "text": "underscores" },
+        { "level": "word", "rules": ["inflated"], "text": "Additionally" },
+        { "level": "word", "rules": ["brochure-verb"], "text": "features" }
+      ] },
+    { "id": "P06", "split": "holdout", "text": "This isn't just a calendar app. It's a new way to own your time. Our customers don't buy features, they buy peace of mind. Fast, flexible, and secure, Relay fits the way you already work.",
+      "plants": [
+        { "level": "sentence", "rules": ["contrast"], "text": "This isn't just a calendar app. It's a new way to own your time." },
+        { "level": "sentence", "rules": ["contrast"], "text": "Our customers don't buy features, they buy peace of mind." },
+        { "level": "sentence", "rules": ["three"], "text": "Fast, flexible, and secure" }
+      ] },
+    { "id": "P07", "split": "fit", "text": "The real question is less about which tool you pick and more about how you use it. It's not about working harder — it's about working smarter. And the best part? It takes five minutes to set up.",
+      "plants": [
+        { "level": "sentence", "rules": ["contrast"], "text": "less about which tool you pick and more about how you use it" },
+        { "level": "sentence", "rules": ["contrast"], "text": "It's not about working harder — it's about working smarter." },
+        { "level": "word", "rules": ["signpost"], "text": "And the best part?" }
+      ] },
+    { "id": "P08", "split": "holdout", "text": "Experts agree that remote work could potentially improve productivity for some teams in certain situations. Studies show that people generally tend to prefer flexible schedules. Many believe this shift is here to stay.",
+      "plants": [
+        { "level": "sentence", "rules": ["attribution"], "text": "Experts agree that remote work could potentially improve productivity for some teams in certain situations." },
+        { "level": "sentence", "rules": ["hedging"], "text": "could potentially improve productivity for some teams in certain situations" },
+        { "level": "sentence", "rules": ["attribution"], "text": "Studies show that people generally tend to prefer flexible schedules." },
+        { "level": "sentence", "rules": ["hedging"], "text": "generally tend to prefer" },
+        { "level": "sentence", "rules": ["attribution"], "text": "Many believe this shift is here to stay." }
+      ] },
+    { "id": "P09", "split": "fit", "text": "The company raised $40 million in new funding, highlighting investor confidence in the category. The team also opened an office in Austin, reflecting its commitment to growth. Revenue doubled last year, cementing its position as a market leader.",
+      "plants": [
+        { "level": "sentence", "rules": ["trailing"], "text": "highlighting investor confidence in the category" },
+        { "level": "sentence", "rules": ["trailing"], "text": "reflecting its commitment to growth" },
+        { "level": "sentence", "rules": ["trailing"], "text": "cementing its position as a market leader" }
+      ] },
+    { "id": "P10", "split": "holdout", "text": "Overall, these five tips should give you a strong foundation for your next project. In conclusion, the future of design is bright for teams willing to experiment. I hope this helps! Let me know if you have any questions.",
+      "plants": [
+        { "level": "word", "rules": ["signpost"], "text": "In conclusion" },
+        { "level": "sentence", "rules": ["puffery"], "text": "In conclusion, the future of design is bright for teams willing to experiment." },
+        { "level": "sentence", "rules": ["residue"], "text": "I hope this helps!" },
+        { "level": "sentence", "rules": ["residue"], "text": "Let me know if you have any questions." }
+      ] },
+    { "id": "P11", "split": "fit", "text": "From solo freelancers to Fortune 500 companies, teams of every size trust our platform. We cover everything from strategy to execution, and from ideas to impact.",
+      "plants": [
+        { "level": "sentence", "rules": ["false-range"], "text": "From solo freelancers to Fortune 500 companies" },
+        { "level": "sentence", "rules": ["false-range"], "text": "from strategy to execution" },
+        { "level": "sentence", "rules": ["false-range"], "text": "from ideas to impact" }
+      ] },
+    { "id": "P12", "split": "holdout", "text": "We help you plan smarter, ship faster, and grow bigger. Whether you're a designer, a developer, or a marketer, Relay has you covered. Speed matters. Focus matters. Clarity matters most.",
+      "plants": [
+        { "level": "sentence", "rules": ["three"], "text": "plan smarter, ship faster, and grow bigger" },
+        { "level": "sentence", "rules": ["three"], "text": "a designer, a developer, or a marketer" },
+        { "level": "sentence", "rules": ["three"], "text": "Speed matters. Focus matters. Clarity matters most." }
+      ] },
+    { "id": "P13", "split": "fit", "text": "The launch marked a pivotal moment for the industry and set the stage for a new era of innovation. It was a true game-changer that left an indelible mark on everyone involved.",
+      "plants": [
+        { "level": "word", "rules": ["inflated"], "text": "pivotal" },
+        { "level": "sentence", "rules": ["puffery"], "text": "The launch marked a pivotal moment for the industry and set the stage for a new era of innovation." },
+        { "level": "word", "rules": ["promo-adjective", "inflated"], "text": "game-changer" },
+        { "level": "word", "rules": ["inflated", "puffery"], "text": "indelible mark" },
+        { "level": "sentence", "rules": ["puffery"], "text": "It was a true game-changer that left an indelible mark on everyone involved." }
+      ] },
+    { "id": "P14", "split": "holdout", "text": "Most teams think onboarding is a design problem. They don't need more screens. They need fewer, better questions. It isn't a design problem; it's a trust problem.",
+      "plants": [
+        { "level": "sentence", "rules": ["contrast"], "text": "They don't need more screens. They need fewer, better questions." },
+        { "level": "sentence", "rules": ["contrast"], "text": "It isn't a design problem; it's a trust problem." }
+      ] },
+    { "id": "P15", "split": "fit", "text": "Simply put, our API is the backbone of modern commerce. It's not a product; it's a movement. By harnessing the power of AI, we're unlocking new possibilities for millions of businesses worldwide.",
+      "plants": [
+        { "level": "word", "rules": ["signpost"], "text": "Simply put" },
+        { "level": "sentence", "rules": ["puffery"], "text": "Simply put, our API is the backbone of modern commerce." },
+        { "level": "sentence", "rules": ["contrast"], "text": "It's not a product; it's a movement." },
+        { "level": "word", "rules": ["inflated"], "text": "harnessing the power of" },
+        { "level": "word", "rules": ["inflated"], "text": "unlocking" },
+        { "level": "sentence", "rules": ["puffery"], "text": "By harnessing the power of AI, we're unlocking new possibilities for millions of businesses worldwide." }
+      ] },
+    { "id": "R1", "split": "fit", "text": "Good documentation matters because documentation is how people learn your product. When the documentation is clear, people understand the product. When it is unclear, they don't. That is why clear documentation is so important: it is how people come to understand what your product does, and understanding is what clear documentation provides.",
+      "plants": [ { "level": "paragraph", "rules": ["repetition"] } ] },
+    { "id": "R2", "split": "holdout", "text": "Consistency is key to building a brand. A brand that is consistent is a brand people remember, and people remember brands that stay consistent. Every touchpoint should feel the same, because consistency across touchpoints is what makes a brand feel consistent. In the end, a consistent brand is simply a brand that stays consistent everywhere.",
+      "plants": [ { "level": "paragraph", "rules": ["repetition"] } ] },
+    { "id": "R3", "split": "fit", "text": "Testing early saves time later. If you test early, you find problems before they become expensive, and finding problems early is cheaper than finding them late. Teams that test early spend less time fixing bugs later, because early testing catches bugs while they are still cheap. Put simply, testing early is how you save time later.",
+      "plants": [ { "level": "paragraph", "rules": ["repetition"] } ] },
+    { "id": "R4", "split": "holdout", "text": "Our support team responds quickly. Fast responses are what customers expect, and our team delivers fast responses every day. When a customer writes in, they get a quick reply, because responding quickly is our priority. Speed of response is the heart of what our support team does.",
+      "plants": [ { "level": "paragraph", "rules": ["repetition"] } ] },
+    { "id": "R5", "split": "fit", "text": "Security has to come first. Without security, nothing else matters, which is why security is our first priority. We put security first in everything we build, because putting security first protects our customers. For us, security will always come first.",
+      "plants": [ { "level": "paragraph", "rules": ["repetition"] } ] },
+    { "id": "O1", "split": "holdout", "text": "A password is a secret word or phrase that you use to log in. When you create an account, you choose a password and type it in. Later, when you want to log in again, you type the same password, and the system checks that it matches. This is why passwords are useful: they let the system know it's really you.",
+      "plants": [ { "level": "paragraph", "rules": ["over-explaining"] } ] },
+    { "id": "O2", "split": "fit", "text": "A meeting is when people get together to talk about something. To schedule a meeting, you pick a time when everyone is free and send them an invitation. At the meeting, people take turns speaking and listening. Once it ends, everyone goes back to their work, which is why meetings are a way for teams to communicate.",
+      "plants": [ { "level": "paragraph", "rules": ["over-explaining"] } ] },
+    { "id": "O3", "split": "holdout", "text": "When you click a button on a website, something happens. For example, clicking a Save button saves your work, and clicking a Delete button deletes something. Buttons are labeled with words so you know what they do before you click them. That is the purpose of a button: it lets you tell the website what you want.",
+      "plants": [ { "level": "paragraph", "rules": ["over-explaining"] } ] },
+    { "id": "O4", "split": "fit", "text": "A spreadsheet is a grid made of rows and columns. Each box in the grid is called a cell, and you can type numbers or words into it. You can add up numbers in a column to get a total. In other words, a spreadsheet helps you organize information in rows and columns so you can work with it.",
+      "plants": [ { "level": "paragraph", "rules": ["over-explaining"] } ] },
+    { "id": "O5", "split": "holdout", "text": "Email newsletters are emails that a company sends to many people at once. People sign up by entering their email address on a website. After that, the company can send them updates, and those updates arrive in their inbox like any other email. So a newsletter is basically a way to send the same email to a list of subscribers.",
+      "plants": [ { "level": "paragraph", "rules": ["over-explaining"] } ] },
+    { "id": "Y1", "split": "fit", "text": "We start every project with research. We talk to real users first. We map their biggest daily problems. We sketch several rough solutions quickly. We test the best ideas early. We ship only what actually works.",
+      "plants": [ { "level": "paragraph", "rules": ["rhythm"] } ] },
+    { "id": "Y2", "split": "holdout", "text": "The app loads in under a second. The design adapts to every screen. The search finds results very quickly. The settings are easy to change. The data syncs across your devices. The support team answers every message.",
+      "plants": [ { "level": "paragraph", "rules": ["rhythm"] } ] },
+    { "id": "Y3", "split": "fit", "text": "Our mission is simple and clear. Our values guide every single decision. Our people are the heart of everything. Our customers inspire our best work. Our products solve real everyday problems. Our future looks brighter than ever.",
+      "plants": [ { "level": "paragraph", "rules": ["rhythm"] } ] },
+    { "id": "Y4", "split": "holdout", "text": "First, define the problem you want to solve. Next, gather the data you need for it. Then, analyze the data for useful patterns. After that, share the findings with your team. Finally, act on what the data tells you.",
+      "plants": [ { "level": "paragraph", "rules": ["rhythm"] } ] },
+    { "id": "Y5", "split": "fit", "text": "Mornings are for deep focused work. Afternoons are for meetings and calls. Evenings are for rest and family time. Weekends are for hobbies and recharging. Holidays are for travel and new places. Every day has a clear purpose.",
+      "plants": [ { "level": "paragraph", "rules": ["rhythm"] } ] },
+    { "id": "G1", "split": "holdout", "text": "Leadership is about more than managing people. Great leaders inspire their teams, communicate a clear vision, and create an environment where everyone can do their best work. By focusing on growth and collaboration, organizations can build a culture that drives long-term success.",
+      "plants": [ { "level": "paragraph", "rules": ["generic-voice"] } ] },
+    { "id": "G2", "split": "fit", "text": "Customer experience has become a key differentiator in today's market. Companies that prioritize their customers' needs are better positioned to build lasting relationships and achieve sustainable growth. Investing in the right tools and processes can make a significant difference.",
+      "plants": [ { "level": "paragraph", "rules": ["generic-voice"] } ] },
+    { "id": "G3", "split": "holdout", "text": "Data plays an important role in modern decision-making. When organizations use data effectively, they can uncover valuable insights, improve their operations, and stay ahead of the competition. The key is to build a data-driven culture that empowers every team.",
+      "plants": [ { "level": "paragraph", "rules": ["generic-voice"] } ] },
+    { "id": "G4", "split": "fit", "text": "Remote work offers both opportunities and challenges for modern teams. With the right approach, companies can maintain productivity, foster collaboration, and support employee well-being. Ultimately, success depends on finding the balance that works best for each organization.",
+      "plants": [ { "level": "paragraph", "rules": ["generic-voice"] } ] },
+    { "id": "G5", "split": "holdout", "text": "Innovation is essential for any business that wants to stay relevant. By embracing new ideas and encouraging creativity, companies can adapt to change and unlock new opportunities. Organizations that invest in innovation today will be ready for the challenges of tomorrow.",
+      "plants": [ { "level": "paragraph", "rules": ["generic-voice"] } ] },
+    { "id": "D1", "split": "fit", "text": "We spent six months tuning the onboarding flow. The fix took one afternoon — and it had been hiding in the welcome email all along. Our support queue noticed first—setup tickets fell by half within a week.",
+      "plants": [
+        { "level": "word", "rules": ["em-dash"], "text": "— and it had" },
+        { "level": "word", "rules": ["em-dash"], "text": "—setup tickets" }
+      ] },
+    { "id": "D2", "split": "holdout", "text": "The new pricing is refreshingly simple — one plan, one price, every feature included. Teams that switched last quarter felt the difference right away—their invoices got shorter and their questions disappeared.",
+      "plants": [
+        { "level": "word", "rules": ["em-dash"], "text": "— one plan" },
+        { "level": "word", "rules": ["em-dash"], "text": "—their invoices" }
+      ] },
+    { "id": "D3", "split": "fit", "text": "Most dashboards try to show you everything. Ours shows you a single number — the one that tells you whether customers are coming back.",
+      "plants": [
+        { "level": "word", "rules": ["em-dash"], "text": "— the one that" }
+      ] },
+    { "id": "D4", "split": "holdout", "text": "We rewrote the importer over a long weekend—and suddenly the slowest part of the app became the fastest. Nobody asked for it. Everybody noticed.",
+      "plants": [
+        { "level": "word", "rules": ["em-dash"], "text": "—and suddenly" }
+      ] },
+    { "id": "D5", "split": "fit", "text": "Remote teams have a quiet advantage — they write everything down. Over time that habit becomes something bigger—a shared memory that new hires can read on their first day.",
+      "plants": [
+        { "level": "word", "rules": ["em-dash"], "text": "— they write" },
+        { "level": "word", "rules": ["em-dash"], "text": "—a shared memory" }
+      ] },
+    { "id": "D6", "split": "holdout", "text": "Every product we admire started the same way—with someone who refused to put up with a broken workflow.",
+      "plants": [
+        { "level": "word", "rules": ["em-dash"], "text": "—with someone" }
+      ] },
+    { "id": "C1", "split": "fit", "text": "After a year of experiments, the pattern was hard to miss: the teams that shipped every week kept their customers longer.",
+      "plants": [
+        { "level": "sentence", "rules": ["colon"], "text": "the pattern was hard to miss" }
+      ] },
+    { "id": "C2", "split": "holdout", "text": "We kept asking why trials stalled. The reason turned out to be painfully ordinary: nobody could find the import button.",
+      "plants": [
+        { "level": "sentence", "rules": ["colon"], "text": "painfully ordinary" }
+      ] },
+    { "id": "C3", "split": "fit", "text": "Every release taught us the same lesson: smaller changes break less. So we stopped batching work into quarterly launches.",
+      "plants": [
+        { "level": "sentence", "rules": ["colon"], "text": "the same lesson" }
+      ] },
+    { "id": "C4", "split": "holdout", "text": "That is the quiet power of a good checklist: it lets tired people make good decisions at the end of a long shift.",
+      "plants": [
+        { "level": "sentence", "rules": ["colon"], "text": "quiet power of a good checklist" }
+      ] },
+    { "id": "C5", "split": "fit", "text": "Our first customers wanted one thing above everything else: fewer meetings about meetings. We built the calendar around that.",
+      "plants": [
+        { "level": "sentence", "rules": ["colon"], "text": "one thing above everything else" }
+      ] },
+    { "id": "C6", "split": "holdout", "text": "The outcome surprised everyone on the team: support volume fell while signups doubled.",
+      "plants": [
+        { "level": "sentence", "rules": ["colon"], "text": "surprised everyone on the team" }
+      ] },
+    { "id": "B1", "split": "fit", "kind": "mdx", "text": "Our new reporting view gives every manager **complete visibility** into their team's work, so nothing slips through the cracks. Setup takes **less than five minutes**.",
+      "plants": [
+        { "level": "word", "rules": ["bold"], "text": "complete visibility" },
+        { "level": "word", "rules": ["bold"], "text": "less than five minutes" }
+      ] },
+    { "id": "B2", "split": "holdout", "kind": "mdx", "text": "Invoices go out **automatically** on the first of the month, and customers pay with **one click**. It's the **easiest** way to get paid on time.",
+      "plants": [
+        { "level": "word", "rules": ["bold"], "text": "automatically" },
+        { "level": "word", "rules": ["bold"], "text": "one click" },
+        { "level": "word", "rules": ["bold"], "text": "easiest" }
+      ] },
+    { "id": "B3", "split": "fit", "kind": "mdx", "text": "**This changes everything.** For the first time, support and product teams look at the same customer history, and the whole company moves **faster than ever**.",
+      "plants": [
+        { "level": "word", "rules": ["bold"], "text": "This changes everything." },
+        { "level": "word", "rules": ["bold"], "text": "faster than ever" }
+      ] },
+    { "id": "B4", "split": "holdout", "kind": "mdx", "text": "We built Ledger for teams that **genuinely care** about getting the numbers right. It stays **remarkably** quick, even on a decade of records.",
+      "plants": [
+        { "level": "word", "rules": ["bold"], "text": "genuinely care" },
+        { "level": "word", "rules": ["bold"], "text": "remarkably" }
+      ] },
+    { "id": "B5", "split": "fit", "kind": "mdx", "text": "Hiring is hard, and **every bad hire costs months**. Our screening flow helps you find the **right people** sooner, with **zero guesswork**.",
+      "plants": [
+        { "level": "word", "rules": ["bold"], "text": "every bad hire costs months" },
+        { "level": "word", "rules": ["bold"], "text": "right people" },
+        { "level": "word", "rules": ["bold"], "text": "zero guesswork" }
+      ] },
+    { "id": "B6", "split": "holdout", "kind": "mdx", "text": "**Stop wasting time** on manual data entry. Connect your bank once and let the app do the **heavy lifting** from there.",
+      "plants": [
+        { "level": "word", "rules": ["bold"], "text": "Stop wasting time" },
+        { "level": "word", "rules": ["bold"], "text": "heavy lifting" }
+      ] }
+  ]
+}

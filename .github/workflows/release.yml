@@ -1,0 +1,352 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+  # A rehearsal (TOR-2003): run it by hand from the Actions tab and it builds, signs, notarizes and checks everything on
+  # macOS, Linux and Windows, then stops. Only a pushed version tag publishes.
+  workflow_dispatch:
+
+# Least privilege by default; each job asks for exactly what it needs.
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  npm_config_ignore_scripts: "true"
+
+# Every action is pinned to a full commit SHA, with its tag in the comment. Every job stays off while the repository
+# is private (shared Actions minutes, and npm provenance needs a public repository). Nothing is published until the
+# checks and every standalone build pass.
+jobs:
+  check:
+    name: check
+    if: ${{ !github.event.repository.private }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+      # The pushed tag is what gets published, so it must match package.json. A rehearsal has no tag.
+      - name: Check the tag matches the version
+        if: ${{ github.event_name == 'push' }}
+        run: |
+          tag_version="${GITHUB_REF_NAME#v}"
+          package_version=$(node -p "require('./package.json').version")
+          if [ "$tag_version" != "$package_version" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match package.json version $package_version"
+            exit 1
+          fi
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run typecheck
+      - run: pnpm run lint
+      - run: pnpm test
+      - run: pnpm run build
+      - run: pnpm run smoke:package
+
+  standalone:
+    name: build the standalone programs
+    needs: check
+    runs-on: macos-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+      # setup-node installs Node's official build, which can build single executables (Homebrew's cannot).
+      # Every target is built into this same Node version.
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 26
+          package-manager-cache: false
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build
+      # Releases are signed with Torta's Developer ID; a release without the signing secrets stops here.
+      - name: Load the Developer ID certificate
+        env:
+          CERTIFICATE: ${{ secrets.APPLE_DEVELOPER_ID_P12 }}
+          CERTIFICATE_PASSWORD: ${{ secrets.APPLE_DEVELOPER_ID_P12_PASSWORD }}
+        run: |
+          if [ -z "$CERTIFICATE" ] || [ -z "$CERTIFICATE_PASSWORD" ]; then echo "::error::Set APPLE_DEVELOPER_ID_P12 and APPLE_DEVELOPER_ID_P12_PASSWORD"; exit 1; fi
+          keychain="$RUNNER_TEMP/signing.keychain-db" password="$(uuidgen)"
+          printf '%s' "$CERTIFICATE" | base64 --decode > "$RUNNER_TEMP/certificate.p12"
+          security create-keychain -p "$password" "$keychain"
+          security set-keychain-settings -lut 21600 "$keychain"
+          security unlock-keychain -p "$password" "$keychain"
+          security import "$RUNNER_TEMP/certificate.p12" -k "$keychain" -P "$CERTIFICATE_PASSWORD" -T /usr/bin/codesign
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "$password" "$keychain"
+          security list-keychains -d user -s "$keychain"
+          rm "$RUNNER_TEMP/certificate.p12"
+      - name: Build every target
+        env:
+          PROOFMARKS_SIGN_IDENTITY: ${{ secrets.APPLE_SIGN_IDENTITY }}
+        run: |
+          if [ -z "$PROOFMARKS_SIGN_IDENTITY" ]; then echo "::error::Set APPLE_SIGN_IDENTITY"; exit 1; fi
+          for target in darwin-arm64 darwin-x64 linux-x64 linux-arm64 win-x64; do
+            node scripts/build-standalone.mjs --target "$target" --download
+          done
+      # Apple checks the signed programs; Gatekeeper then finds the notarization online (bare programs can't be stapled).
+      - name: Notarize the macOS programs
+        env:
+          NOTARY_KEY: ${{ secrets.APPLE_NOTARY_KEY }}
+          NOTARY_KEY_ID: ${{ secrets.APPLE_NOTARY_KEY_ID }}
+          NOTARY_ISSUER: ${{ secrets.APPLE_NOTARY_ISSUER }}
+        run: |
+          if [ -z "$NOTARY_KEY" ] || [ -z "$NOTARY_KEY_ID" ] || [ -z "$NOTARY_ISSUER" ]; then echo "::error::Set APPLE_NOTARY_KEY, APPLE_NOTARY_KEY_ID and APPLE_NOTARY_ISSUER"; exit 1; fi
+          printf '%s' "$NOTARY_KEY" | base64 --decode > "$RUNNER_TEMP/notary.p8"
+          version=$(node -p "require('./package.json').version")
+          for target in darwin-arm64 darwin-x64; do
+            program=".standalone/proofmarks-$version-$target/dist/companion/proofmarks"
+            ditto -c -k --keepParent "$program" "$RUNNER_TEMP/$target.zip"
+            result=$(xcrun notarytool submit "$RUNNER_TEMP/$target.zip" --key "$RUNNER_TEMP/notary.p8" --key-id "$NOTARY_KEY_ID" --issuer "$NOTARY_ISSUER" --wait --timeout 30m --output-format json)
+            echo "$result"
+            # notarytool can finish without failing when Apple rejects the program, so check what it decided.
+            status=$(printf '%s' "$result" | node -p 'JSON.parse(require("fs").readFileSync(0, "utf8")).status')
+            if [ "$status" != "Accepted" ]; then
+              id=$(printf '%s' "$result" | node -p 'JSON.parse(require("fs").readFileSync(0, "utf8")).id')
+              xcrun notarytool log "$id" --key "$RUNNER_TEMP/notary.p8" --key-id "$NOTARY_KEY_ID" --issuer "$NOTARY_ISSUER"
+              echo "::error::Apple did not notarize $target: $status"
+              exit 1
+            fi
+          done
+          rm "$RUNNER_TEMP/notary.p8"
+      - name: Build the Python wheels and the Homebrew formula
+        run: |
+          node scripts/build-wheels.mjs
+          node scripts/homebrew-formula.mjs
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: standalone
+          if-no-files-found: error
+          # .standalone is a hidden folder, which upload-artifact skips unless told otherwise.
+          include-hidden-files: true
+          path: |
+            .standalone/*.tar.gz
+            .standalone/*.zip
+            .standalone/*.sha256
+            .standalone/wheels/*.whl
+            .standalone/homebrew/proofmarks.rb
+
+  smoke:
+    name: check the standalone program (${{ matrix.target }})
+    needs: standalone
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: macos-latest, target: darwin-arm64, archive: tar.gz }
+          - { os: macos-15-intel, target: darwin-x64, archive: tar.gz }
+          - { os: ubuntu-latest, target: linux-x64, archive: tar.gz }
+          - { os: ubuntu-24.04-arm, target: linux-arm64, archive: tar.gz }
+          - { os: windows-latest, target: win-x64, archive: zip }
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: standalone
+          path: artifacts
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+      # The smoke script itself runs on Node; the program it checks runs with no Node on PATH.
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 26
+          package-manager-cache: false
+      # The CLI, a review, init, the dev proxy (which starts the helper) and the MCP server, on every platform.
+      - name: Run the program with no Node on PATH
+        shell: bash
+        run: |
+          pnpm install --frozen-lockfile
+          node scripts/smoke-standalone.mjs artifacts/proofmarks-*-${{ matrix.target }}.${{ matrix.archive }}
+      - name: Install with install.sh
+        if: ${{ runner.os != 'Windows' }}
+        run: |
+          version=$(node -p "require('./package.json').version")
+          (cd artifacts && python3 -m http.server 8765 --bind 127.0.0.1 >/dev/null 2>&1 &)
+          sleep 2
+          PROOFMARKS_VERSION="$version" PROOFMARKS_HOME="$RUNNER_TEMP/installed" PROOFMARKS_DOWNLOAD_BASE=http://127.0.0.1:8765 sh scripts/install.sh
+          "$RUNNER_TEMP/installed/bin/proofmarks" --help
+      - name: Install the wheel with uv
+        if: ${{ runner.os != 'Windows' }}
+        run: |
+          # Only the wheel just built, never a copy from PyPI.
+          UV_TOOL_DIR="$RUNNER_TEMP/uv-tools" UV_TOOL_BIN_DIR="$RUNNER_TEMP/uv-bin" uv tool install --no-index --find-links artifacts/wheels proofmarks
+          "$RUNNER_TEMP/uv-bin/proofmarks" --help
+      - name: Install with Homebrew
+        if: ${{ runner.os == 'macOS' }}
+        env:
+          HOMEBREW_NO_AUTO_UPDATE: "1"
+        run: |
+          node scripts/homebrew-formula.mjs --base "file://$GITHUB_WORKSPACE/artifacts" --from artifacts --out "$RUNNER_TEMP/proofmarks.rb"
+          brew tap-new --no-git proofmarks-ci/local
+          cp "$RUNNER_TEMP/proofmarks.rb" "$(brew --repository)/Library/Taps/proofmarks-ci/homebrew-local/Formula/proofmarks.rb"
+          brew install proofmarks-ci/local/proofmarks
+          brew test proofmarks-ci/local/proofmarks
+      - name: Install with install.ps1 and the wheel with uv
+        if: ${{ runner.os == 'Windows' }}
+        shell: pwsh
+        run: |
+          $version = (Get-Content package.json -Raw | ConvertFrom-Json).version
+          $server = Start-Process python -ArgumentList '-m', 'http.server', '8765', '--bind', '127.0.0.1' -WorkingDirectory artifacts -PassThru
+          Start-Sleep -Seconds 3
+          try {
+            $env:PROOFMARKS_VERSION = $version
+            $env:PROOFMARKS_HOME = Join-Path $env:RUNNER_TEMP 'installed'
+            $env:PROOFMARKS_DOWNLOAD_BASE = 'http://127.0.0.1:8765'
+            ./scripts/install.ps1
+            if ($LASTEXITCODE -ne 0) { throw 'install.ps1 failed' }
+            $program = Join-Path $env:PROOFMARKS_HOME 'bin\proofmarks.cmd'
+            & $program --help
+            if ($LASTEXITCODE -ne 0) { throw 'proofmarks --help failed' }
+            $env:UV_TOOL_DIR = Join-Path $env:RUNNER_TEMP 'uv-tools'
+            $env:UV_TOOL_BIN_DIR = Join-Path $env:RUNNER_TEMP 'uv-bin'
+            uv tool install --no-index --find-links artifacts/wheels proofmarks
+            & (Join-Path $env:UV_TOOL_BIN_DIR 'proofmarks.exe') --help
+            if ($LASTEXITCODE -ne 0) { throw 'the uv-installed proofmarks failed' }
+          } finally { Stop-Process -Id $server.Id -ErrorAction SilentlyContinue }
+
+  npm:
+    name: publish to npm
+    needs: smoke
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # id-token: write lets npm trust this workflow (trusted publishing) and attach provenance.
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+      # Trusted publishing needs Node 22.14 or later and npm 11.5.1 or later. No caching in a release build.
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+      - run: npm install --global npm@^11.5.1
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build
+      # npm authenticates this workflow over OIDC, so no token is stored. The package is built, so scripts stay off.
+      # npm only lets an existing package trust this workflow, so 0.1.0 is published once by hand. A version that's
+      # already on npm is skipped rather than failing, so the GitHub release, PyPI and Homebrew still go out.
+      - name: Publish to npm, unless this version is already there
+        run: |
+          version=$(node -p "require('./package.json').version")
+          if [ "$(npm view "@tortastudios/proofmarks@$version" version 2>/dev/null)" = "$version" ]; then
+            echo "::notice::@tortastudios/proofmarks@$version is already on npm, so this release doesn't publish it again."
+          else
+            npm publish --provenance --access public --ignore-scripts
+          fi
+
+  github-release:
+    name: create the GitHub release
+    needs: npm
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: standalone
+          path: artifacts
+      - name: Create the release with the programs and the installers
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          # The release notes are this version's section of CHANGELOG.md, headed "## [x.y.z]" (the form pi reads too).
+          awk -v heading="## [$version]" '
+            /^## / { if (found) exit; if (index($0, heading) == 1) { found = 1; next } }
+            found { print }
+          ' CHANGELOG.md > release-notes.md
+          gh release create "$GITHUB_REF_NAME" --title "$GITHUB_REF_NAME" --notes-file release-notes.md --verify-tag \
+            artifacts/*.tar.gz artifacts/*.zip artifacts/*.sha256 scripts/install.sh scripts/install.ps1
+
+  pypi:
+    name: publish to PyPI
+    needs: github-release
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # PyPI's trusted publishing, tied to this workflow and the pypi environment, so no token is stored.
+    environment: pypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: standalone
+          path: artifacts
+      - uses: pypa/gh-action-pypi-publish@7245906fb61fa33a13554f9d5fb856fe61758086 # v1.14.3
+        with:
+          packages-dir: artifacts/wheels
+
+  # A rehearsal can't publish, so it proves instead that the tap token works: a dry-run push needs write access to
+  # tortastudios/homebrew-tap but changes nothing. A token that's read-only, for the wrong repo or awaiting the
+  # organization's approval fails here rather than halfway through a release.
+  homebrew-check:
+    name: check the Homebrew tap token
+    needs: check
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: tortastudios/homebrew-tap
+          token: ${{ secrets.HOMEBREW_TAP_TOKEN }}
+          path: tap
+      - name: Check the token can push
+        run: git -C tap push --dry-run origin HEAD:main
+
+  homebrew:
+    name: update the Homebrew tap
+    needs: github-release
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: standalone
+          path: artifacts
+      # HOMEBREW_TAP_TOKEN may only write to tortastudios/homebrew-tap.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: tortastudios/homebrew-tap
+          token: ${{ secrets.HOMEBREW_TAP_TOKEN }}
+          path: tap
+      - name: Commit the new formula
+        run: |
+          mkdir -p tap/Formula
+          cp artifacts/homebrew/proofmarks.rb tap/Formula/proofmarks.rb
+          cd tap
+          git config user.name "Torta Studios"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add Formula/proofmarks.rb
+          git commit -m "proofmarks ${GITHUB_REF_NAME#v}"
+          git push

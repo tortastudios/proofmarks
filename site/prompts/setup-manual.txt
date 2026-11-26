@@ -1,0 +1,6 @@
+Set up Proofmarks on this site, so it marks AI-sounding writing on my pages.
+
+1. Install it: {{command}}
+2. In the site's folder, run {{run}} init --yes, then {{run}} dev --background.
+3. Run {{run}} doctor and fix anything it marks as failing. Then open a page it serves, with ?proof=1, in my browser.
+4. If a step fails, follow https://proofmarks.dev/setup.md.

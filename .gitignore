@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.test-work/
+.proofmarks/
+*.tgz
+__pycache__/
+.venv/
+.next/
+.standalone/
+site/dist/

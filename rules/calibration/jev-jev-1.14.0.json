@@ -1,0 +1,210 @@
+{
+  "provider": "jev",
+  "model": "jev-1.14.0",
+  "rulesVersion": "3",
+  "labeledSetHash": "726b4bdeb22dbeb7cb8310f5d2900faaed90b6dd766b74c5c71c140450442ff9",
+  "fitted": "November 5, 2026",
+  "method": "Fitted on the fit split of the planted set, mean of 3 replicates. Lexicon rules: veto floor 0.4 (a hit is marked unless the judge scores it below). Other rules: the lower of 0.8 and the weakest fit-split plant, rounded down to 0.05; rules with no fit-split plant keep 0.8. Band is threshold ± 0.1. Repeats 1: single runs disagree with the 3-run mean on under 1% of decisions. Changed November 20, 2026 (TOR-2005): contrast, generic-voice and false-range were reworded to match Colin's calls on 32 marks, and their thresholds (0.8, 0.7 and 0.7) set where the new scores agree with those calls while every planted problem for them stays caught. Chatbot residue's floor is 0.5 (November 20, 2026): Colin would leave a genuine closing invitation that scored 0.44 ('Feel free to reach out to our team at...'), and its planted problems score 0.68 and 0.79. Em dash, connecting colon and bold inflation, three of the rules a project turns on, were calibrated November 24, 2026 (TOR-2036) by the same method, on planted passages D, C and B and six 18F excerpts added to the human controls. Title case heading has no question: it is a style choice the pattern alone decides. The same day, Colin turned em dash, connecting colon and bold inflation on by default, and two lines moved for that: colon to 0.7, where every planted colon is caught and the human controls keep their one mark (0.86, a human's own setup and payoff), and bold to 0.75, where no human control is marked (18F's bolded key terms score up to 0.70) and 9 of 14 planted bold phrases are caught.",
+  "rules": {
+    "inflated": {
+      "threshold": 0.4,
+      "band": [
+        0.3,
+        0.5
+      ],
+      "repeats": 1,
+      "humanMarks": 0,
+      "recall": 1
+    },
+    "filler": {
+      "threshold": 0.4,
+      "band": [
+        0.3,
+        0.5
+      ],
+      "repeats": 1,
+      "humanMarks": 0,
+      "recall": 1
+    },
+    "brochure-verb": {
+      "threshold": 0.4,
+      "band": [
+        0.3,
+        0.5
+      ],
+      "repeats": 1,
+      "humanMarks": 0,
+      "recall": 1
+    },
+    "promo-adjective": {
+      "threshold": 0.4,
+      "band": [
+        0.3,
+        0.5
+      ],
+      "repeats": 1,
+      "humanMarks": 1,
+      "recall": 1
+    },
+    "signpost": {
+      "threshold": 0.4,
+      "band": [
+        0.3,
+        0.5
+      ],
+      "repeats": 1,
+      "humanMarks": 0,
+      "recall": 1
+    },
+    "contrast": {
+      "threshold": 0.8,
+      "band": [
+        0.7,
+        0.9
+      ],
+      "repeats": 1,
+      "humanMarks": 4,
+      "recall": 1
+    },
+    "three": {
+      "threshold": 0.8,
+      "band": [
+        0.7,
+        0.9
+      ],
+      "repeats": 1,
+      "humanMarks": 0,
+      "recall": 0.6
+    },
+    "hedging": {
+      "threshold": 0.8,
+      "band": [
+        0.7,
+        0.9
+      ],
+      "repeats": 1,
+      "humanMarks": 1,
+      "recall": 0.5
+    },
+    "attribution": {
+      "threshold": 0.8,
+      "band": [
+        0.7,
+        0.9
+      ],
+      "repeats": 1,
+      "humanMarks": 0,
+      "recall": 1
+    },
+    "trailing": {
+      "threshold": 0.6,
+      "band": [
+        0.5,
+        0.7
+      ],
+      "repeats": 1,
+      "humanMarks": 0,
+      "recall": 1
+    },
+    "residue": {
+      "threshold": 0.5,
+      "band": [
+        0.4,
+        0.6
+      ],
+      "repeats": 1,
+      "humanMarks": 0,
+      "recall": 1
+    },
+    "false-range": {
+      "threshold": 0.7,
+      "band": [
+        0.6,
+        0.8
+      ],
+      "repeats": 1,
+      "humanMarks": 0,
+      "recall": 1
+    },
+    "puffery": {
+      "threshold": 0.8,
+      "band": [
+        0.7,
+        0.9
+      ],
+      "repeats": 1,
+      "humanMarks": 0,
+      "recall": 1
+    },
+    "generic-voice": {
+      "threshold": 0.7,
+      "band": [
+        0.6,
+        0.8
+      ],
+      "repeats": 1,
+      "humanMarks": 0,
+      "recall": 1
+    },
+    "repetition": {
+      "threshold": 0.8,
+      "band": [
+        0.7,
+        0.9
+      ],
+      "repeats": 1,
+      "humanMarks": 0,
+      "recall": 1
+    },
+    "over-explaining": {
+      "threshold": 0.8,
+      "band": [
+        0.7,
+        0.9
+      ],
+      "repeats": 1,
+      "humanMarks": 0,
+      "recall": 1
+    },
+    "rhythm": {
+      "threshold": 0.45,
+      "band": [
+        0.35,
+        0.55
+      ],
+      "repeats": 1,
+      "humanMarks": 0,
+      "recall": 0.8
+    },
+    "em-dash": {
+      "threshold": 0.5,
+      "band": [
+        0.4,
+        0.6
+      ],
+      "repeats": 1,
+      "humanMarks": 2,
+      "recall": 1
+    },
+    "colon": {
+      "threshold": 0.7,
+      "band": [
+        0.6,
+        0.8
+      ],
+      "repeats": 1,
+      "humanMarks": 1,
+      "recall": 1
+    },
+    "bold": {
+      "threshold": 0.75,
+      "band": [
+        0.65,
+        0.85
+      ],
+      "repeats": 1,
+      "humanMarks": 0,
+      "recall": 0.64
+    }
+  }
+}

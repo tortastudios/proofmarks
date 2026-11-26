@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "documents": [
+    {
+      "id": "workshop",
+      "source": "content/essay.md",
+      "review": "reviews/workshop.json",
+      "write": true,
+      "url": "/",
+      "format": "markdown"
+    },
+    {
+      "id": "template",
+      "source": "templates/page.html",
+      "review": "reviews/template.json",
+      "write": true,
+      "url": "/template",
+      "format": "jinja"
+    }
+  ],
+  "roots": [
+    "content",
+    "templates"
+  ],
+  "judge": {
+    "provider": "fake",
+    "model": "fixture-1"
+  },
+  "devServer": "http://127.0.0.1:3765"
+}
