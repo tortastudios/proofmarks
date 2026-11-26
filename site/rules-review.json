@@ -564,7 +564,7 @@
         "candidate": "The new plan is faster, simpler, and more powerful.",
         "scope": "sentence",
         "after": {
-          "probability": 0.05,
+          "probability": 0.11,
           "provider": "decision-model",
           "model": "decision model"
         }
@@ -572,19 +572,19 @@
       "rewriteRequest": {
         "status": "proposed",
         "version": 1,
-        "requestedAt": "2026-11-25T05:11:43.002Z",
+        "requestedAt": "2026-11-26T16:55:20.724Z",
         "target": "claude",
         "requestedBy": "claude",
-        "proposedAt": "2026-11-25T05:11:43.187Z",
+        "proposedAt": "2026-11-26T16:55:21.282Z",
         "by": "claude"
       },
-      "proposed": "The new plan loads pages in half the time.",
+      "proposed": "The new plan is faster and simpler.",
       "proposals": [
         {
           "version": 1,
-          "text": "The new plan loads pages in half the time.",
+          "text": "The new plan is faster and simpler.",
           "by": "claude",
-          "proposedAt": "2026-11-25T05:11:43.187Z"
+          "proposedAt": "2026-11-26T16:55:21.282Z"
         }
       ]
     },
@@ -615,7 +615,7 @@
         "candidate": "This could potentially help some teams in certain cases.",
         "scope": "sentence",
         "after": {
-          "probability": 0.05,
+          "probability": 0.2,
           "provider": "decision-model",
           "model": "decision model"
         }
@@ -623,19 +623,19 @@
       "rewriteRequest": {
         "status": "proposed",
         "version": 1,
-        "requestedAt": "2026-11-25T05:11:43.009Z",
+        "requestedAt": "2026-11-26T16:55:20.738Z",
         "target": "claude",
         "requestedBy": "claude",
-        "proposedAt": "2026-11-25T05:11:43.205Z",
+        "proposedAt": "2026-11-26T16:55:21.428Z",
         "by": "claude"
       },
-      "proposed": "This helps teams that ship every week.",
+      "proposed": "This may help some teams.",
       "proposals": [
         {
           "version": 1,
-          "text": "This helps teams that ship every week.",
+          "text": "This may help some teams.",
           "by": "claude",
-          "proposedAt": "2026-11-25T05:11:43.205Z"
+          "proposedAt": "2026-11-26T16:55:21.428Z"
         }
       ]
     },
@@ -666,7 +666,7 @@
         "candidate": "Experts agree that shorter meetings lead to better decisions.",
         "scope": "sentence",
         "after": {
-          "probability": 0.18,
+          "probability": 0.27,
           "provider": "decision-model",
           "model": "decision model"
         }
@@ -674,19 +674,19 @@
       "rewriteRequest": {
         "status": "proposed",
         "version": 1,
-        "requestedAt": "2026-11-25T05:11:43.017Z",
+        "requestedAt": "2026-11-26T16:55:20.751Z",
         "target": "claude",
         "requestedBy": "claude",
-        "proposedAt": "2026-11-25T05:11:43.217Z",
+        "proposedAt": "2026-11-26T16:55:21.577Z",
         "by": "claude"
       },
-      "proposed": "Our teams decided faster after we cut meetings to 25 minutes.",
+      "proposed": "Shorter meetings lead to better decisions.",
       "proposals": [
         {
           "version": 1,
-          "text": "Our teams decided faster after we cut meetings to 25 minutes.",
+          "text": "Shorter meetings lead to better decisions.",
           "by": "claude",
-          "proposedAt": "2026-11-25T05:11:43.217Z"
+          "proposedAt": "2026-11-26T16:55:21.577Z"
         }
       ]
     },
@@ -866,7 +866,7 @@
         "candidate": "The results of this launch speak for themselves.",
         "scope": "sentence",
         "after": {
-          "probability": 0.08,
+          "probability": 0.49,
           "provider": "decision-model",
           "model": "decision model"
         }
@@ -874,19 +874,19 @@
       "rewriteRequest": {
         "status": "proposed",
         "version": 1,
-        "requestedAt": "2026-11-25T05:11:43.049Z",
+        "requestedAt": "2026-11-26T16:56:13.313Z",
         "target": "claude",
         "requestedBy": "claude",
-        "proposedAt": "2026-11-25T05:11:43.254Z",
+        "proposedAt": "2026-11-26T16:56:13.596Z",
         "by": "claude"
       },
-      "proposed": "This launch cut support tickets by a third.",
+      "proposed": "This launch's results are in.",
       "proposals": [
         {
           "version": 1,
-          "text": "This launch cut support tickets by a third.",
+          "text": "This launch's results are in.",
           "by": "claude",
-          "proposedAt": "2026-11-25T05:11:43.254Z"
+          "proposedAt": "2026-11-26T16:56:13.596Z"
         }
       ]
     },
@@ -913,7 +913,7 @@
         "candidate": "Marketing is all about understanding your audience. When you know what your customers want, you can create content that speaks to them. The key is to stay consistent and keep learning.",
         "scope": "sentence",
         "after": {
-          "probability": 0.14,
+          "probability": 0.52,
           "provider": "decision-model",
           "model": "decision model"
         }
@@ -921,19 +921,19 @@
       "rewriteRequest": {
         "status": "proposed",
         "version": 1,
-        "requestedAt": "2026-11-25T05:11:43.059Z",
+        "requestedAt": "2026-11-26T16:56:13.939Z",
         "target": "claude",
         "requestedBy": "claude",
-        "proposedAt": "2026-11-25T05:11:43.261Z",
+        "proposedAt": "2026-11-26T16:56:14.224Z",
         "by": "claude"
       },
-      "proposed": "Our best post last year answered one question a customer asked on a sales call. We now start every post from a real question, and we publish one a week.",
+      "proposed": "Pick one customer and write the post for them. If it wouldn't help them, cut it.",
       "proposals": [
         {
           "version": 1,
-          "text": "Our best post last year answered one question a customer asked on a sales call. We now start every post from a real question, and we publish one a week.",
+          "text": "Pick one customer and write the post for them. If it wouldn't help them, cut it.",
           "by": "claude",
-          "proposedAt": "2026-11-25T05:11:43.261Z"
+          "proposedAt": "2026-11-26T16:56:14.224Z"
         }
       ]
     },
@@ -1054,7 +1054,7 @@
         "candidate": "We start early. We test everything. We ship on Fridays. We read every reply. We fix what breaks.",
         "scope": "sentence",
         "after": {
-          "probability": 0.15,
+          "probability": 0.24,
           "provider": "decision-model",
           "model": "decision model"
         }
@@ -1062,19 +1062,19 @@
       "rewriteRequest": {
         "status": "proposed",
         "version": 1,
-        "requestedAt": "2026-11-25T05:11:43.082Z",
+        "requestedAt": "2026-11-26T16:55:20.781Z",
         "target": "claude",
         "requestedBy": "claude",
-        "proposedAt": "2026-11-25T05:11:43.294Z",
+        "proposedAt": "2026-11-26T16:55:21.969Z",
         "by": "claude"
       },
-      "proposed": "We start early and test everything. Fridays are for shipping, and by Monday we have read every reply and fixed what broke.",
+      "proposed": "We start early and test everything. We ship on Fridays, then read every reply and fix what breaks.",
       "proposals": [
         {
           "version": 1,
-          "text": "We start early and test everything. Fridays are for shipping, and by Monday we have read every reply and fixed what broke.",
+          "text": "We start early and test everything. We ship on Fridays, then read every reply and fix what breaks.",
           "by": "claude",
-          "proposedAt": "2026-11-25T05:11:43.294Z"
+          "proposedAt": "2026-11-26T16:55:21.969Z"
         }
       ]
     },
