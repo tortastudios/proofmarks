@@ -3,10 +3,12 @@
 `proofmarks check` judges writing without opening it: in CI, before a page ships, or across many pages at once, such as programmatic SEO pages. It writes no review file; it prints the marks. Like a review, it keeps Jev's answers in its cache, so judging the same text again is free.
 
 ```sh
-npx proofmarks check content/
-npx proofmarks check content/posts/launch.md templates/pricing.html
-npx proofmarks check https://example.com/plumbers-in-austin https://example.com/plumbers-in-dallas
+npx @tortastudios/proofmarks check content/
+npx @tortastudios/proofmarks check content/posts/launch.md templates/pricing.html
+npx @tortastudios/proofmarks check https://example.com/plumbers-in-austin https://example.com/plumbers-in-dallas
 ```
+
+Use the scoped name with `npx`: the unscoped `proofmarks` on npm is someone else's package. With the standalone program, Homebrew, uv or pipx, run `proofmarks check` instead.
 
 It takes files (Markdown, MDX, HTML and templates), folders (searched for those, skipping `node_modules`, build output and hidden folders), globs, and URLs. For a URL, Proofmarks fetches the page and judges only its main content: the `<main>` element, else `<article>`, else `<body>`, without navigation, headers, footers or scripts.
 
@@ -21,15 +23,17 @@ content/posts/launch.md: 2 marks
 
 ## Options
 
-- `--format json` (or `--json`) prints every mark with its target, rule, label, line, column, text, fix and score.
+- `--format json` (or `--json`) prints `{ results, total }`. Each result has its `target` and `marks`, and each mark its `rule`, `label`, `match` (the marked text) and `note` (the fix), with `line`, `column` and `probability` when there are any.
 - `--format github` prints GitHub Actions annotations, so marks show on the pull request's changed lines.
 - `--fail-on <n>` exits with 1 when there are `n` or more marks in all. Without it, marks never fail the run; a page that can't be checked always does.
 - `--judge fake` uses the test judge, which marks almost everything. It's for trying the command, not for real results.
 
 ## In GitHub Actions
 
+After checking out your repository and setting up Node.js 22 or later:
+
 ```yaml
-- run: npx proofmarks check content --format github --fail-on 1
+- run: npx @tortastudios/proofmarks check content --format github --fail-on 1
   env:
     TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
 ```
