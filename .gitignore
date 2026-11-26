@@ -8,3 +8,6 @@ __pycache__/
 .next/
 .standalone/
 site/dist/
+.env
+.env.*
+!.env.example
