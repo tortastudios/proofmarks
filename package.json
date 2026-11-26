@@ -2,6 +2,18 @@
   "name": "@tortastudios/proofmarks",
   "version": "0.1.0",
   "description": "Proofmarks: a proofreader for AI-sounding writing that marks up the real page.",
+  "keywords": [
+    "proofreading",
+    "writing",
+    "ai-writing",
+    "ai-slop",
+    "editor",
+    "linter",
+    "mcp",
+    "claude-code",
+    "codex",
+    "developer-tools"
+  ],
   "type": "module",
   "engines": {
     "node": ">=22"
