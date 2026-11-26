@@ -32,6 +32,7 @@ The relay passes these to Torta's analytics (PostHog). Decisions and judge use g
 | Health (`GET /health`) | `proofmarks status` and `proofmarks doctor` | Nothing | Torta's relay. With your own key, `GET api.typesafe.ai/v1/models` checks the key instead |
 | A page you check | `proofmarks check <URL>` | An ordinary request for that page | That URL |
 | Your site | The dev proxy, while you use the page, and `proofmarks doctor`, which checks the site and the proxy answer | Your browser's requests, forwarded, or a plain request for a page | Your own site |
+| A connected agent | When your agent calls Proofmarks' MCP tools | What it asks for: passages, paragraphs, rules, source paths, rewrites and decisions | Your agent, which may send what it reads to its own provider, under its own terms |
 | A rewrite by an agent CLI | When you ask Claude Code, Codex or pi for a rewrite | The passage, its paragraph and the rule, plus the earlier rewrites when you ask for another | That agent's provider, under its own terms. Proofmarks passes `DO_NOT_TRACK` on to it |
 | Install scripts | `install.sh` and `install.ps1` | A lookup of the latest version, then the download and checksum for your system | GitHub |
 | Agent setup | `proofmarks init`, when pi is installed | pi installs the Proofmarks extension: from your project's copy with the npm package, or from npm with the standalone program | npm, through pi, for the standalone program |

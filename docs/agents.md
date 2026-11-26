@@ -18,7 +18,7 @@ npx skills add tortastudios/proofmarks
 
 ## With an agent you're working with
 
-`init` registers Proofmarks' MCP server with Claude Code, Codex and pi. A session that has it shows up in the menu.
+`init` registers Proofmarks' MCP server with Claude Code and Codex, and installs the Proofmarks extension for pi. A session that has it shows up in the menu.
 
 Ask the agent to "watch Proofmarks". In Claude Code, `/mcp__proofmarks__watch` does the same. The agent then works in a loop until you stop it:
 
@@ -67,7 +67,7 @@ Each pi session in the project then connects to Proofmarks itself:
 - Rewrite requests arrive in the conversation as they happen.
 - Decisions reach pi as information for its next turn.
 
-An MCP entry named `proofmarks` in pi's `mcp.json` takes the extension's place, so remove it with `pi mcp remove proofmarks`.
+An MCP entry named `proofmarks` in pi's `mcp.json` takes the extension's place, so remove it: `pi mcp remove proofmarks` for your own settings, or `pi mcp remove proofmarks --local` for the project's.
 
 ## Claude Code, pushed
 

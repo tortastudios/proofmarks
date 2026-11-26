@@ -26,7 +26,7 @@ Each download is about 45 MB. Install it once per machine, then use the commands
 | Install with | Command | Update | Remove |
 | --- | --- | --- | --- |
 | Homebrew (macOS, Linux) | `brew install tortastudios/tap/proofmarks` | `brew upgrade proofmarks` | `brew uninstall proofmarks` |
-| The installer (macOS, Linux) | `curl -fsSL https://github.com/tortastudios/proofmarks/releases/latest/download/install.sh \| sh` | Run it again | Delete `~/.proofmarks` |
+| The installer (macOS, Linux) | `curl -fsSL https://github.com/tortastudios/proofmarks/releases/latest/download/install.sh \| sh` | Run it again | Delete `~/.proofmarks/bin/proofmarks` and `~/.proofmarks/versions`, then remove the PATH line the installer added. Delete all of `~/.proofmarks` only to also remove cached judgments, the relay token and your choice about usage counts |
 | The installer (Windows, PowerShell) | `irm https://github.com/tortastudios/proofmarks/releases/latest/download/install.ps1 \| iex` | Run it again | Delete `%LOCALAPPDATA%\Proofmarks` and remove its `bin` folder from your PATH |
 | uv or pipx | `uv tool install proofmarks` or `pipx install proofmarks` | `uv tool upgrade proofmarks` or `pipx upgrade proofmarks` | `uv tool uninstall proofmarks` or `pipx uninstall proofmarks` |
 
@@ -41,7 +41,7 @@ Each release lists its archives and their checksums. The macOS programs are sign
 
 `init` looks for writing in `content/`, `src/content/`, `_posts/`, `posts/`, `src/posts/`, `blog/` and `templates/`, plus a root `index.html`. Point it at another folder with `--content <folder>`.
 
-It asks before writing [configuration](configuration.md) or [connecting your agents](agents.md), and prints the command that starts your site. An agent setting Proofmarks up for you runs `init --yes`, which accepts without asking; without a terminal and without `--yes`, `init` changes nothing.
+The first time, it asks before writing [configuration](configuration.md) and [connecting your agents](agents.md), and it asks again when it finds new documents. Later runs connect an agent installed since without asking. It prints the command that starts your site. An agent setting Proofmarks up for you runs `init --yes`, which accepts without asking; without a terminal and without `--yes`, `init` changes nothing.
 
 `proofmarks doctor` checks each link: the configuration, the judge, your site, the page with the proofs, who can write rewrites, and which agents are connected. Each problem comes with the next step, and `--json` gives the same for scripts and agents. Check the document list, and set `write` to `true` only for files you want Proofmarks to edit.
 
