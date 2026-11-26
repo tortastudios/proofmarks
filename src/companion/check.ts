@@ -153,6 +153,12 @@ export async function checkTarget(
 }
 
 const quoteText = (text: string) => `"${text.replace(/\s+/g, ' ').trim()}"`;
+/** The report's format: what the command asks for, else GitHub annotations in GitHub Actions, else text. */
+export function checkFormat(given: string | undefined, json: boolean, env: NodeJS.ProcessEnv = process.env) {
+  if (json) return 'json';
+  return given ?? (env.GITHUB_ACTIONS === 'true' ? 'github' : 'text');
+}
+
 export function textReport(results: Checked[]) {
   const lines: string[] = [];
   for (const result of results) {

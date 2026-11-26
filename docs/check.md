@@ -24,7 +24,7 @@ content/posts/launch.md: 2 marks
 ## Options
 
 - `--format json` (or `--json`) prints `{ results, total }`. Each result has its `target` and `marks`, and each mark its `rule`, `label`, `match` (the marked text) and `note` (the fix), with `line`, `column` and `probability` when there are any.
-- `--format github` prints GitHub Actions annotations, so marks show on the pull request's changed lines.
+- `--format github` prints GitHub Actions annotations, so marks show on the pull request's changed lines. It's the default in GitHub Actions; pass `--format text` for plain output there.
 - `--fail-on <n>` exits with 1 when there are `n` or more marks in all. Without it, marks never fail the run; a page that can't be checked always does.
 - `--judge fake` uses the test judge, which marks almost everything. It's for trying the command, not for real results.
 
@@ -33,7 +33,7 @@ content/posts/launch.md: 2 marks
 After checking out your repository and setting up Node.js 22 or later:
 
 ```yaml
-- run: npx @tortastudios/proofmarks check content --format github --fail-on 1
+- run: npx @tortastudios/proofmarks check content --fail-on 1
   env:
     TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
 ```

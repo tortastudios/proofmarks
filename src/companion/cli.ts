@@ -5,7 +5,7 @@ import { ownKey, judgeStatus } from './keys';
 import { createJev, sanitizedError } from '../judge/jev';
 import { createRelayJev, rememberVia, validVia, RESTING } from '../judge/relay';
 import { telemetryCommand } from './telemetry';
-import { checkTarget, expandTargets, githubReport, textReport, type Checked } from './check';
+import { checkFormat, checkTarget, expandTargets, githubReport, textReport, type Checked } from './check';
 import { version, installRoute } from './version';
 import {
   answers,
@@ -118,7 +118,7 @@ async function main() {
       throw new UserError(
         'Pass files, folders, globs or URLs to check, such as: proofmarks check content/ https://example.com/pricing',
       );
-    const format = args.includes('--json') ? 'json' : (option('--format') ?? 'text');
+    const format = checkFormat(option('--format'), args.includes('--json'));
     if (!['text', 'json', 'github'].includes(format)) throw new UserError('--format takes text, json or github.');
     const failOn = option('--fail-on') === undefined ? undefined : Number(option('--fail-on'));
     if (failOn !== undefined && !(Number.isInteger(failOn) && failOn > 0))

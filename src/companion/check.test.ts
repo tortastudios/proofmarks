@@ -5,7 +5,7 @@ import { promisify } from 'node:util';
 import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fakeProvider } from './fake';
-import { checkTarget, expandTargets, githubReport, mainContent, textReport } from './check';
+import { checkFormat, checkTarget, expandTargets, githubReport, mainContent, textReport } from './check';
 
 const work = new URL('../../.test-work/', import.meta.url).pathname;
 async function project() {
@@ -159,4 +159,11 @@ test('the check command: --fail-on sets the exit code, --json gives every mark',
   } finally {
     await rm(dir, { recursive: true, force: true });
   }
+});
+
+test('check writes GitHub annotations in GitHub Actions unless the command asks for a format', () => {
+  assert.equal(checkFormat(undefined, false, {}), 'text');
+  assert.equal(checkFormat(undefined, false, { GITHUB_ACTIONS: 'true' }), 'github');
+  assert.equal(checkFormat('text', false, { GITHUB_ACTIONS: 'true' }), 'text');
+  assert.equal(checkFormat(undefined, true, { GITHUB_ACTIONS: 'true' }), 'json');
 });
