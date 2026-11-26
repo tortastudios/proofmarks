@@ -170,6 +170,15 @@ const faq = (await readFile(path.join(site, 'faq.html'), 'utf8'))
   .replaceAll('{{ruleCount}}', String(on.length));
 if (faq.includes('{{') || faq.includes('<pm-'))
   throw new Error('site/faq.html has a placeholder the build does not fill');
+// The 404 page shares them too; App Platform serves it for any path the site doesn't have.
+const notFound = (await readFile(path.join(site, '404.html'), 'utf8'))
+  .replace('{{header}}', shared('header'))
+  .replace('{{footer}}', shared('footer'));
+if (notFound.includes('{{')) throw new Error('site/404.html has a placeholder the build does not fill');
+await writeFile(
+  path.join(out, '404.html'),
+  notFound.replace('href="/site.css"', `href="/site.css?v=${await stamp('site.css')}"`),
+);
 await mkdir(path.join(out, 'faq'), { recursive: true });
 await writeFile(
   path.join(out, 'faq', 'index.html'),
@@ -185,6 +194,8 @@ await cp(new URL('../skills/proofmarks/SKILL.md', import.meta.url).pathname, pat
 // repo's own, and each still downloads the latest release from GitHub.
 for (const script of ['install.sh', 'install.ps1'])
   await cp(new URL(`./${script}`, import.meta.url).pathname, path.join(out, script));
+// For search engines: everything may be crawled, and the sitemap lists the two pages.
+for (const file of ['robots.txt', 'sitemap.xml']) await cp(path.join(site, file), path.join(out, file));
 for (const asset of ['proofmarks.svg'])
   await cp(new URL(`../.github/assets/${asset}`, import.meta.url).pathname, path.join(out, 'assets', asset));
 console.log(
