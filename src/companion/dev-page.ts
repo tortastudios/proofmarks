@@ -1,7 +1,9 @@
 import { spawn } from 'node:child_process';
 import { mkdir, open, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { alive } from './alive';
 import { childEnv } from './keys';
+import { UserError } from './user-error';
 
 /**
  * Where `proofmarks dev` is serving the page, so an agent can open it for the person. The dev command writes
@@ -9,14 +11,6 @@ import { childEnv } from './keys';
  */
 type DevRecord = { port: number; pid: number; to: string };
 const recordFile = (projectRoot: string) => path.join(projectRoot, '.proofmarks', 'dev.json');
-const live = (pid: number) => {
-  try {
-    process.kill(pid, 0);
-    return true;
-  } catch {
-    return false;
-  }
-};
 
 export async function recordDevPage(projectRoot: string, record: DevRecord) {
   await mkdir(path.dirname(recordFile(projectRoot)), { recursive: true, mode: 0o700 });
@@ -27,18 +21,35 @@ export async function clearDevPage(projectRoot: string) {
   await rm(recordFile(projectRoot), { force: true });
 }
 
-async function devRecord(projectRoot: string) {
+// The signal is a parameter so tests can stand in for an agent's sandbox.
+type Kill = typeof process.kill;
+const kill: Kill = (pid, signal) => process.kill(pid, signal);
+// Inside an agent's sandbox, a process started elsewhere can't be stopped: say where to stop it instead.
+function stop(pid: number, signal: Kill) {
+  try {
+    signal(pid, 'SIGTERM');
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'EPERM')
+      throw new UserError(
+        "Can't stop proofmarks dev from inside this sandbox. Run proofmarks dev --stop in your terminal.",
+      );
+    throw error;
+  }
+}
+
+async function devRecord(projectRoot: string, signal: Kill) {
   try {
     const record = JSON.parse(await readFile(recordFile(projectRoot), 'utf8')) as Partial<DevRecord>;
-    if (!Number.isInteger(record.port) || !Number.isInteger(record.pid) || !live(record.pid!)) return undefined;
+    if (!Number.isInteger(record.port) || !Number.isInteger(record.pid) || !alive(record.pid!, signal))
+      return undefined;
     return record as DevRecord;
   } catch {
     return undefined;
   }
 }
 /** The running `proofmarks dev` for this project: its proxy's address and its pid. */
-export async function runningDev(projectRoot: string) {
-  const record = await devRecord(projectRoot);
+export async function runningDev(projectRoot: string, signal = kill) {
+  const record = await devRecord(projectRoot, signal);
   return record && { address: `http://127.0.0.1:${record.port}`, pid: record.pid };
 }
 /** The proxy's address if `proofmarks dev` is running for this project. */
@@ -122,19 +133,19 @@ export async function pagePath(
 }
 
 /** Stops the `proofmarks dev` running for this project, if one is; resolves to whether one was. */
-export async function stopDevPage(projectRoot: string) {
+export async function stopDevPage(projectRoot: string, signal = kill) {
   let record: Partial<DevRecord>;
   try {
     record = JSON.parse(await readFile(recordFile(projectRoot), 'utf8')) as Partial<DevRecord>;
   } catch {
     return false;
   }
-  if (!Number.isInteger(record.pid) || !live(record.pid!)) {
+  if (!Number.isInteger(record.pid) || !alive(record.pid!, signal)) {
     await clearDevPage(projectRoot);
     return false;
   }
-  process.kill(record.pid!, 'SIGTERM');
-  for (let attempt = 0; attempt < 100 && live(record.pid!); attempt++) await pause(50);
+  stop(record.pid!, signal);
+  for (let attempt = 0; attempt < 100 && alive(record.pid!, signal); attempt++) await pause(50);
   await clearDevPage(projectRoot);
   return true;
 }
@@ -189,12 +200,15 @@ export async function stopSite(projectRoot: string) {
   } catch {
     return false;
   }
-  await rm(siteFile(projectRoot), { force: true });
-  if (typeof pid !== 'number' || !Number.isInteger(pid) || !live(pid)) return false;
+  if (typeof pid !== 'number' || !Number.isInteger(pid) || !alive(pid)) {
+    await rm(siteFile(projectRoot), { force: true });
+    return false;
+  }
   if (process.platform === 'win32') spawn('taskkill', ['/pid', String(pid), '/T', '/F'], { stdio: 'ignore' });
   // It was started in its own process group: stopping the group stops the server the shell and npm started too.
-  else process.kill(-pid, 'SIGTERM');
-  for (let attempt = 0; attempt < 100 && live(pid); attempt++) await pause(50);
+  else stop(-pid, kill);
+  await rm(siteFile(projectRoot), { force: true });
+  for (let attempt = 0; attempt < 100 && alive(pid); attempt++) await pause(50);
   return true;
 }
 
