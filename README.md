@@ -5,7 +5,12 @@
   </picture>
 </h1>
 
-**See your writing the way an editor does.** Proofmarks marks what reads like AI slop on your page, says why, and rewrites it with the agent you already use. Accept writes the rewrite straight into your source file.
+[![npm](https://img.shields.io/npm/v/@tortastudios/proofmarks)](https://www.npmjs.com/package/@tortastudios/proofmarks)
+[![PyPI](https://img.shields.io/pypi/v/proofmarks)](https://pypi.org/project/proofmarks/)
+[![CI](https://github.com/tortastudios/proofmarks/actions/workflows/ci.yml/badge.svg)](https://github.com/tortastudios/proofmarks/actions/workflows/ci.yml)
+[![License: FSL-1.1-MIT](https://img.shields.io/badge/license-FSL--1.1--MIT-blue)](LICENSE.md)
+
+**See your writing the way an editor does.** Proofmarks marks what reads like AI slop on your page, says why, and rewrites it with the agent you already use. Accept writes the rewrite straight into your source file. See it work on [proofmarks.dev](https://proofmarks.dev).
 
 ![Proofmarks on a blog post: "I realized rejection isn't a verdict. It's data." and the opener "Here's the kicker:" get handwritten marks in the margin. The first mark's card sends it to Claude Code, which writes a rewrite, and Accept puts it in the post. Accept on the second deletes the opener, and both stay marked Accepted.](.github/assets/proofmarks.gif)
 
