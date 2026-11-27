@@ -14,7 +14,21 @@ async function fixture() {
   await writeFile(path.join(project, 'content/essays/example.mdx'), 'Example.');
   return { base, home, project, close: () => rm(base, { recursive: true }) };
 }
+// CI runners set CI=true, which keeps usage counts off and skips init's question about them. These tests are about a
+// person at a terminal, so they run without the variables that turn counts off, and put them back after.
+function withoutCountsOff() {
+  const keys = ['CI', 'DO_NOT_TRACK', 'PROOFMARKS_TELEMETRY'];
+  const saved = keys.map(key => [key, process.env[key]] as const);
+  for (const key of keys) delete process.env[key];
+  return () => {
+    for (const [key, value] of saved)
+      if (value === undefined) delete process.env[key];
+      else process.env[key] = value;
+  };
+}
+
 test('init confirms writes, detects content and registers all agents idempotently through stub CLIs', async () => {
+  const restore = withoutCountsOff();
   const f = await fixture();
   try {
     const registrations = new Map<string, string>();
@@ -77,6 +91,7 @@ test('init confirms writes, detects content and registers all agents idempotentl
     assert.ok(!first.includes('TYPESAFE_API_KEY'));
   } finally {
     await f.close();
+    restore();
   }
 });
 test('init cancellation writes nothing; unsupported agent CLI prints exact fallback', async () => {
@@ -270,6 +285,7 @@ test("the site's address comes from its dev script when the script names one", a
 });
 
 test('usage counts: init asks the person once and saves the answer; --yes never answers for them', async () => {
+  const restore = withoutCountsOff();
   const f = await fixture();
   try {
     const asked: string[] = [],
@@ -296,5 +312,6 @@ test('usage counts: init asks the person once and saves the answer; --yes never 
     assert.equal(asked.length, 1, 'a saved choice is not asked again');
   } finally {
     await f.close();
+    restore();
   }
 });
