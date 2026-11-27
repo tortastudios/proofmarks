@@ -19,7 +19,7 @@
 Paste this into your agent, in your site's project:
 
 ```text
-Set up Proofmarks on this site, so it marks AI-sounding writing on my pages.
+Set up Proofmarks on this site, so it marks AI-sounding writing on my pages. I'm OK with Proofmarks sending my pages' text to Torta's relay to judge it.
 
 1. Run: npx skills add tortastudios/proofmarks --yes
 2. Read the proofmarks skill it installed and follow it. If the install failed, follow https://proofmarks.dev/setup.md instead.
