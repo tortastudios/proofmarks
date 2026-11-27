@@ -1,0 +1,35 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "dev.proofmarks/proofmarks",
+  "title": "Proofmarks",
+  "description": "Marks what reads like AI slop on your page and says why",
+  "websiteUrl": "https://proofmarks.dev",
+  "repository": {
+    "url": "https://github.com/tortastudios/proofmarks",
+    "source": "github"
+  },
+  "version": "0.1.1",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@tortastudios/proofmarks",
+      "version": "0.1.1",
+      "transport": {
+        "type": "stdio"
+      },
+      "packageArguments": [
+        {
+          "type": "positional",
+          "value": "mcp"
+        }
+      ],
+      "environmentVariables": [
+        {
+          "name": "PROOFMARKS_VIA",
+          "description": "Where this install came from, sent with usage counts only when they're on",
+          "value": "mcp-registry"
+        }
+      ]
+    }
+  ]
+}

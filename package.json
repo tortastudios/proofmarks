@@ -1,6 +1,7 @@
 {
   "name": "@tortastudios/proofmarks",
   "version": "0.1.1",
+  "mcpName": "dev.proofmarks/proofmarks",
   "description": "Proofmarks marks what reads like AI slop on your page, says why, and rewrites it with the agent you already use.",
   "keywords": [
     "proofreading",
@@ -12,7 +13,8 @@
     "mcp",
     "claude-code",
     "codex",
-    "developer-tools"
+    "developer-tools",
+    "pi-package"
   ],
   "type": "module",
   "engines": {
@@ -102,7 +104,7 @@
     "type": "git",
     "url": "git+https://github.com/tortastudios/proofmarks.git"
   },
-  "homepage": "https://github.com/tortastudios/proofmarks#readme",
+  "homepage": "https://proofmarks.dev",
   "bugs": {
     "url": "https://github.com/tortastudios/proofmarks/issues"
   },
