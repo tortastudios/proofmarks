@@ -7,6 +7,7 @@ import { findConfig } from './config';
 import type { ProofmarksConfig } from '../config/index';
 import type { RewriteVersion } from '../versions';
 import { acquireReviewLock } from '../review-lock.mjs';
+import { projectRelative } from './paths';
 export type AfterScore = { probability: number; provider: string; model: string };
 export type ReviewFinding = {
   id: string;
@@ -150,7 +151,7 @@ export class ReviewStore {
     return absolute;
   }
   sourceReference(file: string) {
-    return path.relative(this.projectBase, file);
+    return projectRelative(this.projectBase, file);
   }
   output(file: string, out?: string) {
     if (this.config) {
@@ -208,7 +209,7 @@ export class ReviewStore {
     const review = parsed
       ? await recoverRequests(parsed, source, raw, target.replace(/\.json$/, '.log.jsonl'))
       : undefined;
-    if (review && review.source !== this.sourceReference(sourceFile))
+    if (review && review.source.replaceAll('\\', '/') !== this.sourceReference(sourceFile))
       throw new ReviewError('Review source does not match the document');
     return {
       reviewId: this.id(target),

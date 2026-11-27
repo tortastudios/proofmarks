@@ -6,6 +6,7 @@ import { detect } from '../detect/index';
 import type { JudgeProvider } from '../judge/types';
 import { registeredReview } from './detector';
 import type { Strictness } from './strictness';
+import { projectRelative } from './paths';
 
 /**
  * proofmarks check: marks without the page, for CI and bulk runs such as programmatic SEO pages. Files,
@@ -96,7 +97,7 @@ export async function checkTarget(
   } = {},
 ): Promise<Checked> {
   const cwd = options.cwd ?? process.cwd();
-  const shown = isUrl(target) ? target : path.relative(cwd, target) || target;
+  const shown = isUrl(target) ? target : projectRelative(cwd, target) || target;
   try {
     let source: string, format: Format;
     if (isUrl(target)) {

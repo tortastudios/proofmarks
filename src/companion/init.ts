@@ -11,6 +11,7 @@ import { standalone, standaloneCommand, standaloneVersion } from './standalone';
 import { loadConfig } from '../config/index';
 import { inferFormat, type Format } from '../adapters/index';
 import { runCommand } from '../agents/command';
+import { projectRelative } from './paths';
 const quote = (value: string) => "'" + value.replaceAll("'", "'\\''") + "'";
 const exists = async (file: string) => {
   try {
@@ -218,7 +219,7 @@ export async function init(options: InitOptions) {
         tailscaleUsers?: string[];
       })
     : undefined;
-  const extra = (options.content ?? []).map(folder => path.relative(root, path.resolve(root, folder)));
+  const extra = (options.content ?? []).map(folder => projectRelative(root, path.resolve(root, folder)));
   for (const folder of extra)
     if (!folder || folder.startsWith('..') || path.isAbsolute(folder) || !(await exists(path.join(root, folder))))
       throw new UserError(`No folder ${folder || '.'} inside the project`);
@@ -243,7 +244,7 @@ export async function init(options: InitOptions) {
   const reviewPaths = new Set(current?.documents.map(entry => path.resolve(root, entry.review)));
   const additions: Document[] = [];
   for (const file of files) {
-    const relative = path.relative(root, file);
+    const relative = projectRelative(root, file);
     if (current?.documents.some(entry => path.resolve(root, entry.source) === file)) continue;
     const folder = folders.filter(folder => relative.startsWith(folder + '/')).sort((a, b) => b.length - a.length)[0];
     const inner = folder ? relative.slice(folder.length + 1) : relative;
