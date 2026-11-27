@@ -23,6 +23,7 @@ import { reviewFile } from './review';
 import { nextVersion, rewriteVersions } from '../versions';
 import { devPage, openInBrowser, pagePath } from './dev-page';
 import { storeStrictness } from './strictness';
+import { projectRelative } from './paths';
 /** openUrl opens a page for the person; tests pass their own so no browser opens. */
 export type ServiceOptions = {
   root: string;
@@ -322,7 +323,7 @@ export class ReviewService {
       };
     const where = await pagePath(
       document.url,
-      path.relative(config.projectRoot, document.sourcePath),
+      projectRelative(config.projectRoot, document.sourcePath),
       await readFile(document.sourcePath, 'utf8').catch(() => ''),
       base,
       this.options.request,
