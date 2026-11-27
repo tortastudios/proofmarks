@@ -38,6 +38,8 @@ claude mcp add proofmarks -- npx --no-install proofmarks mcp --project /absolute
 
 With the standalone program, use `proofmarks` in place of `npx --no-install proofmarks`.
 
+Started without `--project` in a project Proofmarks isn't set up in, as a plugin or the MCP Registry starts it, the server starts nothing and writes nothing. Its one tool, `proofmarks_setup`, tells the agent how to set Proofmarks up.
+
 An Agent SDK program can watch Proofmarks unattended:
 
 ```ts

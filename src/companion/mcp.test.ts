@@ -1,10 +1,10 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdir, mkdtemp, readFile, writeFile, rm, open, symlink } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, readdir, writeFile, rm, open, symlink } from 'node:fs/promises';
 import path from 'node:path';
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { InMemoryTransport } from '@modelcontextprotocol/sdk/inMemory.js';
-import { createMcpServer } from './mcp';
+import { createMcpServer, createSetupServer } from './mcp';
 import { ReviewStore, type ReviewDocument } from './state';
 import type { JudgeProvider } from '../judge/types';
 const source = 'It is not a tool, but a revolution. A specific observation belongs in this paragraph.';
@@ -90,6 +90,11 @@ test('every MCP tool exposes annotations, pending context, proposals and decisio
   try {
     const tools = await f.client.listTools();
     assert.equal(tools.tools.length, 12);
+    assert.deepEqual(
+      tools.tools.filter(t => !t.title).map(t => t.name),
+      [],
+      'every tool has a title, as directories ask',
+    );
     assert.equal(tools.tools.find(t => t.name === 'proofmarks_list_reviews')?.annotations?.readOnlyHint, true);
     assert.equal(tools.tools.find(t => t.name === 'proofmarks_propose_rewrite')?.annotations?.destructiveHint, false);
     const prompts = await f.client.listPrompts();
@@ -707,5 +712,31 @@ test('a review is refreshed by reviewId or by the path proofmarks_list_reviews s
     assert.doesNotMatch(JSON.stringify(missing.content), /Jev/);
   } finally {
     await f.close();
+  }
+});
+test("where Proofmarks isn't set up, the MCP server says how, and starts and writes nothing", async () => {
+  const work = new URL('../../.test-work/', import.meta.url);
+  await mkdir(work, { recursive: true });
+  const project = await mkdtemp(new URL('mcp-setup-', work).pathname);
+  try {
+    const [clientTransport, serverTransport] = InMemoryTransport.createLinkedPair();
+    await createSetupServer(project).connect(serverTransport);
+    const client = new Client({ name: 'test', version: '1' });
+    await client.connect(clientTransport);
+    const tools = await client.listTools();
+    assert.deepEqual(
+      tools.tools.map(t => [t.name, t.title, t.annotations?.readOnlyHint]),
+      [['proofmarks_setup', 'Set up Proofmarks', true]],
+    );
+    const result = await client.callTool({ name: 'proofmarks_setup', arguments: {} });
+    const text = (result.content as { type: string; text: string }[])[0]!.text;
+    assert.ok(text.includes(project));
+    assert.match(text, /https:\/\/proofmarks\.dev\/setup\.md/);
+    assert.match(text, /npx proofmarks init --yes/);
+    assert.match(text, /Torta's relay/);
+    await client.close();
+    assert.deepEqual(await readdir(project), []);
+  } finally {
+    await rm(project, { recursive: true, force: true });
   }
 });

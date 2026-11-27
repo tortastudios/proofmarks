@@ -25,7 +25,7 @@ import { doctor, doctorReport } from './doctor';
 import { fakeProvider } from './fake';
 import { reviewFile } from './review';
 import { serve } from './server';
-import { mcp } from './mcp';
+import { mcp, setupMcp } from './mcp';
 import { detectStack, init } from './init';
 import { findConfig } from './config';
 import { ConfigError } from '../config/index';
@@ -193,6 +193,10 @@ async function main() {
       );
   } else {
     if (command === 'dev' && !config) throw new UserError('Run proofmarks init before starting the dev proxy.');
+    if (command === 'mcp' && !config && !option('--root')) {
+      await setupMcp(path.resolve(option('--project') ?? process.cwd()));
+      return;
+    }
     const root = option('--root') ?? config?.roots[0];
     if (!root) throw new UserError('--root <document directory> required');
     if (command === '_helper') {
