@@ -37,6 +37,17 @@ The installers download from the latest GitHub release and refuse a download tha
 
 Each release lists its archives and their checksums. The macOS programs are signed by Torta Studios and notarized by Apple.
 
+## As a plugin for Claude Code or Codex
+
+[Torta Studios' catalog](https://github.com/tortastudios/plugins) has a Proofmarks plugin for Claude Code and Codex. It starts Proofmarks' MCP server in every project and brings the `proofmarks` and `proofmarks-self-driving` skills:
+
+```sh
+claude plugin marketplace add tortastudios/plugins && claude plugin install proofmarks@tortastudios
+codex plugin marketplace add tortastudios/plugins && codex plugin add proofmarks@tortastudios
+```
+
+Then ask the agent to "set up Proofmarks on this site". The setup skill installs Proofmarks in the project and runs `init`, which leaves the agent alone because the plugin already connects it. In a project Proofmarks isn't set up in, the plugin's server starts nothing and writes nothing. Its one tool, `proofmarks_setup`, says how to set it up.
+
 ## What init does
 
 `init` looks for writing in `content/`, `src/content/`, `_posts/`, `posts/`, `src/posts/`, `blog/` and `templates/`, plus a root `index.html`. Point it at another folder with `--content <folder>`.
