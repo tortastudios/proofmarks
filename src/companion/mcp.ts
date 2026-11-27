@@ -73,6 +73,7 @@ export async function createMcpServer(options: ServiceOptions & { pushAgent?: st
   server.registerTool(
     'proofmarks_watch',
     {
+      title: 'Watch for rewrite requests',
       description:
         'Wait for rewrite requests targeted at this agent and decision events since this connection cursor. Loop: watch, claim each request, write one rewrite, propose, watch again. Accept, Undo and Dismiss are information only. On timeout call watch again.',
       inputSchema: z.object({ timeoutSeconds: z.number().min(0).max(300).default(120) }).strict(),
@@ -103,6 +104,7 @@ export async function createMcpServer(options: ServiceOptions & { pushAgent?: st
   server.registerTool(
     'proofmarks_claim',
     {
+      title: 'Claim a rewrite request',
       description:
         'Claim a pending rewrite targeted at this agent under an exclusive 120-second lease. Only the winning agent may propose. Decisions never create requests.',
       inputSchema: z.object({ reviewId: id, findingId: id }).strict(),
@@ -117,6 +119,7 @@ export async function createMcpServer(options: ServiceOptions & { pushAgent?: st
   server.registerTool(
     'proofmarks_report_failure',
     {
+      title: 'Report a failed rewrite',
       description:
         'If you claimed a rewrite and cannot propose, call this immediately with one plain reason. Only the agent holding the live claim may report; the card shows the failure and Retry without waiting for the lease.',
       inputSchema: z.object({ reviewId: id, findingId: id, reason: z.string().min(1).max(1000) }).strict(),
@@ -133,6 +136,7 @@ export async function createMcpServer(options: ServiceOptions & { pushAgent?: st
     server.registerTool(
       'proofmarks_send_feedback',
       {
+        title: 'Send feedback to Torta',
         description:
           "Report a problem with Proofmarks itself to its makers at Torta: a tool that failed or confused you, a mark that's plainly wrong, a habit it missed, a missing option or unclear docs. Say what happened, what you expected and, if you can, a proposed fix. Show the person the full report first and send it only with their okay. Never include their document text, file paths, keys or other private details unless they ask you to. It goes through Torta's relay, even with the person's own Jev key; if they turned usage counts on, Proofmarks adds its version, install route and OS. If Torta can't be reached, you get a prefilled GitHub issue link to give the person instead.",
         inputSchema: z
@@ -155,6 +159,7 @@ export async function createMcpServer(options: ServiceOptions & { pushAgent?: st
   server.registerTool(
     'proofmarks_list_reviews',
     {
+      title: 'List reviews',
       description:
         'List reviews in the configured document project, with source paths, status counts and whether each review is writable. Read-only; no judge calls.',
       inputSchema: z.object({}).strict(),
@@ -165,6 +170,7 @@ export async function createMcpServer(options: ServiceOptions & { pushAgent?: st
   server.registerTool(
     'proofmarks_pending_rewrites',
     {
+      title: 'Read pending rewrite requests',
       description:
         'Read pending human rewrite requests, including exact match, paragraph context, source path, revision, the rule label, why and fix, the version the proposal will become and any previous rewrites it must differ from. Returns unlocatable findings in skipped without blocking other pending requests. Does not change files or call the judge.',
       inputSchema: z.object({}).strict(),
@@ -179,6 +185,7 @@ export async function createMcpServer(options: ServiceOptions & { pushAgent?: st
   server.registerTool(
     'proofmarks_propose_rewrite',
     {
+      title: 'Propose a rewrite',
       description:
         'Propose different text for a pending rewrite request only. Accept, Undo and Dismiss are decisions, not requests. Never re-propose because of an Undo. Sends proposed text and paragraph context to the configured judge, then saves only the proposal and score under a revision-checked review lock. Never edits source. Text must differ from the original and from every previous version. Empty text is allowed only for deletion rules; stillFlagged means the rewrite still reaches the rule threshold.',
       inputSchema: z.object({ reviewId: id, findingId: id, text: z.string().max(100000) }).strict(),
@@ -194,6 +201,7 @@ export async function createMcpServer(options: ServiceOptions & { pushAgent?: st
   server.registerTool(
     'proofmarks_request_rewrites',
     {
+      title: 'Request rewrites for yourself',
       description:
         "Open rewrite requests for yourself on a review's open proofs that have no rewrite yet, as Rewrite all does on the page. Use only when the person asks you to proof a page yourself. Optional findingIds limits it to those proofs. Then take each request from proofmarks_pending_rewrites. Never edits source; the person accepts or dismisses on the page.",
       inputSchema: z.object({ reviewId: id, findingIds: z.array(id).max(500).optional() }).strict(),
@@ -208,6 +216,7 @@ export async function createMcpServer(options: ServiceOptions & { pushAgent?: st
   server.registerTool(
     'proofmarks_check_rewrite',
     {
+      title: 'Check a draft rewrite',
       description:
         "Score a draft rewrite for a proof with the configured judge and save nothing. clears is true when the judge no longer finds the proof's problem. Use it before proposing: if a draft doesn't clear, revise and check again, at most 3 drafts per proof, then propose the best one. Sends the draft and its paragraph to the judge.",
       inputSchema: z.object({ reviewId: id, findingId: id, text: z.string().max(100000) }).strict(),
@@ -222,6 +231,7 @@ export async function createMcpServer(options: ServiceOptions & { pushAgent?: st
   server.registerTool(
     'proofmarks_open_page',
     {
+      title: 'Open the page',
       description:
         "Open a review's page in the person's browser with the proofs showing, through the running `proofmarks dev` proxy, so they can watch proposals arrive. If the page isn't being served, the result says how to start it.",
       inputSchema: z.object({ reviewId: id }).strict(),
@@ -248,6 +258,7 @@ export async function createMcpServer(options: ServiceOptions & { pushAgent?: st
   server.registerTool(
     'proofmarks_decisions',
     {
+      title: 'Read decisions',
       description:
         'Read the append-only decision feed for a review. Accept, Undo and Dismiss are decisions, not rewrite requests; never re-propose because of an Undo. Optional since is a prior eventId cursor or timestamp; returns events strictly after it. Read-only; never changes the log.',
       inputSchema: z.object({ reviewId: id, since: z.string().min(1).max(200).optional() }).strict(),
@@ -258,6 +269,7 @@ export async function createMcpServer(options: ServiceOptions & { pushAgent?: st
   server.registerTool(
     'proofmarks_review',
     {
+      title: 'Review a document',
       description:
         'Review a document: Markdown, MDX, HTML or a template. Pass its reviewId from proofmarks_list_reviews, or a path (relative to the project, as proofmarks_list_reviews shows it, or to the document root). Calls the configured judge and atomically refreshes review JSON, preserving existing proposals/decisions and skipping previously dismissed open marks. Never edits source.',
       inputSchema: z
@@ -277,6 +289,49 @@ export async function createMcpServer(options: ServiceOptions & { pushAgent?: st
       ),
   );
   return { server, service };
+}
+/**
+ * A plugin or registry entry starts the MCP server in whatever project the agent is in. Where Proofmarks isn't set up,
+ * this server starts no helper and writes nothing: its one tool says how to set Proofmarks up.
+ */
+export function createSetupServer(projectRoot: string) {
+  const server = new McpServer(
+    { name: 'proofmarks', version },
+    {
+      instructions:
+        "Proofmarks isn't set up in this project. If the person asks for Proofmarks, call proofmarks_setup.",
+    },
+  );
+  server.registerTool(
+    'proofmarks_setup',
+    {
+      title: 'Set up Proofmarks',
+      description:
+        "Says how to set Proofmarks up in this project. It isn't set up yet, so its other tools aren't available.",
+      inputSchema: z.object({}).strict(),
+      annotations: readOnly,
+    },
+    async () => ({
+      content: [
+        {
+          type: 'text',
+          text: [
+            `Proofmarks isn't set up here: there's no proofmarks.config.json in ${projectRoot} or a folder above it.`,
+            "To set it up, follow https://proofmarks.dev/setup.md. In a Node project, in the site's folder:",
+            '1. npm install --save-dev @tortastudios/proofmarks',
+            '2. npx proofmarks init --yes, then npx proofmarks dev --background',
+            '3. npx proofmarks doctor, and fix anything it marks as failing.',
+            "Reviews send the page's text to Torta's relay to be judged, so check that the person is OK with that first.",
+            "Then restart this MCP server (in Claude Code, run /mcp) so Proofmarks' other tools load.",
+          ].join('\n'),
+        },
+      ],
+    }),
+  );
+  return server;
+}
+export async function setupMcp(projectRoot: string) {
+  await createSetupServer(projectRoot).connect(new StdioServerTransport());
 }
 export async function mcp(options: ServiceOptions & { pushAgent?: string }) {
   const config = await findConfig(options.root);
