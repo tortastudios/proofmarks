@@ -1,6 +1,6 @@
 {
   "name": "@tortastudios/proofmarks",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "mcpName": "dev.proofmarks/proofmarks",
   "description": "Proofmarks marks what reads like AI slop on your page, says why, and rewrites it with the agent you already use.",
   "keywords": [

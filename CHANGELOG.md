@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.2]
+
+November 26, 2026.
+
+- The MCP server starts quietly in a project Proofmarks isn't set up in, as a plugin or the MCP Registry starts it: it starts nothing and writes nothing, and its one tool, `proofmarks_setup`, tells the agent how to set Proofmarks up.
+- Every MCP tool has a title, which hosts show when they ask before running one.
+- The package carries its MCP Registry name, `dev.proofmarks/proofmarks`, and pi's `pi-package` keyword, and its homepage is proofmarks.dev.
+
 ## [0.1.1]
 
 November 26, 2026.
