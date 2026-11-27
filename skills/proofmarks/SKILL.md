@@ -49,7 +49,7 @@ In a few short lines:
 - what you set up, and which files changed (`proofmarks.config.json`, a reviews folder, and `package.json` if you used npm);
 - the page address to open, with `?proof=1`;
 - that a rewrite only changes their file when they press Accept, and Undo puts it back;
-- how to have an agent proof a page for them: restart this agent session (in Claude Code, run `/mcp`) so it picks up Proofmarks, then say "proof this page". The self-driving skill comes with `npx skills add tortastudios/proofmarks`, which installs this skill too.
+- how to have an agent proof a page for them: restart this agent session (in Claude Code, run `/mcp`) so it picks up Proofmarks, then say "proof this page". The self-driving skill comes with this one, from the Proofmarks plugin or `npx skills add tortastudios/proofmarks`.
 
 Then ask once, in these words, with the link to everything usage counts send (https://github.com/tortastudios/proofmarks/blob/main/TELEMETRY.md), and run `proofmarks telemetry on` only if they say yes:
 
