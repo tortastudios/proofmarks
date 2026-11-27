@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.1]
+
+November 26, 2026.
+
+- `init` gives an index page its folder's address, so `blog/first-week/index.html` matches its page at `/blog/first-week/`. A plain HTML page gets its own path, and a Markdown page bundle its folder's name.
+- Proofmarks works inside an agent's sandbox, such as Codex's: `doctor` and `dev` see the running proxy, `dev --stop` says to run it in a terminal, and a judge cache that can't be written no longer stops a review.
+- The setup prompt says you're OK with Proofmarks sending your pages' text to Torta's relay, so an agent that checks before sending text elsewhere lets the first review through.
+
 ## [0.1.0]
 
 November 26, 2026.
