@@ -37,7 +37,9 @@ export async function runJudge(
     dollars: jobs.length * (provider.capabilities.pricing === 'per-call' ? 0.001 : (65536 * PRICE_PER_MILLION) / 1e6),
   };
   options.onEstimate?.(estimate);
-  await mkdir(options.cacheDir, { recursive: true, mode: 0o700 });
+  // The cache only saves calls, so a review goes ahead without it where it can't be written, as in an agent's sandbox.
+  const kept = (write: Promise<unknown>) => write.catch(() => {});
+  await kept(mkdir(options.cacheDir, { recursive: true, mode: 0o700 }));
   const results: JudgeResult[] = new Array(jobs.length);
   let next = 0;
   const concurrency = Math.max(1, Math.min(16, options.concurrency ?? 4));
@@ -63,7 +65,8 @@ export async function runJudge(
         try {
           result = JSON.parse(await readFile(file, 'utf8')) as JudgeResult;
         } catch (error) {
-          if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw new Error('Invalid judge cache');
+          // A file that can't be read is a miss; one that isn't JSON is a broken cache.
+          if (!(error as NodeJS.ErrnoException).code) throw new Error('Invalid judge cache');
         }
         if (result) {
           result = { ...result, cached: true, usage: { calls: 0, dollars: 0 } };
@@ -95,21 +98,25 @@ export async function runJudge(
                 ...(raw.usage.inputTokens === undefined ? {} : { inputTokens: raw.usage.inputTokens }),
               },
             };
-            await writeFile(file, JSON.stringify(result), { mode: 0o600 });
+            await kept(writeFile(file, JSON.stringify(result), { mode: 0o600 }));
           } catch (error) {
-            await appendFile(
-              path.join(options.cacheDir, 'ledger.jsonl'),
-              JSON.stringify({ key, status: 'failed', unknownUsage: true }) + '\n',
-              { mode: 0o600 },
+            await kept(
+              appendFile(
+                path.join(options.cacheDir, 'ledger.jsonl'),
+                JSON.stringify({ key, status: 'failed', unknownUsage: true }) + '\n',
+                { mode: 0o600 },
+              ),
             );
             throw sanitizedError(error);
           }
         }
         results[index] = result;
-        await appendFile(
-          path.join(options.cacheDir, 'ledger.jsonl'),
-          JSON.stringify({ key, cached: result.cached, ...result.usage }) + '\n',
-          { mode: 0o600 },
+        await kept(
+          appendFile(
+            path.join(options.cacheDir, 'ledger.jsonl'),
+            JSON.stringify({ key, cached: result.cached, ...result.usage }) + '\n',
+            { mode: 0o600 },
+          ),
         );
       }
     }),

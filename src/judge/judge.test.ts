@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, readFile, readdir, rm } from 'node:fs/promises';
+import { mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { jevRequest, createJev, sanitizedError } from './jev';
 import { calibrate, average } from './calibration';
@@ -243,4 +243,47 @@ test('a dropped connection or server error gets one quiet retry; refusals fail a
     /Jev refused the key/,
   );
   assert.equal(refused.calls(), 1, 'a refusal is not retried');
+});
+
+test("a cache that can't be written never stops a review, and a failed judge still says why", async () => {
+  const scratchDir = await scratch();
+  // Like an agent's sandbox, where the home folder can't be written: here the cache's parent is a file.
+  await writeFile(path.join(scratchDir, 'blocked'), '');
+  const cacheDir = path.join(scratchDir, 'blocked', 'cache');
+  let calls = 0;
+  const provider: JudgeProvider = {
+    id: 'fake',
+    model: 'one',
+    capabilities: { maxQuestionsPerCall: 2, pricing: 'per-call' },
+    async judge(_input, questions) {
+      calls++;
+      return {
+        answers: questions.map(question => ({ id: question.id, probability: 0.9 })),
+        provider: 'fake',
+        model: 'one',
+        cached: false,
+        latencyMs: 1,
+        usage: { calls: 1, dollars: 0.001 },
+      };
+    },
+  };
+  try {
+    const options = { cacheDir, rulesVersion: '3', repeats: 1 };
+    const result = await runJudge(provider, { target: 'text' }, [q], options);
+    assert.equal(result.answers[0]?.probability, 0.9);
+    await runJudge(provider, { target: 'text' }, [q], options);
+    assert.equal(calls, 2, 'nothing was cached');
+    const failing: JudgeProvider = {
+      ...provider,
+      async judge() {
+        throw Object.assign(new Error('The relay is busy'), { status: 503 });
+      },
+    };
+    await assert.rejects(runJudge(failing, { target: 'text' }, [q], options), (error: Error) => {
+      assert.doesNotMatch(error.message, /ENOTDIR|blocked/);
+      return true;
+    });
+  } finally {
+    await rm(scratchDir, { recursive: true });
+  }
 });
