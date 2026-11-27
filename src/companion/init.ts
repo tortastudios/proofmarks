@@ -83,6 +83,33 @@ export async function installPi(
       'pi: an older Proofmarks MCP entry would keep requests from arriving. Remove it with: pi mcp remove proofmarks',
     );
 }
+/** Whether the agent has the Proofmarks plugin installed and on: Claude Code lists its server, Codex its config entry. */
+async function fromPlugin(
+  command: string,
+  home: string,
+  root: string,
+  run: (command: string, args: string[], cwd: string) => Promise<string>,
+) {
+  if (command === 'claude')
+    return run('claude', ['mcp', 'get', 'plugin:proofmarks:proofmarks'], root).then(
+      () => true,
+      () => false,
+    );
+  if (command !== 'codex') return false;
+  let lines: string[];
+  try {
+    lines = (await readFile(path.join(home, '.codex', 'config.toml'), 'utf8')).split('\n');
+  } catch {
+    return false;
+  }
+  const start = lines.findIndex(line => /^\[plugins\."proofmarks@[^"]+"\]\s*$/.test(line.trim()));
+  if (start < 0) return false;
+  for (const line of lines.slice(start + 1)) {
+    if (line.trim().startsWith('[')) return false;
+    if (/^enabled\s*=\s*true\b/.test(line.trim())) return true;
+  }
+  return false;
+}
 // Where common site generators keep their writing; init --content <folder> adds another.
 export const CONTENT_FOLDERS = ['content', 'src/content', '_posts', 'posts', 'src/posts', 'blog'];
 export type InitOptions = {
@@ -349,8 +376,19 @@ export async function init(options: InitOptions) {
       print(`${agent.command}: not on this PATH, so not connected. To connect it, run: ${command}`);
       continue;
     }
+    const registered = await run(agent.command, ['mcp', 'get', 'proofmarks'], root).catch(() => undefined);
+    // The Torta Studios plugin already starts Proofmarks in every project; another registration would show the agent
+    // every tool twice.
+    if (await fromPlugin(agent.command, home, root, run)) {
+      print(
+        registered === undefined
+          ? `${agent.command}: Proofmarks comes from its plugin, so there's nothing to register.`
+          : `${agent.command}: Proofmarks comes from its plugin, and an earlier init registered it too, so the agent sees every tool twice. Remove that one with: ${agent.command} mcp remove proofmarks`,
+      );
+      continue;
+    }
     try {
-      const registration = await run(agent.command, ['mcp', 'get', 'proofmarks'], root);
+      const registration = registered ?? (await run(agent.command, ['mcp', 'get', 'proofmarks'], root));
       if (registration.includes(root) && registration.includes('proofmarks')) {
         print(`${agent.command}: Proofmarks already registered; unchanged.`);
         continue;

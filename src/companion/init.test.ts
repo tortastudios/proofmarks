@@ -51,7 +51,7 @@ test('init confirms writes, detects content and registers all agents idempotentl
         assert.equal(cwd, f.project);
         if (args[0] === '--version') return 'stub';
         if (args[1] === 'get') {
-          const registration = registrations.get(command);
+          const registration = args[2] === 'proofmarks' ? registrations.get(command) : undefined;
           if (!registration) throw new Error('missing');
           return registration;
         }
@@ -313,5 +313,51 @@ test('usage counts: init asks the person once and saves the answer; --yes never 
   } finally {
     await f.close();
     restore();
+  }
+});
+test('init registers nothing for an agent whose Proofmarks plugin is on, and says when an older registration doubles it', async () => {
+  const f = await fixture();
+  try {
+    await mkdir(path.join(f.home, '.codex'), { recursive: true });
+    const codexConfig = (enabled: boolean) =>
+      writeFile(
+        path.join(f.home, '.codex', 'config.toml'),
+        `[marketplaces.tortastudios]\nsource_type = "git"\n\n[plugins."proofmarks@tortastudios"]\nenabled = ${enabled}\n`,
+      );
+    await codexConfig(true);
+    const adds: string[] = [],
+      output: string[] = [];
+    const run = async (command: string, args: string[]) => {
+      if (command === 'pi') throw new Error('absent');
+      if (args[0] === '--version') return 'stub';
+      if (args[1] === 'get') {
+        // Claude Code lists the plugin's server, and an earlier init registered one too.
+        if (command === 'claude') return `${args[2]}: npx -y @tortastudios/proofmarks mcp`;
+        throw new Error('missing');
+      }
+      adds.push(command);
+      return '';
+    };
+    const options = {
+      projectRoot: f.project,
+      home: f.home,
+      yes: true,
+      print: (line: string) => output.push(line),
+      run,
+    };
+    await init(options);
+    assert.deepEqual(adds, []);
+    const said = output.join('\n');
+    assert.match(
+      said,
+      /claude: Proofmarks comes from its plugin, and an earlier init registered it too, so the agent sees every tool twice\. Remove that one with: claude mcp remove proofmarks/,
+    );
+    assert.match(said, /codex: Proofmarks comes from its plugin, so there's nothing to register\./);
+    // A plugin that's turned off doesn't count.
+    await codexConfig(false);
+    await init(options);
+    assert.deepEqual(adds, ['codex']);
+  } finally {
+    await f.close();
   }
 });
