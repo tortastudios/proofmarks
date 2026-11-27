@@ -83,8 +83,15 @@ export async function pagePath(
       .filter(folder => folder && folder !== '.'),
     prefixes = ['', ...folders.map((_, i) => '/' + folders.slice(i).join('/')), ...folders.map(folder => '/' + folder)],
     allowed = pattern(url),
+    // An index page is served at its folder.
     candidates = [
-      ...new Set(prefixes.flatMap(prefix => [`${prefix}/${stem}/`, `${prefix}/${stem}`, `${prefix}/${stem}.html`])),
+      ...new Set(
+        prefixes.flatMap(prefix =>
+          stem === 'index'
+            ? [`${prefix}/`, `${prefix}/index.html`]
+            : [`${prefix}/${stem}/`, `${prefix}/${stem}`, `${prefix}/${stem}.html`],
+        ),
+      ),
     ].filter(candidate => allowed.test(candidate));
   // The longest run of plain words in the document, to tell its page from a fallback; without one, the home page.
   const words = [
