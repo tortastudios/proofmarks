@@ -1,4 +1,4 @@
-Set up Proofmarks on this site, so it marks AI-sounding writing on my pages.
+Set up Proofmarks on this site, so it marks AI-sounding writing on my pages. I'm OK with Proofmarks sending my pages' text to Torta's relay to judge it.
 
 1. Install it: {{command}}
 2. In the site's folder, run {{run}} init --yes, then {{run}} dev --background.
