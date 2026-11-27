@@ -32,11 +32,15 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 24
           package-manager-cache: false
+      # pnpm/action-setup fetches a pnpm 12 executable that macOS runners can't run (spawn ENOEXEC). npm installs the pnpm
+      # package.json#packageManager names instead, and its install script picks this platform's executable.
+      - name: Set up pnpm
+        shell: bash
+        run: npm install --global --ignore-scripts=false "pnpm@$(node -p "require('./package.json').packageManager.slice(5)")"
       - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
       # The pushed tag is what gets published, so it must match package.json. A rehearsal has no tag.
       - name: Check the tag matches the version
@@ -64,13 +68,17 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
       # setup-node installs Node's official build, which can build single executables (Homebrew's cannot).
       # Every target is built into this same Node version.
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 26
           package-manager-cache: false
+      # pnpm/action-setup fetches a pnpm 12 executable that macOS runners can't run (spawn ENOEXEC). npm installs the pnpm
+      # package.json#packageManager names instead, and its install script picks this platform's executable.
+      - name: Set up pnpm
+        shell: bash
+        run: npm install --global --ignore-scripts=false "pnpm@$(node -p "require('./package.json').packageManager.slice(5)")"
       - run: pnpm install --frozen-lockfile
       - run: pnpm run build
       # Releases are signed with Torta's Developer ID; a release without the signing secrets stops here.
@@ -163,11 +171,15 @@ jobs:
           path: artifacts
       - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
       # The smoke script itself runs on Node; the program it checks runs with no Node on PATH.
-      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 26
           package-manager-cache: false
+      # pnpm/action-setup fetches a pnpm 12 executable that macOS runners can't run (spawn ENOEXEC). npm installs the pnpm
+      # package.json#packageManager names instead, and its install script picks this platform's executable.
+      - name: Set up pnpm
+        shell: bash
+        run: npm install --global --ignore-scripts=false "pnpm@$(node -p "require('./package.json').packageManager.slice(5)")"
       # The CLI, a review, init, the dev proxy (which starts the helper) and the MCP server, on every platform.
       - name: Run the program with no Node on PATH
         shell: bash
@@ -235,13 +247,17 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
       # Trusted publishing needs Node 22.14 or later and npm 11.5.1 or later. No caching in a release build.
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 24
           registry-url: https://registry.npmjs.org
           package-manager-cache: false
+      # pnpm/action-setup fetches a pnpm 12 executable that macOS runners can't run (spawn ENOEXEC). npm installs the pnpm
+      # package.json#packageManager names instead, and its install script picks this platform's executable.
+      - name: Set up pnpm
+        shell: bash
+        run: npm install --global --ignore-scripts=false "pnpm@$(node -p "require('./package.json').packageManager.slice(5)")"
       - run: npm install --global npm@^11.5.1
       - run: pnpm install --frozen-lockfile
       - run: pnpm run build
