@@ -257,15 +257,32 @@ export async function init(options: InitOptions) {
     reviewPaths.add(path.resolve(root, review));
     if (used.has(id)) throw new UserError('Detected document identities collide; create the config manually');
     used.add(id);
+    const format = detected.stack === 'jinja' && relative.startsWith('templates/') ? 'jinja' : inferFormat(file);
+    // A Markdown page bundle is named for its folder: content/posts/first-week/index.md like content/posts/first-week.md.
+    const name = path.basename(file, path.extname(file)),
+      bundle = name === 'index' && folder !== undefined && inner.includes('/'),
+      within = bundle ? path.posix.dirname(inner) : inner;
     // Jekyll names posts 2026-11-12-title.md and serves them at a dated /title.html URL.
-    const stem = path.basename(file, path.extname(file)).replace(/^\d{4}-\d{2}-\d{2}-/, '');
+    const stem = bundle ? path.posix.basename(within) : name.replace(/^\d{4}-\d{2}-\d{2}-/, '');
+    // A plain HTML page is served at its own path, and an index page at its folder's: blog/first-week/index.html
+    // at /blog/first-week/.
+    const served =
+      format === 'html' && !relative.startsWith('templates/')
+        ? relative.replace(/(^|\/)index\.html?$/i, '$1').replace(/\.html?$/i, '')
+        : '';
     // A post in a subfolder (src/content/blog/x.md) is usually served under a section, such as /blog/x/.
     additions.push({
       id,
       source: relative,
       review,
-      url: stem === 'index' ? '/' : inner.includes('/') || folder === '_posts' ? `/*/${stem}*` : `/${stem}*`,
-      format: detected.stack === 'jinja' && relative.startsWith('templates/') ? 'jinja' : inferFormat(file),
+      url: served
+        ? `/${served}*`
+        : stem === 'index'
+          ? '/'
+          : within.includes('/') || folder === '_posts'
+            ? `/*/${stem}*`
+            : `/${stem}*`,
+      format,
       write: true,
     });
   }

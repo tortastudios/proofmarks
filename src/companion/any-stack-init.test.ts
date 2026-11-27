@@ -4,6 +4,7 @@ import { mkdir, mkdtemp, writeFile, rm, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { init } from './init';
 import { loadConfig } from '../config/index';
+import { matchDocument } from '../server/match';
 const work = new URL('../../.test-work/', import.meta.url);
 for (const stack of ['next', 'vite', 'jinja', 'static'])
   test(`init detects ${stack}, writes stack config and prints proxy/script quick starts`, async () => {
@@ -139,5 +140,53 @@ test('init finds blog posts where Astro and Jekyll keep them, takes --content, a
     assert.match(again.join('\n'), /proofmarks dev --to http:\/\/localhost:9999/);
   } finally {
     for (const dir of [astro, jekyll, custom]) await rm(dir, { recursive: true, force: true });
+  }
+});
+test("init gives an index page its folder's address, so a post in its own folder matches its page", async () => {
+  await mkdir(work, { recursive: true });
+  const quiet = {
+    home: '/nonexistent-home',
+    confirm: async () => true,
+    run: async () => {
+      throw new Error('stub absent');
+    },
+    print: () => {},
+  };
+  const vite = await mkdtemp(new URL('index-vite-', work).pathname),
+    bundle = await mkdtemp(new URL('index-bundle-', work).pathname);
+  try {
+    await writeFile(
+      path.join(vite, 'package.json'),
+      JSON.stringify({ scripts: { dev: 'vite' }, devDependencies: { vite: '7' } }),
+    );
+    await writeFile(path.join(vite, 'index.html'), '<h1>Home</h1>');
+    await mkdir(path.join(vite, 'blog/first-week'), { recursive: true });
+    await writeFile(path.join(vite, 'blog/first-week/index.html'), '<p>A post.</p>');
+    await writeFile(path.join(vite, 'blog/about.html'), '<p>About.</p>');
+    await init({ projectRoot: vite, ...quiet });
+    const documents = (await loadConfig(vite)).documents;
+    assert.deepEqual(
+      documents.map(d => [d.source, d.url]),
+      [
+        ['blog/about.html', '/blog/about*'],
+        ['blog/first-week/index.html', '/blog/first-week/*'],
+        ['index.html', '/'],
+      ],
+    );
+    const id = (source: string) => documents.find(d => d.source === source)!.id;
+    assert.deepEqual(await matchDocument(vite, { url: '/blog/first-week/', sample: '' }), {
+      reviewId: id('blog/first-week/index.html'),
+    });
+    assert.deepEqual(await matchDocument(vite, { url: '/', sample: '' }), { reviewId: id('index.html') });
+    // A Markdown page bundle is served at its folder's name, under its section.
+    await mkdir(path.join(bundle, 'content/posts/first-week'), { recursive: true });
+    await writeFile(path.join(bundle, 'content/posts/first-week/index.md'), 'A post.');
+    await init({ projectRoot: bundle, ...quiet });
+    assert.deepEqual(
+      (await loadConfig(bundle)).documents.map(d => [d.source, d.url]),
+      [['content/posts/first-week/index.md', '/*/first-week*']],
+    );
+  } finally {
+    for (const dir of [vite, bundle]) await rm(dir, { recursive: true, force: true });
   }
 });

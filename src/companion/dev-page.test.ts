@@ -64,3 +64,21 @@ test('a pattern url finds the real page: a path its source suggests, served with
   const gone = (async () => new Response('Not found', { status: 404 })) as typeof fetch;
   assert.equal(await pagePath('/*/faster-ci*', 'src/content/blog/faster-ci.md', post, base, gone), undefined);
 });
+
+test("an index page's url is its folder", async () => {
+  const text = '<p>I held five one-on-ones and cancelled two meetings.</p>';
+  const served = (at: string) =>
+    (async (url: string | URL) =>
+      new Response(new URL(url).pathname === at ? text : '<main><h1>Home</h1><p>Welcome to the blog.</p></main>', {
+        headers: { 'content-type': 'text/html' },
+      })) as typeof fetch;
+  const base = 'http://127.0.0.1:4850';
+  assert.equal(
+    await pagePath('/blog/first-week/*', 'blog/first-week/index.html', text, base, served('/blog/first-week/')),
+    '/blog/first-week/',
+  );
+  assert.equal(
+    await pagePath('/*/first-week*', 'content/posts/first-week/index.md', text, base, served('/posts/first-week/')),
+    '/posts/first-week/',
+  );
+});
