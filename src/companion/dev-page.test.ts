@@ -4,7 +4,7 @@ import { rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fixture } from '../server/fixture';
 import { fakeProvider } from './fake';
-import { clearDevPage, devPage, pagePath, recordDevPage, runningDev } from './dev-page';
+import { clearDevPage, devPage, pagePath, recordDevPage, runningDev, stopDevPage } from './dev-page';
 import { ReviewService } from './service';
 
 test('an agent opens the page through the running dev proxy, and is told how to start it otherwise', async () => {
@@ -81,4 +81,18 @@ test("an index page's url is its folder", async () => {
     await pagePath('/*/first-week*', 'content/posts/first-week/index.md', text, base, served('/posts/first-week/')),
     '/posts/first-week/',
   );
+});
+
+test("inside a sandbox, dev --stop says where to stop a proxy it can't signal, and keeps its record", async () => {
+  const root = await fixture();
+  try {
+    await recordDevPage(root, { port: 4321, pid: 123, to: 'http://localhost:3000' });
+    const sandboxed = (() => {
+      throw Object.assign(new Error('EPERM'), { code: 'EPERM' });
+    }) as typeof process.kill;
+    await assert.rejects(stopDevPage(root, sandboxed), /Run proofmarks dev --stop in your terminal/);
+    assert.equal((await runningDev(root, sandboxed))?.pid, 123);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
 });

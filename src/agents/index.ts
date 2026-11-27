@@ -1,6 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { mkdir, readFile, readdir, realpath, unlink } from 'node:fs/promises';
 import path from 'node:path';
+import { alive } from '../companion/alive';
 import { atomicJson, ReviewError } from '../companion/state';
 import { findCommand } from './command';
 export type Agent = {
@@ -48,10 +49,10 @@ export async function liveAgents(project: string, now = Date.now()) {
         !Number.isFinite(Date.parse(agent.startedAt)) ||
         !Number.isFinite(Date.parse(agent.lastSeenAt)) ||
         now - Date.parse(agent.lastSeenAt) > 30000 ||
-        Date.parse(agent.lastSeenAt) > now + 10000
+        Date.parse(agent.lastSeenAt) > now + 10000 ||
+        !alive(agent.pid)
       )
         continue;
-      process.kill(agent.pid, 0);
       agents.push(agent);
     } catch {
       /* Invalid, dead and stale records are never listed. */

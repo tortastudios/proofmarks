@@ -10,14 +10,7 @@ import { UserError } from './user-error';
 import { serve, type ServeOptions } from './server';
 import { ownKey } from './keys';
 import { envTurnsOff, setOwnersOff } from '../judge/relay';
-const live = (pid: number) => {
-  try {
-    process.kill(pid, 0);
-    return true;
-  } catch {
-    return false;
-  }
-};
+import { alive } from './alive';
 const pause = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 export const portInUse = (port: number) => `Port ${port} is in use. Pass --port <n> to use another.`;
 const portFree = (port: number) =>
@@ -31,7 +24,7 @@ type State = { port: number; pid: number; startedAt: string; route?: 'key' | 're
 async function running(root: string): Promise<State | undefined> {
   try {
     const state = JSON.parse(await readFile(path.join(root, '.proofmarks/companion.json'), 'utf8')) as State;
-    if (!Number.isInteger(state.pid) || !Number.isInteger(state.port) || !live(state.pid)) return undefined;
+    if (!Number.isInteger(state.pid) || !Number.isInteger(state.port) || !alive(state.pid)) return undefined;
     const response = await fetch(`http://127.0.0.1:${state.port}/__proofmarks/session`, {
       signal: AbortSignal.timeout(500),
     });
@@ -147,7 +140,7 @@ export async function acquireHelper(options: {
           if ((error as NodeJS.ErrnoException).code !== 'EEXIST') throw error;
           try {
             const pid = Number(await readFile(lockFile, 'utf8'));
-            if (pid && !live(pid)) await unlink(lockFile).catch(() => {});
+            if (pid && !alive(pid)) await unlink(lockFile).catch(() => {});
           } catch {
             /* Other starter is creating its lock. */
           }
@@ -258,7 +251,7 @@ export async function runHelper(options: ServeOptions & { projectRoot: string; s
     })())
       try {
         const lease = JSON.parse(readFileSync(path.join(leases, name), 'utf8'));
-        if (lease.off === true && Number.isInteger(lease.pid) && live(lease.pid)) return true;
+        if (lease.off === true && Number.isInteger(lease.pid) && alive(lease.pid)) return true;
       } catch {
         /* Lease was released. */
       }
@@ -269,7 +262,7 @@ export async function runHelper(options: ServeOptions & { projectRoot: string; s
     for (const name of await readdir(leases).catch(() => []))
       try {
         const lease = JSON.parse(await readFile(path.join(leases, name), 'utf8'));
-        if (Number.isInteger(lease.pid) && live(lease.pid)) count++;
+        if (Number.isInteger(lease.pid) && alive(lease.pid)) count++;
         else await unlink(path.join(leases, name)).catch(() => {});
       } catch {
         /* Lease was released. */
