@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
   pull_request:
+  # Run by hand from the Actions tab, for a check without a push.
+  workflow_dispatch:
 
 # Least privilege: CI only reads the repository.
 permissions:
