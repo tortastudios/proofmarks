@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3]
+
+November 27, 2026.
+
+- `init` registers nothing for an agent that the Proofmarks plugin already connects, so the agent doesn't see every tool twice. If an earlier `init` registered Proofmarks too, it says how to remove that one.
+- The setup skill says the self-driving skill comes with it, whether it came from the plugin or from `npx skills add`.
+
 ## [0.1.2]
 
 November 26, 2026.
