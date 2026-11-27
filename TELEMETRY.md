@@ -62,3 +62,5 @@ The relay's code is in [`relay/`](relay/).
 ## This website
 
 proofmarks.dev counts visits and clicks without cookies, and not at all if your browser asks not to be tracked (Do Not Track or Global Privacy Control). The clicks are Try it, picking an install route, copying a prompt or command, a link to GitHub and opening an FAQ answer. Each count carries the page's address, the page you came from and your screen and window widths, under a random ID that lasts one page load. It has no person profile and no location. That's separate from Proofmarks itself.
+
+The site runs on DigitalOcean's App Platform, which may keep its own request logs under DigitalOcean's terms. Its network, Cloudflare, sets one cookie, `__cf_bm`, for 30 minutes to tell people from bots. Proofmarks never reads it.
