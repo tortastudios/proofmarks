@@ -18,7 +18,7 @@ npx skills add tortastudios/proofmarks
 
 ## With an agent you're working with
 
-`init` registers Proofmarks' MCP server with Claude Code and Codex, and installs the Proofmarks extension for pi. A session that has it shows up in the menu.
+`init` registers Proofmarks' MCP server with Claude Code and Codex, and installs the Proofmarks extension for pi. A session that has it shows up in the menu. With the [Proofmarks plugin](install.md#as-a-plugin-for-claude-code-or-codex), the plugin connects Claude Code or Codex instead, and `init` leaves that agent alone.
 
 Ask the agent to "watch Proofmarks". In Claude Code, `/mcp__proofmarks__watch` does the same. The agent then works in a loop until you stop it:
 
@@ -78,6 +78,8 @@ Claude Code can also take requests as they happen, with no watch loop, through i
 ```sh
 claude --dangerously-load-development-channels server:proofmarks
 ```
+
+With the Proofmarks plugin, name the plugin instead: `claude --dangerously-load-development-channels plugin:proofmarks@tortastudios`.
 
 The flag lets a channel that isn't on Anthropic's approved list run, after a warning. It doesn't change permissions. It doesn't work with `claude -p` or the Agent SDK, and on Team and Enterprise plans an admin has to turn channels on.
 

@@ -27,6 +27,13 @@ Set up Proofmarks on this site, so it marks AI-sounding writing on my pages. I'm
 
 The agent installs Proofmarks, configures it, checks it with `proofmarks doctor`, and opens your page. There's no key to set up.
 
+In Claude Code or Codex, you can install the Proofmarks plugin from [Torta Studios' catalog](https://github.com/tortastudios/plugins) instead. It connects the agent in every project and brings the setup and self-driving skills, so you only ask it to "set up Proofmarks on this site":
+
+```sh
+claude plugin marketplace add tortastudios/plugins && claude plugin install proofmarks@tortastudios
+codex plugin marketplace add tortastudios/plugins && codex plugin add proofmarks@tortastudios
+```
+
 Or by hand, with Node.js 22 or later:
 
 ```sh
@@ -91,7 +98,7 @@ Proofmarks works with the agent you already use. `init` connects the ones it fin
 | Claude Code, Codex or pi, with no conversation | Proofmarks runs it for each rewrite, with its tools turned off. There's nothing to start. |
 | An agent you're working with | Ask it to "watch Proofmarks" (in Claude Code, `/mcp__proofmarks__watch`). This works in any MCP client, including the desktop apps, Cursor, VS Code, `claude -p` and the Agent SDK. |
 | pi | Requests arrive in the session on their own, through the Proofmarks extension. |
-| Claude Code, pushed | Requests arrive on their own when you start it with `claude --dangerously-load-development-channels server:proofmarks`, a research preview. |
+| Claude Code, pushed | Requests arrive on their own when you start it with `claude --dangerously-load-development-channels server:proofmarks` (`plugin:proofmarks@tortastudios` with the plugin), a research preview. |
 
 ## Privacy
 
@@ -103,7 +110,7 @@ Proofmarks works with the agent you already use. `init` connects the ones it fin
 
 ## Docs
 
-- [Install](docs/install.md): npm, Homebrew, the installers, uv and pipx, and what `init` does.
+- [Install](docs/install.md): npm, Homebrew, the installers, uv and pipx, the Claude Code and Codex plugin, and what `init` does.
 - [Configuration](docs/configuration.md): documents, write access, rebuilds and private access.
 - [Agents and MCP tools](docs/agents.md): self-driving, watch mode, the twelve tools, feedback, pi, push and setting up by hand.
 - [Integrations](docs/integrations.md): the proxy, the script tag, React, Next.js and the examples.
